@@ -1,0 +1,69 @@
+= stylesheet_link_tag "member/integral_wall"
+
+#page
+  #main.clearfix
+    - if flash[:notice]
+      .msg-success
+        %ul
+          %li #{flash[:notice]}
+    #breadcrumbs
+      %ul
+        %li.active 应用列表 (共#{@intelWalist.size unless @intelWalist.blank?}个)
+    .opbtn.important{:style=>'float: right; padding-top: 6px; padding-bottom: 5px; background: none;'}
+      %div{:style=>'border: 1px solid rgb(164, 164, 164); border-radius: 5px; background: none;'}
+        %button{:style=>'color: black; font-weight: normal; text-shadow: none;'}
+          %a{href:"#{new_member_integral_wall_path}"} 添加积分墙应用
+    .grid-view#yw0{border:'0',cellspacing:'0',cellpadding:'0',background:'image-url(member/list_app_top_bg.gif) repeat-x;'}
+      %table.datalist{style:'position: relative; top: 5px;'}
+        %thread
+          %tr
+            %th.left#yw0_c0{style:'width:160px'} 应用名称
+            %th.left#yw0_c1{style:'width:90px'} 应用状态
+            %th.left#yw0_c2{style:'width:80px'} 应用平台
+            %th.left#yw0_c3{style:'width:90px'} 广告形式
+            %th.left#yw0_c4{style:'width:140px'}
+              %a{href:'#'} Publisher ID
+            %th.right#yw0_c5{style:'width:70px'} 插屏积分墙
+            %th.right#yw0_c6{style:'width:90px'} 激活收益
+            %th.left#yw0_c7{style:'width:230px'} &nbsp;
+        %tbody
+          - unless @intelWalist.blank?
+            - @intelWalist.each do |intel|
+              %tr.odd
+                %td.left
+                  = link_to "#{intel.app_name}", member_integral_wall_path(id:intel.id,onlyShow:'onlyShow'), class: "operable"
+                %td.left
+                  - if intel.checkstatus==1
+                    = link_to '审核中', member_integral_wall_path(id:intel.id,onlyShow:'onlyShow'), class: "ow-status-normal"
+                  - elsif intel.checkstatus==2 && intel.status==2
+                    = link_to '暂 停', member_integral_wall_path(id:intel.id,onlyShow:'onlyShow'), class: "ow-status-good"
+                  - elsif intel.checkstatus==2 && intel.status==1
+                    = link_to '运行中', member_integral_wall_path(id:intel.id,onlyShow:'onlyShow'), class: "ow-status-good"
+                  - elsif intel.checkstatus==3
+                    %span.ow-status-normal 审核未通过
+                %td.left
+                  = platformStr("#{intel.platform}")
+                %td.left
+                  = adverTypeStr("#{intel.adver_type}")
+                %td.left #{intel.publisherid}
+                %td.right
+                  %a.operable{href:'#'}
+                  - if intel.platform=='android'
+                    = link_to '已启用', edit_member_integral_wall_path(id:intel.id), class: "operable"
+                  - else
+                    = link_to '暂未支持', edit_member_integral_wall_path(id:intel.id), class: "operable"
+                %td.right
+                  =number_with_precision("#{intel.active_income}")
+                  元
+                %td.right{style:'padding-right: 5px;'}
+                  %a.operable{title:'查看报表',href:"#{member_intelwal_static_path(id:intel.id)}"} 查看报表 &nbsp;&nbsp;
+                  = link_to '编辑', edit_member_integral_wall_path(id:intel.id), class: "operable"
+                  - if intel.status==1
+                    = link_to '暂停', run_member_integral_wall_path(id:intel.id), method: :put, class: "operable"
+                  - elsif intel.status==2
+                    = link_to '运行', run_member_integral_wall_path(id:intel.id), method: :put, class: "operable"
+                  = link_to "删除",member_integral_wall_path(id:intel.id), :method => :delete,class: "operable", :data => { :confirm => '您确定要删除该积分墙应用吗?'}
+          - else
+            %tr
+              %td{align:'center',colspan:6}
+                您还未添加积分墙应用，请先添加！

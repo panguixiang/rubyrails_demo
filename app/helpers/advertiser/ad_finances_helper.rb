@@ -1,0 +1,2 @@
+module Advertiser::AdFinancesHelper
+end

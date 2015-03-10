@@ -1,0 +1,33 @@
+#page
+  #main
+    #wrapper
+      %div#breadcrumbs
+        %ul
+          %li 财务账户
+          %li.arrow
+          %li.active 我的消费历史
+      %div#list
+
+        %div#listfilter{:float=>"right"}
+          = form_tag "#{advertiser_ad_finances_path}",method:'get',id:'adverFinanceId' do
+            %span 共
+            %span #{@adfinanceCount}
+            %span 条数据
+            = text_field_tag 'date',params[:date],class:'datespan',id:"updateStat"
+        %table.datalist
+          %tbody
+            %tr
+              %th.left 日期</th>
+              %th{:style=>"width: 70px; padding-right: 20px;"} 消费金额
+            -@adfinanceList.each do |ad|
+              %tr.odd
+                %td.left.important #{ad.created_at.strftime("%Y-%m-%d")<< ad.created_at.strftime(" %H:%M")}
+                %td{:style=>"padding-right: 20px;"} #{ad.consumday}
+        %div#total{:style=>"text-align: right; line-height: 25px; padding-right: 20px; font-weight: bold;"} 总计：#{@consumdayTall}
+= stylesheet_link_tag "advertiser/default"
+= stylesheet_link_tag "ui.daterangepicker"
+= stylesheet_link_tag "jquery-ui-1.7.1.custom"
+= javascript_include_tag "jquery-migrate-1.1.1"
+= javascript_include_tag "jquery-ui-1.7.1.custom.min"
+= javascript_include_tag "daterangepicker.jQuery"
+= javascript_include_tag "advertiser/ad_finances"

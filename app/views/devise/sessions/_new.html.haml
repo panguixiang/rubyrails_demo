@@ -1,0 +1,34 @@
+#page.panel_login{:style=>'padding-top: 0px;'}
+  .inputarea
+    = form_for(resource, :as => resource_name, :url => session_path(resource_name),html: { id: "loginForm" }, :remote => true, :format => :json) do |f|
+      .title
+        %p
+          %a.home{:href=>'/'}
+        %h1.f30px
+          %span 登录
+          %span.f24px.identity 多盟后台
+      .first
+        .inputlist{:style=>'position:relative;'}
+          #email_warn_box.warn_box
+            %p#email_warn.warn 邮箱不能为空
+            %p.angle
+          %p.email_box.input_box
+            = f.email_field :email,:autofocus => true,class:"input_email_n"
+        .inputlist
+          #pw_warn_box.warn_box
+            %p#pw_warn.warn 密码不能为空
+            %p.angle
+          .password_box.input_box
+            = f.password_field :password,class:"input_password_n"
+      %div{:style=>'height:80px;'}
+        - if devise_mapping.rememberable?
+          = f.check_box :remember_me,id:"hold"
+          = f.label "保持登录状态两周",:style=>'float:left;',for:"hold"
+        = f.submit "确 定",class:"shadow btn"
+      .tips
+        %h1.f24px 忘记密码?
+        %h2
+          %span 不用担心，点击&nbsp;
+          - if devise_mapping.recoverable? && controller_name != 'passwords'
+            = link_to "这里", new_password_path(resource_name),class:"blue dotted",style:"text-decoration:none;"
+          %span 获得一个新的密码！

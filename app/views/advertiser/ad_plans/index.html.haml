@@ -1,0 +1,306 @@
+= stylesheet_link_tag "advertiser/default"
+= stylesheet_link_tag "advertiser/combo"
+= stylesheet_link_tag "advertiser/combo(1)"
+= javascript_include_tag "advertiser/ad_plans"
+#content
+  %div#main.main.wrapper
+    %div.clearfix
+      %h2
+        推广计划列表
+        %span.weak
+          （共 #{@page.getTotalCount} 个）
+        %small.searchForm
+          %button.btn.btnM.btn_search
+            %span.icon.iconM.icon_search 搜索
+          = text_field_tag 'planName',params[:planName],class:'text searchInput',id:"planName",placeholder:"通过计划名搜索..."
+          - if params[:bill_type].blank?
+            = hidden_field_tag 'bill_type','cpc',id:'bill_type_id'
+          - else
+            = hidden_field_tag 'bill_type',params[:bill_type],id:'bill_type_id'
+            -unless params[:planName].blank?
+              %a.icon.iconM.icon_search_cancel#abc1{:href=>"/advertiser/ad_plans",:style=>"display: block"} 取消
+      -unless params[:planName].blank?
+        %div.keyvalue.searchInfo#abc2{:style=>"display: block"}
+          %p.important
+            找到 #{@page.getTotalCount} 个与&nbsp;"#{params[:planName]}"&nbsp;相关的结果
+            %a.fcb.backList{:href=>"/advertiser/ad_plans"} 返回全部列表
+      %div#costtype
+        %div.tabs.clearfix
+          %div.dd
+            - if params[:bill_type].blank? || params[:bill_type]=='cpc'
+              %a.active{:href=>"#{advertiser_ad_plans_path(bill_type:'cpc')}",:rel=>"cpc"} CPC 列表
+            - else
+              %a{:href=>"#{advertiser_ad_plans_path(bill_type:'cpc')}",:rel=>"cpc"} CPC 列表
+          %div.dd
+            - if params[:bill_type]=='ocpc'
+              %a.active{:href=>"#{advertiser_ad_plans_path(bill_type:'ocpc')}",:rel=>"ocpc"} OCPC 列表
+            - else
+              %a{:href=>"#{advertiser_ad_plans_path(bill_type:'ocpc')}",:rel=>"ocpc"} OCPC 列表
+          %div.dd
+            - if params[:bill_type]=='cpm'
+              %a.active{:href=>"#{advertiser_ad_plans_path(bill_type:'cpm')}",:rel=>"cpm"} CPM 列表
+            - else
+              %a#cpm{:href=>"#{advertiser_ad_plans_path(bill_type:'cpm')}",:rel=>"cpm"} CPM 列表
+          %div.dd
+            - if params[:bill_type]=='cpd'
+              %a.active#cpd{:href=>"#{advertiser_ad_plans_path(bill_type:'cpd')}",:rel=>"cpd"} CPD 列表
+            - else
+              %a{:href=>"#{advertiser_ad_plans_path(bill_type:'cpd')}",:rel=>"cpd"} CPD 列表
+          %div.dd
+            - if params[:bill_type]=='cpi'
+              %a.active{:href=>"#{advertiser_ad_plans_path(bill_type:'cpi')}",:rel=>"cpi"} CPI 列表
+            - else
+              %a#cpi{:href=>"#{advertiser_ad_plans_path(bill_type:'cpi')}",:rel=>"cpi"} CPI 列表
+      .databox.report_data
+        .dataWrap
+          .databox_options.clearfix
+            .opt_right
+              %div#html_pager_1.pager.pagerL
+                %span.pager_position
+                  #{@page.getPageNum}/#{@page.getPageCount}
+                .btn_group
+                  %button.button.btnS.btn_gray.pager_prev.ac.ac_goto.btn_disabled{:disabled=>""}
+                    %span
+                      - if @page.getPageNum-1==0
+                        %em.icon.iconS.icon_left &lt;
+                      - else
+                        %em.icon.iconS.icon_left{:onclick=>"toPage(#{@page.getPageNum-1})"} &lt;
+                  %button.button.btnS.btn_gray.pager_next.ac.ac_goto.btn_disabled{:disabled=>""}
+                    %span
+                      - if @list.nil? || @list.size==0 || @page.getPageCount<= @page.getPageNum
+                        %em.icon.iconS.icon_right &gt;
+                      - else
+                        %em.icon.iconS.icon_right{:onclick=>"toPage(#{@page.getPageNum+1})"} &lt;
+          - if params[:bill_type].blank? || params[:bill_type]=='cpc'
+            .content{:style=>"display: block"}
+              %table.datatable
+                %tbody
+                  %tr
+                    %th.fixshape.center.w60px
+                      %label
+                        %input.customCheckbox7{:type=>"checkbox",:name=>"planselector" }
+                    %th 推广计划名称
+                    %th.w100px
+                      %p.right 今日预算
+                      %p.right（元）
+                    %th.w100px.right
+                      %p.right 总预算
+                      %p.right 余额
+                    %th.w160px
+                      %p.right 成本（元）
+                      %p.right 平均点击成本（元）
+                    %th.w130px.right 有效展示次数
+                    %th.w100px.right点击次数
+                    %th.w80px.right 点击率
+                    %th.w40px &nbsp;
+                    %th.w40px &nbsp;
+                    %th.w30px &nbsp;
+                  -@list.each do |obj|
+                    %tr
+                      %th.fixshape.center.w60px
+                        %label
+                          %input.customCheckbox7{:type=>"checkbox",:name=>"planselector" }
+                      %th #{obj.adver_plan_name}
+                      %th.w100px
+                        %p.right
+                          =number_with_precision("#{obj.budget_day}")
+                      %th.w100px.right
+                        %p.right
+                          =number_with_precision("#{obj.buget}")
+                        %p.right（元）
+                      %th.w160px
+                        %p.right
+                          =number_with_precision("#{obj.cost}")
+                        %p.right
+                          =number_with_precision("#{obj.cost/obj.clickNum if obj.clickNum>0 }")
+                      %th.w130px.right #{obj.displaynum}
+                      %th.w100px.right #{obj.clickNum}
+                      %th.w80px.right
+                        = getRate(obj.clickNum,obj.displaynum )
+                      %th.w40px &nbsp;
+                      %th.w40px &nbsp;
+                      %th.w30px &nbsp;
+                  - if @list.length==0
+                    %tr
+                      %td{:style=>"text-align:center",:colspan=>"9"} 您还没有创建推广计划
+          - if params[:bill_type]=='ocpc'
+            .content{:style=>"display: block"}
+              %table.datatable
+                %tbody
+                  %tr
+                    %th.fixshape.center.w60px
+                      %label
+                        %input.customCheckbox7{:type=>"checkbox",:name=>"planselector" }
+                    %th 推广计划名称
+                    %th.w100px
+                      %p.right 今日预算
+                      %p.right（元）
+                    %th.w100px.right
+                      %p.right 总预算
+                      %p.right 余额
+                    %th.w40px &nbsp;
+                    %th.w40px &nbsp;
+                    %th.w30px &nbsp;
+                  -@list.each do |obj|
+                    %tr
+                      %th.fixshape.center.w60px
+                        %label
+                          %input.customCheckbox7{:type=>"checkbox",:name=>"planselector" }
+                      %th #{obj.adver_plan_name}
+                      %th.w100px
+                        %p.right
+                          =number_with_precision("#{obj.budget_day}")
+                      %th.w100px.right
+                        %p.right
+                          =number_with_precision("#{obj.buget}")
+                        %p.right（元）
+                      %th.w40px &nbsp;
+                      %th.w40px &nbsp;
+                      %th.w30px &nbsp;
+                  - if @list.length==0
+                    %tr
+                      %td{:style=>"text-align:center",:colspan=>"9"} 您还没有创建推广计划
+          - if params[:bill_type]=='cpm'
+            .content{:style=>"display: block"}
+              %table.datatable
+                %tbody
+                  %tr
+                    %th.fixshape.center.w60px
+                      %label
+                        %input.customCheckbox7{:type=>"checkbox",:name=>"planselector" }
+                    %th 推广计划名称
+                    %th.w100px
+                      %p.right 今日预算
+                      %p.right（元）
+                    %th.w100px.right
+                      %p.right 总预算
+                      %p.right 余额
+                    %th.w140px.right 成本（元）
+                    %th.w130px.right 千次展现成本（元）
+                    %th.w120px.right 有效展示（次）
+                    %th.w40px &nbsp;
+                    %th.w40px &nbsp;
+                    %th.w30px &nbsp;
+                  -@list.each do |obj|
+                    %tr
+                      %th.fixshape.center.w60px
+                        %label
+                          %input.customCheckbox7{:type=>"checkbox",:name=>"planselector" }
+                      %th #{obj.adver_plan_name}
+                      %th.w100px
+                        %p.right
+                          =number_with_precision("#{obj.budget_day}")
+                      %th.w100px.right
+                        %p.right
+                          =number_with_precision("#{obj.buget}")
+                        %p.right （元）
+                      %th.w140px.right
+                        =number_with_precision("#{obj.cost}")
+                      %th.w130px.right
+                        =number_with_precision("#{(obj.cost/obj.displaynum)*1000 if obj.displaynum>0 }")
+                      %th.w120px.right #{obj.displaynum}
+                      %th.w40px &nbsp;
+                      %th.w40px &nbsp;
+                      %th.w30px &nbsp;
+                  - if @list.length==0
+                    %tr
+                      %td{:style=>"text-align:center",:colspan=>"9"} 您还没有创建推广计划
+          - if params[:bill_type]=='cpd'
+            .content{:style=>"display: block"}
+              %table.datatable
+                %tbody
+                  %tr
+                    %th.fixshape.center.w60px
+                      %label
+                        %input.customCheckbox7{:type=>"checkbox",:name=>"planselector"}
+                    %th 推广计划名称
+                    %th.w100px
+                      %p.right 今日预算
+                      %p.right（元）
+                    %th.w100px.right
+                      %p.right 总预算
+                      %p.right 余额
+                    %th.w160px
+                      %p.right 成本（元）
+                      %p.right 平均下载成本（元）
+                    %th.w130px.right 有效展示次数
+                    %th.w100px.right下载次数
+                    %th.w80px.right 下载率
+                    %th.w40px &nbsp;
+                    %th.w40px &nbsp;
+                    %th.w30px &nbsp;
+                  -@list.each do |obj|
+                    %tr
+                      %th.fixshape.center.w60px
+                        %label
+                          %input.customCheckbox7{:type=>"checkbox",:name=>"planselector" }
+                      %th #{obj.adver_plan_name}
+                      %th.w100px
+                        %p.right
+                          =number_with_precision("#{obj.budget_day}")
+                      %th.w100px.right
+                        %p.right
+                          =number_with_precision("#{obj.buget}")
+                        %p.right（元）
+                      %th.w160px
+                        %p.right
+                          =number_with_precision("#{obj.cost}")
+                        %p.right
+                          =number_with_precision("#{obj.cost/obj.download_count if obj.download_count>0 }")
+                      %th.w130px.right #{obj.displaynum}
+                      %th.w100px.right #{obj.download_count}
+                      %th.w80px.right
+                        = getRate(obj.download_count,obj.displaynum)
+                      %th.w40px &nbsp;
+                      %th.w40px &nbsp;
+                      %th.w30px &nbsp;
+                  - if @list.length==0
+                    %tr
+                      %td{:style=>"text-align:center",:colspan=>"9"} 您还没有创建推广计划
+          - if params[:bill_type]=='cpi'
+            .content{:style=>"display: block"}
+              %table.datatable
+                %tbody
+                  %tr
+                    %th.fixshape.center.w60px
+                      %label
+                        %input.customCheckbox7{:type=>"checkbox",:name=>"planselector"}
+                    %th 推广计划名称
+                    %th.w100px
+                      %p.right 今日预算
+                      %p.right（元）
+                    %th.w100px.right
+                      %p.right 总预算
+                      %p.right 余额
+                    %th.w160px
+                      %p.right 成本（元）
+                      %p.right 平均安装成本（元）
+                    %th.w130px.right 有效展示次数
+                    %th.w100px.right安装次数
+                    %th.w80px.right 安装率
+                    %th.w40px &nbsp;
+                    %th.w40px &nbsp;
+                    %th.w30px &nbsp;
+                  -@list.each do |obj|
+                    %tr
+                      %th.fixshape.center.w60px
+                        %label
+                          %input.customCheckbox7{:type=>"checkbox",:name=>"planselector" }
+                      %th #{obj.adver_plan_name}
+                      %th.w100px
+                        %p.right #{obj.budget_day}
+                      %th.w100px.right
+                        %p.right #{obj.buget}
+                        %p.right（元）
+                      %th.w160px
+                        %p.right #{obj.cost}
+                        %p.right #{obj.cost/obj.install_count if obj.install_count>0 }
+                      %th.w130px.right #{obj.displaynum}
+                      %th.w100px.right #{obj.install_count}
+                      %th.w40px &nbsp;
+                      %th.w40px
+                        = getRate(obj.install_count,obj.displaynum )
+                      %th.w30px &nbsp;
+                  - if @list.length==0
+                    %tr
+                      %td{:style=>"text-align:center",:colspan=>"9"} 您还没有创建推广计划

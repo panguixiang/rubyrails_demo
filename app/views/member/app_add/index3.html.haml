@@ -1,0 +1,71 @@
+= stylesheet_link_tag "member/app_list/combo"
+= stylesheet_link_tag "member/app_list/combo1"
+= stylesheet_link_tag "member/app_list/combo2"
+= javascript_include_tag "member/app_add"
+
+#content
+  .wrapper.breadCrumb
+    %a{:href=>"/member/app_manager/index"} 应用列表
+    %span > 添加应用
+  #main.main.wrapper
+    .clearfix
+      %h2 添加应用
+      %ul.createSteps
+        %li.first.current
+          .inner
+            %span.step 第一步 填写应用信息
+            .arrow
+              %em
+        %li.current
+          .inner
+            %span.step 第二步 创建广告位
+            .arrow
+              %em
+        %li.last.current
+          .inner
+            %span.step 第三步 下载并集成SDK
+            .arrow
+              %em
+      .keyvalue
+        %h2 恭喜！您已添加了应用。
+        %h4 接下来只需上传嵌入了多盟SDK的应用并通过审核，就可以赚取收入了！请按照下面的步骤依次完成：
+        .sdkWrap
+          .value.pair
+            %span.icon.iconM.icon_list1 list1
+            %span
+              下载Domob Android SDK:
+              %button.btnS.btn_gray.ac.ac_androidDown 立即下载
+
+          .value.pair
+            %span.icon.iconM.icon_list2 list2
+            %span 将SDK嵌入到应用中。
+            %a.fcb{:href=>"javascript:;"}
+              阅读SDK使用说明
+            %div.sdkcontainer
+              %p 需要嵌入到SDK的ID:
+              %p
+                #{@app.app_name} 应用的Publisher ID：
+                %span.publisher_bg#publisher_id #{@app.publisherid}
+                %span &nbsp;&nbsp;&nbsp;
+                %button.btnS.copy_a 复制
+
+          .value.pair.sxw
+            %span.icon.iconM.icon_list3 list3
+            %span 上传应用:
+            %button.btnS.btn_gray.ac.ac_uploadApp
+              %span
+                %a{:href=>"/member/app_manager/app_push?approId=#{@app['id']}"} 现在上传
+            %p.uploadTip
+              %span 您也可以稍后在
+              %a.fcb{:href=>"/member/app_manager/index"} 应用列表
+              %span 或
+              %a.fcb{:href=>"/member/app_manager/app_details?approId=#{@app.id}"} 应用详情
+              %span 中找到相应应用的“上传”入口完成应用上传。
+            .upApp_bg
+              %p.actions
+                %button.btnL.btn_default.ac.ac_backBtn
+                  %span
+                    %a{:href=>"/member/app_manager/index",:type=>"button",:name=>"saveAction"} 返回应用列表
+                - if @app.status==1
+                  %span 或
+                  %a.ac.ac_uploadApp{:href=>"/member/app_manager/app_push?approId=#{@app.id}"} 现在上传应用

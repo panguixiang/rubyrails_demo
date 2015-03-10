@@ -1,0 +1,52 @@
+#page.finance
+	#main.clearfix
+		#content.finance_his
+			.title
+				%ul
+					%li.btn_tab
+						%a{:href=>'/member/income/index'} 收入明细
+					%li.btn_tab_selected
+						%a{:href=>'javascript:void(0);'} 每月审核明细
+					%li.btn_tab
+						%a{:href=>'/member/takemoney/index'} 提现明细
+					%li.btn_tab
+						%a{:href=>'/member/reward/index'} 奖励明细
+			.table_his
+				.date_box
+				= form_tag("/member/month_review/index", method: "get") do
+					%span
+						= datetime_field_tag :startDate,params[:startDate]
+					%span -
+					%span
+						= datetime_field_tag :endDate,params[:endDate]
+					.opbtn.important
+						%div
+							%button.bold{:type=>'submit'} 搜索
+				.table_area
+					%table.datalist
+						%tbody
+							%tr
+								%th{:style=>'padding-left: 15px;width: 100px;',:align=>'left'} 月份
+								%th{:align=>'left'} 状态
+								%th{:align=>'right'} 收入金额
+								%th{:align=>'right'} 纳税金额
+								%th{:align=>'right'} 实际收入
+								%th.right{:style=>'padding-right: 15px;'} 操作
+						- if @reviewMonthList.blank?
+							%tr
+								%td{colspan:6,align:'center'} 在查询期间内，没有任何审核记录
+						- else
+							- @reviewMonthList.each do |obj|
+								%tr.old
+									%td.number #{obj.created_at.strftime('%Y年%m月')}
+									%td.number #{obj.status}
+									%td.money_total
+										=number_with_precision("#{obj.month_income}")
+									%td.money_total
+										=number_with_precision("#{obj.month_tax}")
+									%td.money_total
+										=number_with_precision("#{obj.month_actual}")
+									%td.money_total
+				.link_area
+					%a.operable{:href=>'/member/financial/index'} 返回账户信息
+		=render "member/books"

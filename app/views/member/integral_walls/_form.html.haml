@@ -1,0 +1,152 @@
+= javascript_include_tag "member/swf/swfupload"
+= javascript_include_tag "member/swf/swfupload.queue"
+= javascript_include_tag "member/swf/hander"
+= javascript_include_tag "member/integral_wall"
+= form_for [:member, @integral_wall], html: { class: 'ow-form' } do |f|
+	.ow-form-title 基本信息
+	.h20
+		%p
+	.ow-form-item
+		%label
+			%em.required *
+			应用平台
+		%label
+			= f.radio_button :platform,"ios",checked:'checked',class:'platformClass'
+			iOS
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		%label
+			= f.radio_button :platform,"android",class:'platformClass'
+			Android
+		&nbsp;&nbsp;&nbsp;&nbsp;
+	- if @integral_wall.platform=='android'
+		.ow-form-item#type{style:'display:none;'}
+			%label
+				%em.required *
+				广告形式
+			%label
+				= f.radio_button :adver_type,1,class:'adverTpyeClass'
+				积分墙广告
+			&nbsp;&nbsp;&nbsp;&nbsp;
+			%label
+				= f.radio_button :adver_type,2,class:'adverTpyeClass'
+				视频广告
+			&nbsp;&nbsp;&nbsp;&nbsp;
+	- else
+		.ow-form-item#type
+			%label
+				%em.required *
+				广告形式
+			%label
+				= f.radio_button :adver_type,1,checked:'checked',class:'adverTpyeClass'
+				积分墙广告
+			&nbsp;&nbsp;&nbsp;&nbsp;
+			%label
+				= f.radio_button :adver_type,2,class:'adverTpyeClass'
+				视频广告
+			&nbsp;&nbsp;&nbsp;&nbsp;
+	.ow-form-item
+		%label
+			%em.required *
+			应用名称
+		= f.text_field 'app_name',maxlength:20
+		.ow-form-hint{for:'point'}
+			应用名称不超过 20 个字符长度
+		- if @integral_wall.errors[:app_name].presence
+			#error_name.ow-form-hint.error_text{style:'display: inline;'}
+				%img{:src=>"#{image_path('member/warning.png')}"}
+				#{@integral_wall.errors[:app_name].join(", ")}
+	.ow-form-item
+		%label
+			%em.required *
+			应用类型
+		= f.select :app_type,[["--请选择--", ],["游戏-动作格斗", 100],["游戏-休闲益智", 101],["游戏-体育竞技", 102],["游戏-角色扮演", 103],["游戏-模拟经营", 104],["游戏-其它", 105],["应用-多媒体软件", 106],["应用-安全软件", 107],["应用-网络通讯", 108],["应用-实用工具", 109],["应用-系统软件", 200],["应用-生活信息", 201],["应用-娱乐休闲", 202],["应用-电子阅读", 203],["应用-主题桌面", 204],["应用-新闻资讯", 205],["应用-返利", 206],["应用-其它", 207]],:class=>"inputstyle",:id=>"select_c"
+		- if @integral_wall.errors[:app_type].presence
+			#error_category.ow-form-hint.error_text{style:'display: inline;'}
+				%img{:src=>"#{image_path('member/warning.png')}"}
+				#{@integral_wall.errors[:app_type].join(", ")}
+	.ow-form-item#itunes-url
+		%label
+			%em.required *
+			安装包
+		%div#sssssss{style:"#{sssssss(@integral_wall.platform)}"}
+			= f.radio_button :package_type,1,class:'packageTypeClass'
+			填写iTunes链接
+			%span &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			= f.radio_button :package_type,2,class:'packageTypeClass'
+			上传安装包
+			- if @integral_wall.errors[:package_type].presence
+				#error_itunes.ow-form-hint.error_text{style:'display: inline;'}
+					%img{:src=>"#{image_path('member/warning.png')}"}
+					#{@integral_wall.errors[:package_type].join(", ")}
+			- elsif @integral_wall.errors[:source].presence
+				#error_itunes.ow-form-hint.error_text{style:'display: inline;'}
+					%img{:src=>"#{image_path('member/warning.png')}"}
+					#{@integral_wall.errors[:source].join(", ")}
+	.ow-form-item#select_content{style:"#{urlInput(@integral_wall.platform,@integral_wall.package_type)}"}
+		%label
+		= f.text_field 'source',size:60,id:'source_id',style:'display: inline-block;'
+	#type2_content{style:"#{sourceInput(@integral_wall.platform,@integral_wall.package_type)}"}
+		.clearfix{style:'position:relative;'}
+			%img#loading{style:'position:absolute;left:440px;*padding-bottom:15px;vertical-align:middle;',:src=>"#{image_path('member/binding.gif')}"}
+			%div{style:'float:left;width:520px'}
+				%input.inputstyle#appnamesd{size:60,disabled:'disabled',style:'height:23px;width:386px;margin-right:10px;vertical-align:top;'}
+				= f.hidden_field 'package_name',id:'package_name_id'
+				= f.hidden_field 'version_code',id:'version_code_id'
+				#fsUploadProgress.flash
+				#spanButtonPlaceHolder
+				%input#btnCancel{type:'hidden',value:'取消上传'}
+			#divStatus{style:'float:left;width:520px;color:#aaa;'} * 请选择大小不超过 30 MB 的.ipa/.apk文件进行上传
+		%div{style:'margin: 0px; position: static; overflow: hidden; height: 0px;'}
+		#apkinfo{style:'margin: 0px;'}
+			.pagetitle
+				文件信息
+				%span * 如信息不符，请重新上传  应用文件
+			%table#infotable
+				%tbody
+					%tr#packageName
+					%tr#version
+					%tr#filesize
+					%tr#errormsg
+			%br
+	#_blank
+		%p
+	.ow-form-title 广告设置
+	.h20
+		%p
+	.ow-form-item
+		%label
+			%em.required *
+			货币名称
+		= f.text_field 'currency_name', :maxlength => 6
+		.ow-form-hint{for:'point'}
+			请设置该应用的货币名称，如“金币”、“游戏币”等；货币名称不超过 6 个字符长度
+		- if @integral_wall.errors[:currency_name].presence
+			#error_currency.ow-form-hint.error_text{style:'display: inline;'}
+				%img{:src=>"#{image_path('member/warning.png')}"}
+				#{@integral_wall.errors[:currency_name].join(", ")}
+	.ow-form-item#ex
+		%label
+			%em.required *
+			%span.rateCsd 兑换比例
+		%label.ratellll{style:'height:26px;line-height:26px;'} 1元 =
+		= f.text_field 'exchange_rate'
+		- if @integral_wall.errors[:exchange_rate].presence
+			#error_currency.ow-form-hint.error_text{style:'display: inline;'}
+				%img{:src=>"#{image_path('member/warning.png')}"}
+				#{@integral_wall.errors[:exchange_rate].join(", ")}
+		- else
+			.ow-form-hint.unit#unit
+			.ow-form-hint.msgow{for:'point'}
+				以1元为单位，如填入10000，则当开发者分成得到1元时，用户能获得10000个货币单位；请不要超过 200000
+	#score.ow-form-item{style:"#{ishow_balance(@integral_wall.platform)}"}
+		%label
+			%em.required *
+			显示积分余额
+		= f.hidden_field 'ishow_balance',id:'score_balance'
+		%input#score1{type:'text',style:'display:none;'}
+		%input#score0{type:'text',style:'display:inline-block;'}
+	#ow-form-submit
+		.opbtn.important#submit-button
+			%div
+				= f.submit t('actions.new'), class: "btn btn-create"
+		%a.operable{href:'#'} 取消

@@ -1,0 +1,253 @@
+= javascript_include_tag "member/financial"
+#page.finance
+	#main
+		#body.layout-2grid.clearfix
+			#content
+				#finance_info
+					#billing_summary
+						.noticeReview
+							%span   1. 多盟财务将于2014年12月25日封账，请公司账户的开发者在此日期之前提供发票,注意发票邮寄时间。
+							%br
+							%span   2. 2015年将不再接收2014年的发票.
+							%br
+							%span   3. 发票邮寄地址：海淀区万泉庄路15号6层（万泉商务花园西侧写字楼），感谢您的支持与配合！
+						#summary_main.clearfix
+							.display_area
+								%table
+									%tbody
+										%tr
+											%th.top 我的账号：
+											%td #{current_member.email}
+										%tr
+											%th 账号类型：
+											%td 开发者
+										%tr
+											%th 累计收入：
+											%td
+												- unless @info.cum_revenue.blank?
+													%span
+													=number_with_precision("#{@info.cum_revenue}")
+													元
+												- else
+													%span 0.000 元
+										%tr
+											%th 未确认收入：
+											%td
+												- unless @info.unincome.blank?
+													%span
+													=number_with_precision("#{@info.unincome}")
+													元
+												- else
+													%span 0.000 元
+										%tr
+											%th 确认中的收入：
+											%td
+												- unless @info.confirincome.blank?
+													%span
+													=number_with_precision("#{@info.confirincome}")
+													元(不含税)
+												- else
+													%span 0.000 元(不含税)
+										%tr
+											%th 可提现金额：
+											%td
+												- unless @info.cancash.blank?
+													%span
+													=number_with_precision("#{@info.cancash}")
+													元
+												- else
+													%span 0.000 元
+										%tr
+											%th.bottom 等待到账金额：
+											%td
+												- unless @info.waitcash.blank?
+													%span
+													=number_with_precision("#{@info.waitcash}")
+													元
+												- else
+													%span 0.000 元
+							.control_area{:style=>'margin-top: 140px;'}
+								%ul
+									%li.btn_withdraw
+										%a{:href=>'/member/financial/deverWithdraw'} 申请提现
+						#summary_secondary
+							.display_area
+								%table
+									%tbody
+										%tr
+											%th.top 已提现金额：
+											%td
+												- unless @info.alreadcash.blank?
+													%span
+													=number_with_precision("#{@info.alreadcash}")
+													元
+												- else
+													%span 0.000 元
+										%tr
+											%th.bottom 奖励金额：
+											%td
+												- unless @info.rewardcash.blank?
+													%span
+													=number_with_precision("#{@info.rewardcash}")
+													元
+												- else
+													%span 0.000 元
+					#account_info
+						%h3 财务详细信息
+						%span.more.weak   为确保您的财务安全，如需修改财务信息，请联系客服
+						.info_table
+							%table{:style=>"width:100%;"}
+								%tbody
+									%tr
+										%th
+											%strong 账户类型：
+										%td{:style=>'position:relative;'}
+											%div{:style=>"position: absolute; right: 15px; _top: 30px;"}
+												- if @info.status=='1'
+													%span{:style=>"font-size: 12px; font-weight: normal;"} 待审核
+												- elsif @info.status=='2'
+													%span{:style=>"font-size: 12px; font-weight: normal;"} 审核通过
+												- else
+													%span{:style=>"font-size: 12px; font-weight: normal;"} 审核未通过
+											- if @info.accountype=='1'
+												%span 个人开发者
+											- else
+												%span 公司
+									%tr
+										%th
+											%strong 银行账号：
+										%td
+											%span #{@info.bankaddr}
+											%span #{@info.cardname}
+											%span #{@info.banknum}
+									%tr
+										%td{:colspan=>2,style:"padding-left:20px;color:#B8B8B8;padding-top:2px;"}
+											%span 注：为便于管理，添加了多人团队成员的用户，每次提现所有金额将只会汇入该账号，请自行分配。
+					#team_info
+						%h3.title
+							团队成员信息
+							%a#addteammate.operable{:href=>'javascript:'} 添加成员
+							%a#modif.operable{:href=>"javascript:",:style=>'right: 180px;'} 收起成员列表
+						.weak{:style=>'padding-right: 10px; text-align: right;'}
+						%div
+							#aaa{:style=>"margin:0px;"}
+								%table.datalist
+									%tbody
+										%tr
+											%th.left.w70px{:style=>"padding-left:15px;"} 证件姓名
+											%th.left.w70px 证件类型
+											%th.left{style:"width:170px;"} 证件号码
+											%th.left.w70px 审核状态
+											%th.left.w70px
+											%th.right.w90px 当月提现累计
+											%th.right.w90px 当月应纳税额
+											%th
+										%tr{style:"background-color: #efefef;"}
+											%td{style:"padding-left:15px;"} #{@info.cardname}
+											%td
+												- if @info.cardtype=='ID'
+													%span 身份证
+												- else
+													%span 护照
+											%td #{@info.cardnum}
+											%td
+												- if @info.status=='1'
+													%span 待审核
+												- elsif @info.status=='2'
+													%span 审核通过
+												- else
+													%span 审核未通过
+											%td
+											%td.right #{@nowTakeMoney}元
+											%td.right
+												=number_with_precision("#{@nowMonthTax}")
+												元
+											%td.right{:style=>"padding-right:10px;"}
+										- unless @developerList.blank?
+											- @developerList.each do |team|
+												%tr{style:"background-color: #efefef;"}
+													%td{style:"padding-left:15px;"} #{team.cardname}
+													%td
+														- if team.cardtype=='ID'
+															%span 身份证
+														- else
+															%span 护照
+													%td #{team.cardnum}
+													%td
+														- if team.status=='1'
+															%span 待审核
+														- elsif team.status=='2'
+															%span 审核通过
+														- else
+															%span 审核未通过
+													%td
+													%td.right
+													%td.right
+													%td.right{:style=>"padding-right:10px;"}
+								%div
+									#panel-addteammenmer{style:"padding: 15px; margin: 0px; background-color: rgb(224, 237, 245);#{'display:none;' unless @developer_team.errors.any?}"}
+										= form_for @developer_team,:url =>'/member/financial/newDeverTeam' ,:html=> {:multipart=> true}, method: :post do |f|
+											%table
+												%tbody
+													%tr
+														%td{:style=>'width:50%;'}
+															%span 成员姓名：
+															= f.text_field 'cardname',:class=>'inputstyle input-250px'
+														%td
+															&nbsp;
+														%td
+															%span{:style=>"display:inline;"}
+																%span#idimg1 身份证正面：
+																= f.file_field  'sidePic'
+													%tr
+														%td
+															%span 证件类型：
+															= f.select :cardtype, [["身份证","ID"],["护照","PASS"]],{:include_blank=>true },{class: 'input-250px'}
+														%td
+															&nbsp;
+														%td
+															%span#outSpanId{:style=>"display:inline;"}
+																%span#idimg2 身份证反面：
+																= f.file_field  'outPic'
+															%p{style:'color:#FF6600'} 本人承诺，提供的身份证/护照确保信息真实有效
+													%tr
+														%td
+															%span 证件号码：
+															= f.text_field 'cardnum',:class=>'inputstyle input-250px'
+														%td
+															&nbsp;
+														%td
+															%span 字母为大写
+											#nt{style:"line-height: 30px; height: 30px; margin-bottom: 5px;color:#FF6600"}
+												%span *审核通过后需自行调整收入分配比例才可生效
+											- if @developer_team.errors.any?
+												.noticeError
+													- @developer_team.errors.messages.each do |msg|
+														%span #{msg.last.last}
+														%span &nbsp;&nbsp;
+											- elsif flash[:succes]
+												.noticeSucce
+													%span 添加成功！
+											%div{style:"text-align: center;"}
+												.opbtn.important
+													%div
+														= f.button '确认添加',:type=>'submit'
+				#finance_record
+			= render "member/right"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

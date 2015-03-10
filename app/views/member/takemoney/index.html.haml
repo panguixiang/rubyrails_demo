@@ -1,0 +1,50 @@
+#page.finance
+	#main.clearfix
+		#content.finance_his
+			.title
+				%ul
+					%li.btn_tab
+						%a{:href=>'/member/income/index'} 收入明细
+					%li.btn_tab
+						%a{:href=>'/member/month_review/index'} 每月审核明细
+					%li.btn_tab_selected
+						%a{:href=>'javascript:void(0);'} 提现明细
+					%li.btn_tab
+						%a{:href=>'/member/reward/index'} 奖励明细
+			.table_his
+				.date_box
+				= form_tag("/member/takemoney/index", method: "get") do
+					%span
+						= datetime_field_tag :startDate,params[:startDate]
+					%span -
+					%span
+						= datetime_field_tag :endDate,params[:endDate]
+					.opbtn.important
+						%div
+							%button.bold{:type=>'submit'} 搜索
+				.table_area
+					%table.datalist
+						%tbody
+							%tr
+								%th.number 交易号
+								%th.data{:style=>'width:150px;'} 日期
+								%th.money_total 提现金额
+								%th.money_total 到账金额
+								%th.money_total 状态
+						- if @takeMoneyList.blank?
+							%tr
+								%td{colspan:6,align:'center'} 在查询期间内，没有任何审核记录
+						- else
+							- @takeMoneyList.each do |obj|
+								%tr.old
+									%td.number #{obj.tn}
+									%td.number #{obj.created_at.strftime('%Y年%m月%d日')}
+									%td.money_total
+										=number_with_precision("#{obj.take_money}")
+									%td.money_total
+										=number_with_precision("#{obj.success_money}")
+									%td.money_total
+										=getStatusStr(obj.status)
+				.link_area
+					%a.operable{:href=>'/member/financial/index'} 返回账户信息
+		=render "member/books"

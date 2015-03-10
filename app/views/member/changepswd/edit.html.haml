@@ -1,0 +1,35 @@
+= stylesheet_link_tag "member/changepassword"
+#page
+  #main.clearfix.layout-2grid
+    #operationalarea
+      #breadcrumbs
+        %ul
+          %li.active 修改密码
+      = form_for(@member,:url=>{:action=>"update_password"}) do |f|
+        %div
+          .field_with_errors
+            %label.regitem{:for=>"password"} 旧密码：
+            = f.password_field :current_password
+            - if flash[:current_passwordError]
+              %span.errmsg 旧密码 #{flash[:current_passwordError]}
+        %div
+          .field_with_errors
+            %label.regitem{:for=>"password"} 新密码：
+            = f.password_field :password,:autocomplete => "off"
+            - if flash[:passwordError]
+              %span.errmsg 新密码 #{flash[:passwordError]}
+        %div
+          .field_with_errors
+            %label.regitem{:for=>"password2"} 确认密码：
+            = f.password_field :password_confirmation
+            - if flash[:password_confirmationError]
+              %span.errmsg 新密码 #{flash[:password_confirmationError]}
+        %div{:style=>"padding-left: 106px;"}
+          .opbtn.important
+            %div
+              %button{:type=>'submit'} 确 定
+          .opbtn
+            %div
+              %button{:onclick=>"location.href='/member/member_info/edit'; return false;"} 取消
+    #sidebar
+      = render "member/right"

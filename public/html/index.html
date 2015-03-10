@@ -1,0 +1,347 @@
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>平台首页</title>
+        <link href="/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon">
+        <link href="/stylesheets/platform/base.css?body=1" media="screen" rel="stylesheet">
+        <link href="/stylesheets/platform/index.css?body=1" media="screen" rel="stylesheet">
+        <script src="/javascripts/jqueryLibary.js?body=1"></script>
+        <script src="/javascripts/platform/base.js?body=1"></script>
+        <script src="/javascripts/platform/login.js?body=1"></script>
+        <script src="/javascripts/platform/index.js?body=1"></script>
+    </head>
+
+    <body class="application">
+    <div id="topbar">
+        <div class="cont clearfix">
+            <div class="right clearfix" id="topBarUserHead">
+                <div id="loigspan">
+                    <a class="dark shadow" href="/members/sign_in">登录</a>
+                    <span > </span>
+                    <a class="dark shadow" href="/members/sign_up">注册</a>
+                </div>
+                <div id="userspan" >
+                    <span id="user"> </span>
+                    <div id="userlist" >
+                        <p align="center" class="tmd">
+                            <a class="username" href="/member/login/login" id="userNameIda"></a>
+                        </p>
+                        <p class="nnd">
+                            <a class="stagedoor" href="/member/login/login">进入后台</a>
+                            <span class="dnw">kanbu</span>
+                            <a class="quit" id="loginOut" href="/members/sign_out">退出</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="left">
+                <a class="dark shadow" href="/html/media_sound.html">多盟新闻</a>
+                <a class="dark shadow" href="/html/help_survey.html">帮助中心</a>
+                <a class="dark shadow" href="/html/comp_introd.html">多盟公司</a>
+                <a class="dark shadow" href="/html/industr_report.html">行业报告</a>
+            </div>
+        </div>
+    </div>
+    <div id="header">
+        <div class="cont">
+            <a href="#" id="domob_logo"></a>
+            <ul id="nav">
+                <li class="nav" id="devNav">
+                    <a class="menu f17px bold menu_nor" href="/html/develor_tools.html" id="developer">开发者</a>
+                    <ul class="subnav" id="dev_subnav">
+                        <li class="clearfix">
+                            <a href="/html/develor_tools.html">
+                                <span>开发者工具</span>
+                                <span class="arrows"></span>
+                            </a>
+                        </li>
+                        <li class="clearfix">
+                            <a href="/html/goodness.html">
+                                <span>多盟优势</span>
+                                <span class="arrows"></span>
+                            </a>
+                        </li>
+                        <li class="clearfix">
+                            <a href="/html/develor_comment.html">
+                                <span>开发者评论</span>
+                                <span class="arrows"></span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav" id="advNav">
+                    <a class="menu f17px bold menu_nor" href="/html/solution.html" id="advertiser">广告主</a>
+                    <ul class="subnav" id="adv_subnav">
+                        <li class="clearfix">
+                            <a href="/html/solution.html">
+                                <span>解决方案</span>
+                                <span class="arrows"></span>
+                            </a>
+                        </li>
+                        <li class="clearfix">
+                            <a href="/html/interaction_forms.html">
+                                <span>互动形式</span>
+                                <span class="arrows"></span>
+                            </a>
+                        </li>
+                        <li class="clearfix">
+                            <a href="/html/market_advantage.html">
+                                <span>营销优势</span>
+                                <span class="arrows"></span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav">
+                    <a class="menu f17px bold menu_nor" href="/html/coopera_case.html" id="case">合作案例</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div id="banner">
+        <div id="pose">
+
+        </div>
+        <div id="login_panel">
+            <div class="window" id="role" style="display:none;">
+                <p class="f17px bold" id="helloworld">上午好，</p>
+                <br>
+                互联网的未来等着你去改变
+                <br>
+                <p class="bold">您当前正在使用的账号为：</p>
+                <p class="username" id="usernameId"></p>
+                <a class="btn" href="/member/login/login">进入后台</a>
+            </div>
+            <form accept-charset="UTF-8" action="/members/sign_in" class="window" data-remote="true" method="post" id="loginForm">
+                <div style="margin:0;padding:0;display:inline">
+                    <input name="utf8" type="hidden" value="✓">
+                    <input name="authenticity_token" type="hidden" value="lKEIGCPZozric/8EVjYK6iCsAZKkjI1amA6ejGuseMg="></div>
+                <div id="panel">
+                    <div class="title">
+                        <h1>
+                            <span class="f30px threedhighlight">登录</span>
+                            <span class="f17px identity">多盟后台</span>
+                        </h1>
+                    </div>
+                    <div class="first">
+                        <div class="inputlist" style="position:relative;">
+                            <div class="warn_box" id="email_warn_box">
+                                <p class="warn" id="email_warn">邮箱不能为空</p>
+                                <p class="angle"></p>
+                            </div>
+                            <p class="email_box input_box">
+                                <input class="input_email_n" id="member_email" name="member[email]" type="email">
+                            </p>
+                        </div>
+                        <div class="inputlist">
+                            <div class="warn_box" id="pw_warn_box">
+                                <p class="warn" id="pw_warn">密码不能为空</p>
+                                <p class="angle"></p>
+                            </div>
+                            <p class="password_box input_box">
+                                <input class="input_password_n" id="member_password" name="member[password]" type="password">
+                            </p>
+                        </div>
+                        <div id="divId">
+                            <input id="member_remember_me" name="member[remember_me]" type="checkbox" value="1">
+                            <label>保持登录状态两周</label>
+                        </div>
+                    </div>
+                    <div id="tips">
+                        <h1>
+                            <input class="btn" id="login" type="submit" value="确定">
+                            <a href="/members/password/new">忘记密码？</a>
+                        </h1>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div id="barrier_o">
+        <div id="barrier">
+            <div class="top f17px">
+                <a class="current" id="adformats">独特而卓越的广告形式</a>
+                <span></span>
+                <a class="normal" id="advantage">强大的技术优势</a>
+            </div>
+            <div id="adformats_c">
+                <p class="tips clearfix">
+                    <span class="dot f10px"></span>
+                    <span class="tmd" id="oneSpan">谁不想要最棒的创意？</span>
+                    <span class="dot f10px"></span>
+                </p>
+                <div class="animateBox" id="adformats_box" style="margin-left: 275px; transition: 300ms ease; -webkit-transition: 300ms ease; -webkit-transform: translate3d(-1200px, 0px, 0px);"></div>
+                <div class="adformats_box_c">
+                    <div class="cover left" id="coverleft"></div>
+                    <a class="button bl_nor" id="buttonleft1"></a>
+                    <div class="cover right" id="coverright"></div>
+                    <a class="button br_nor" id="buttonright1"></a>
+                </div>
+            </div>
+            <div id="advantage_c">
+                <p class="tips clearfix">
+                    <span class="dot f10px"></span>
+                    <span class="tmd" id="twoSpan">实力才是效果的保证！</span>
+                    <span class="dot f10px"></span>
+                </p>
+                <div id="advantageContainer">
+                    <div class="animateBox" id="advantage_box" style="margin-left: 0px; transition: 300ms ease; -webkit-transition: 300ms ease; -webkit-transform: translate3d(0px, 0px, 0px);"></div>
+                </div>
+                <div class="advantage_box_c">
+                    <a class="button bl_unable" id="buttonleft2"></a>
+                    <a class="button br_nor" id="buttonright2"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix" id="page">
+        <div class="clearfix" id="news">
+            <div class="clearfix news" id="tab0_c">
+                <div class="left">
+                    <h1>
+                        <a href="#">四家广告公司发布绿色积分墙联盟公约</a>
+                        <p>近日，移动互联网广告行业中出现部分“iOS积分墙”刷量情况，出于行业规范，打造绿色生态系统，5月4日，点入、力美、多盟、有米四家广告公司在北京正式发布《绿色积分墙联盟公约》。</p>
+                    </h1>
+                </div>
+                <div class="right">
+                    <h1>
+                        <a href="/html/template.html">更多新闻</a>
+                    </h1>
+                    <p>
+                        <a href="#">多盟出席GMIC全球移动互联网大会</a>
+                    </p>
+                    <p>
+                        <a href="#">多盟张鹤：移动互联网商业模式已基本解决</a>
+                    </p>
+                    <p>
+                        <a href="#">移动广告的平衡艺术 专访多盟总裁张鹤</a>
+                    </p>
+                    <p>
+                        <a href="#">多盟张鹤：为开发者分成6亿</a>
+                    </p>
+                </div>
+            </div>
+            <div class="clearfix news" id="tab1_c" style="display:none;">
+                <div class="left">
+                    <h1>
+                        <a href="#">2014年春节假期多盟结算和媒体审核服务时间调整公告</a>
+                    </h1>
+                    <p>多盟于2014年1月25日至2014年2月7日春节放假，多盟为您提供服务时间也将相应调整</p>
+                </div>
+                <div class="right">
+                    <h1>
+                        <a href="/html/template.html">更多动态</a>
+                    </h1>
+                    <p>
+                        <a href="#">关于11月27-28日财务数据异常的公告</a>
+                    </p>
+                    <p>
+                        <a href="#">多盟SDK4.0：再一次，改变移动广告</a>
+                    </p>
+                    <p>
+                        <a href="#">国庆假期多盟结算和服务时间调整公告</a>
+                    </p>
+                    <p>
+                        <a href="#">7月22日统计数据延迟说明</a>
+                    </p>
+                </div>
+            </div>
+            <div class="clearfix news" id="tab2_c" style="display:none;">
+                <div class="left">
+                    <img alt="多盟domob行业报告" src="/images/shuiguo.gif">
+                </div>
+                <div class="right">
+                    <p class="f17px">与多盟合作一年多以来，多盟能充分考虑到开发者的需求， 尽力争取更多的品牌广告主资源，并且服务一直很稳定。而在合作期间，作为水果忍者的代理商乐逗游戏，提出的广告合作形式上的建议和完善，也是积极研讨并采纳。</p>
+                    <p class="text-right">--水果忍者代理商乐逗游戏</p>
+                </div>
+            </div>
+            <div class="clearfix news" id="tab3_c" style="display:none;">
+                <div class="left">
+                    <img alt="多盟domob行业报告" src="/images/report.gif">
+                </div>
+                <div class="right">
+                    <p class="f17px">近年移动互联网行业发展迅猛，应用开发浪潮兴起，<br>具有精准营销特质的移动广告平台备受瞩目。</p>
+                    <h4>
+                        <a href="a.pdf">2012多盟年度数据报告</a>
+                        <span class="icon_download"></span>
+                    </h4>
+                    <h4>
+                        <a href="a.pdf">2012年Q2移动互联网行业报告</a>
+                        <span class="icon_download"></span>
+                    </h4>
+                </div>
+            </div>
+            <div class="news_nav center">
+                <a class="tab0_a" id="tab0">媒体声音</a>
+                <a class="tab1_n" id="tab1">多盟动态</a>
+                <a class="tab2_n" id="tab2">盟友印象</a>
+                <a class="tab3_n" id="tab3">行业报告</a>
+            </div>
+        </div>
+        <div id="offerwall">
+            <a href="#">
+                <img id="offwarlIndexImg">
+            </a>
+        </div>
+        <div id="partner">
+            <div class="top">
+                <div class="left">
+                    <p class="f17px shadow">合作伙伴</p>
+                </div>
+                <div class="right">
+                    <a class="current" id="advertisers">合作品牌</a>
+                    <span>/</span>
+                    <a class="normal" id="developers">优质媒体</a>
+                </div>
+            </div>
+            <div id="logowall1">
+                <img id="logWal1Img0" style="opacity: 1;width:220px;">
+                <img id="logWal1Img1" style="opacity: 1;width:220px;">
+                <img id="logWal1Img2" style="opacity: 1;width:220px;">
+                <img id="logWal1Img3" style="opacity: 1;width:220px;">
+                <br>
+                <img id="logWal1Img4" style="opacity: 1;width:220px;">
+                <img id="logWal1Img5" style="opacity: 1;width:220px;">
+                <img id="logWal1Img6" style="opacity: 1;width:220px;">
+                <img id="logWal1Img7" style="opacity: 1;width:220px;">
+            </div>
+            <div id="logowall2" style="display: none;">
+                <img id="logWal2Img0" style="opacity: 1;width:220px;">
+                <img id="logWal2Img1" style="opacity: 1;width:220px;">
+                <img id="logWal2Img2" style="opacity: 1;width:220px;">
+                <img id="logWal2Img3" style="opacity: 1;width:220px;">
+                <br>
+                <img id="logWal2Img4" style="opacity: 1;width:220px;">
+                <img id="logWal2Img5" style="opacity: 1;width:220px;">
+                <img id="logWal2Img6" style="opacity: 1;width:220px;">
+                <img id="logWal2Img7" style="opacity: 1;width:220px;">
+            </div>
+            <div class="bottomline"></div>
+        </div>
+    </div>
+    <div id="contact-said" style="top: 230px;">
+        <a href="http://crm2.qq.com/page/portalpage/wpa.php?uin=4006368168&amp;amp;cref&amp;amp;ref=&amp;amp;f=1&amp;amp;ty=1&amp;amp;ap=&amp;amp;as=&amp;amp;v=" target="_blank">在线联系</a>
+    </div>
+    <div class="f12px" id="footer">
+        <div class="ft">
+            <div class="clearfix">
+                <span class="partner_logo GWC"></span>
+                <span class="partner_logo MMA"></span>
+                <p class="f14px">
+                    <a class="light" href="">隐私政策</a>
+                    <a class="light" href="">服务条款</a>
+                    <a class="light" href="">加入我们</a>
+                    <a class="light" href="">友情链接</a>
+                    <a class="light" href="">联系我们</a>
+                </p>
+                <p class="light f12px">
+                    <a class="light" href="">京ICP证110535号</a>
+                    <a class="light" href="">京ICP备10219500号</a>
+                    <a class="light" href="">京公网安备110108400045号</a>
+                    <span class="right">COPYRIGHT©DOMOB.CN</span>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    </body></html>

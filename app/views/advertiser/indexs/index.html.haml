@@ -1,0 +1,70 @@
+= stylesheet_link_tag "advertiser/site"
+#page
+	#main.clearfix
+		#wrapper
+			#body.clearfix
+				#operationalarea
+					-if @adBalance.now_balance==0
+						#systemprompt
+							%span.type 系统提示：
+							%span 您的余额已不足！
+					#userinfo{style:'height:70px;'}
+						%ul
+							%li.title 我的帐号：
+							%li{style:'width: 150px; text-align: left;'}
+								%span.text #{current_member.email}
+							%li.operate
+								%a{href:"/member/changepswd/edit"} [修改密码]
+							%li.role
+								%span 我的角色：广告主
+						%ul
+							%li.title 广告余额：
+							%li{style:'width: 150px; text-align: left;'}
+								%span.text.number
+									=format("%.2f",@adBalance.now_balance)
+								%span.unit 元
+						%ul
+							%li.title 今日消费
+							%li{style:'width: 155px;'}
+								%span.text.number
+									=format("%.2f",@adBalance.consumday)
+									元
+					%h3{style:'font-size: 12px; color: #404040; line-height: 26px; padding-top: 7px; padding-left: 10px;'}
+						最近一周消费报告
+						%a{style:'color:#6092B5; font-weight: normal;',href:"#{advertiser_adv_statics_path}"} [查看广告统计报告]
+					#ajaxflash{style:'width: 100%; height: 400px; margin: 0 auto;'}
+					.quickentry
+						%br
+						%h3
+							正在运行的广告
+							%a{href:"#{advertiser_ad_plans_path}"} [管理推广计划]
+						%div
+							%table#planlist_table
+								%tbody
+									%tr{style:'text-align:right;'}
+										%th{style:'text-align: left; padding-left: 10px;'} 推广计划名
+										%th{style:'width:100px;'} 平均点击成本(元)
+										%th{style:'width:100px;'} 千次展现成本(元)
+										%th{style:'width:80px;'} 有效展示(次)
+										%th{style:'width:80px;'} 点击次数(次)
+										%th{style:'width:60px;'} 点击率
+										%th{style:'width:80px;'} 成 本(元)
+									- if @adProStatics.blank?
+										%tr
+											%td{colspan:'7',style:'text-align:center;'}
+												无数据
+									- else
+										- @adProStatics.each do |adS|
+											%tr
+												%td{style:'text-align: left; padding-left: 10px;'} #{adS.adver_plan_name}
+												%td{style:'width:100px;'}
+													=number_with_precision("#{adS.cpc_cost/adS.clickNum if adS.clickNum>0}")
+												%td{style:'width:100px;'} #{(adS.cpm_cost/adS.displaynum)*1000 if adS.displaynum>0}
+												%td{style:'width:80px;'} #{adS.displaynum}
+												%td{style:'width:80px;'} #{adS.clickNum}
+												%td{style:'width:60px;'}
+													=getRate(adS.clickNum,adS.displaynum)
+												%td{style:'width:60px;'} #{adS.cost}
+				=render 'advertiser/right'
+= javascript_include_tag "member/highcharts"
+= javascript_include_tag "advertiser/index"

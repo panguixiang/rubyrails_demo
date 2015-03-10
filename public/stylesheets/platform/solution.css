@@ -1,0 +1,386 @@
+/*广告主页面的样式*/
+
+
+#pose{
+  height:300px;
+  width:100%;
+  margin-bottom:60px;
+}
+#pose0,#pose1,#pose2{
+  height:300px;
+  width:100%;
+  position:absolute;
+  -moz-transition:opacity 1s ease-out,visibility 1s ease-out;
+  -webkit-transition:opacity 1s ease-out,visibility 1s ease-out;
+  transition:opacity 1s ease-out,visibility 1s ease-out;
+}
+#pose0{
+  z-index:5;
+  background:url("/images/pose0.jpg") no-repeat center;
+}
+#pose1{
+  z-index:4;
+  background:url("/images/pose1.jpg") no-repeat center;
+}
+.topic1,.topic2{
+  padding-top:20px;
+}
+#topic0,#topic1,#topic2{
+  -moz-transition:opacity 1s ease-out,padding 1s ease-out;
+  -webkit-transition:opacity 1s ease-out,padding 1s ease-out;
+  transition:opacity 1s ease-out,padding 1s ease-out;
+}
+#pose2{
+  z-index:3;
+  background:url("/images/pose2.jpg") no-repeat center;
+}
+.picture_in{
+  opacity:1;
+}
+.picture_out{
+  opacity:0;
+}
+.topic_down{
+  width:1004px;
+  margin:0 auto;
+  padding-top:60px;
+  opacity:0;
+}
+.topic_up{
+  width:1004px;
+  margin:0 auto;
+  padding-top:40px;
+  opacity:1;
+}
+/*以下是兼容ie的pose属性*/
+#p0,#p1,#p2,#p3{
+  height:300px;
+  width:100%;
+  position:absolute;
+  left:0;
+}
+#p0{
+  z-index:4;
+  background:url("/images/p4.jpg") no-repeat center;
+}
+#p1{
+  z-index:3;
+  background:url("/images/p1.jpg") no-repeat center;
+}
+#p2{
+  z-index:2;
+  background:url("/images/p2.jpg") no-repeat center;
+}
+#p3{
+  z-index:1;
+  background:url("/images/p4.jpg") no-repeat center;
+}
+/*以上是pose的样式*/
+#subnav {
+  width:450px;
+  padding-top:2px;
+  margin-left:277px;
+  height: 81px;
+}
+#subnav_outer{
+  background:url("/images/sprite.gif") no-repeat 0px -528px;
+  height:85px;
+}
+#subnav a{
+  font-size:17px;
+  line-height:80px;
+  text-align:center;
+  height:80px;
+  float:left;
+  width:150px;
+  background-image:url("/images/sprite.gif");
+  background-repeat:no-repeat;
+  text-decoration:none;
+}
+.subnav_n{
+  background-position:-50px 0;
+}
+.subnav_h{
+  background-position:-357px 1px;
+}
+.subnav_a{
+  color:#fff;
+  text-shadow:0px 2px rgba(0,0,0,0.3);
+  filter:none\9;
+  *filter:dropshadow(offx=1, offy=1, color=#666666);
+  -filter:dropshadow(offx=1, offy=1, color=#666666);
+  zoom:1;
+  background-position:-205px 0;
+}
+
+#item{
+  min-height: 500px;
+  -height: 500px;
+}
+#item #bottomnav{
+  border-top:1px dotted #cfcfcf;
+  height:80px;
+  padding:0px;
+  margin:0px 3px;
+}
+#item #bottomnav a{
+  text-decoration:none;
+  margin-top:25px;
+}
+#item #bottomnav a:hover{
+  border-bottom:1px dotted;
+}
+#item #bottomnav .left{
+  float:left;
+  margin-left:45px;
+}
+#item #bottomnav .right{
+  float:right;
+  margin-right:45px;
+}
+.loading{
+  margin-left:15px;
+  padding-top:5px;
+}
+/*以下是解决方案的样式*/
+#solution .box {
+  width:900px;
+  height:200px;
+  padding:0;
+  margin-bottom:30px;
+  border:1px solid #d7d7d7;
+}
+#solution{
+  padding:50px 50px 0 50px;
+  border:none;
+  margin-bottom:60px;
+}
+#solution .box h2{
+  font-weight:normal;
+}
+#solution .box .content{
+  height:150px;
+  padding-left:150px;
+}
+#solution .box p{
+  width:700px;
+}
+#solution .high{
+  padding-top:23px;
+  margin-bottom:3px;
+}
+#solution .low{
+  padding-top:35px;
+  margin-bottom:3px;
+}
+#solution .list1{
+  background:url("/images/sprite_solute.gif") no-repeat -880px -1100px;
+}
+#solution .list2{
+  background:url("/images/sprite_solute.gif") no-repeat -880px -1200px;
+}
+#solution .list3{
+  background:url("/images/sprite_solute.gif") no-repeat -880px -1290px;
+}
+#solution .list4{
+  background:url("/images/sprite_solute.gif") no-repeat -880px -1390px;
+}
+#solution .list5{
+  background:url("/images/sprite_solute.gif") no-repeat -880px -1485px;
+}
+#solution .list6{
+  background:url("/images/sprite_solute.gif") no-repeat -900px -1585px;
+}
+#solution .list7{
+  background:url("/images/sprite_solute.gif") no-repeat -900px -1685px;
+}
+#item .box .others{
+  height:50px;
+  background-color: #f5f5f5;
+  padding-left: 148px;
+  line-height: 50px;
+}
+
+/*以下是营销优势的样式*/
+#marketad{
+  margin:0px 3px;
+}
+#marketad .top{
+  background:url("/images/sprite_solute.gif") no-repeat 0px -440px;
+  width:1000px;
+  height:249px;
+  margin:-4px 0 0 0;
+}
+#marketad .expressionouter{
+  border-bottom:1px dotted #cfcfcf;
+  position:relative;
+  height:309px;
+}
+#marketad .expression{
+  margin-left:35px;
+  position:absolute;
+  width:1045px;
+  height:309px;
+  background:url("/images/sprite_solute.gif") no-repeat 548px -690px;
+}
+#marketad h2{
+  font-size:18px;
+  font-weight:normal;
+  color:#030303;
+}
+#marketad h1{
+  font-size:30px;
+  font-weight:normal;
+  color:#88bbc8;
+  padding-left:30px;
+  margin-top:80px;
+  margin-bottom:10px;
+  width:280px;
+  height:50px;
+  background-image:url("/images/sprite_solute.gif");
+  background-repeat:no-repeat;
+}
+#marketad .expression h1{
+  background-position:-456px -7px;
+}
+#marketad .media h1{
+  background-position:-450px -82px;
+}
+#marketad .database h1{
+
+  background-position:-456px -152px;
+}
+#marketad .mediaouter{
+  border-bottom:1px dotted #cfcfcf;
+  height:295px;
+  background:url("/images/sprite_solute.gif") no-repeat -481px -696px;
+}
+#marketad .media{
+  padding-right:30px;
+  width:390px;
+  float:right;
+}
+#marketad .databaseouter{
+  height:300px;
+  background:url("/images/sprite_solute.gif") no-repeat 605px 20px;
+}
+#marketad .database{
+  width:420px;
+  float:left;
+  padding-left:30px;
+}
+/*以上是营销优势的样式*/
+/*以下是广告形式的样式*/
+#item #adform{
+  margin:0px 3px;
+  padding-top:30px;
+}
+#item #adform .clear{
+  clear:both;
+  height:0px;
+}
+#item #adform a{
+  cursor:pointer;
+  float:left;
+  width:194px;
+  height:254px;
+  margin:0px 11px 36px 38px;
+  *margin-bottom:9px;
+  background-image:url("/images/sprite-x.gif");
+  background-repeat:no-repeat;
+}
+#adform .call{
+  background-position:0px 0px;
+}
+#adform .lbs{
+  background-position:-194px 0px;
+}
+#adform .buy{
+  background-position:-388px 0px;
+}
+#adform .interactive{
+  background-position:-582px 0px;
+}
+#adform .download{
+  background-position:-776px 0px;
+}
+#adform .mobile{
+  background-position:-970px 0px;
+}
+#adform .video{
+  background-position:-1164px 0px;
+}
+#adform .threed{
+  background-position:-1358px 0px;
+}
+#adform .gravity{
+  background-position:-1552px 0px;
+}
+#adform .button{
+  width:31px;
+  height:31px;
+  background:url("/images/sprite.png") no-repeat 0 0;
+  float:right;
+  margin-top:50px;
+  margin-right:38px;
+  -margin-right:15px;
+  cursor:pointer;
+}
+#adform .demo{
+  background-image: url("/images/sprite.png");
+  -background-image: url("/images/sprite11.gif");
+  background-repeat:no-repeat;
+  width:976px;
+  height:716px;
+  position:absolute;
+  z-index:99;
+  display:none;
+  left:50%;
+  margin-left:-488px;
+}
+#adform .calldemo{
+  background-position:0px -31px;
+}
+#adform .lbsdemo{
+  background-position:0px -747px;
+}
+#adform .buydemo{
+  background-position:0px -1463px;
+}
+#adform .interactivedemo{
+  background-position:0px -4327px;
+}
+#adform .downloaddemo{
+  background-position:0px -2179px;
+}
+#adform .mobiledemo{
+  background-position:0px -2895px;
+}
+#adform .videodemo{
+  background-position:0px -3611px;
+}
+#adform .threeddemo{
+  background-position:0px -5043px;
+}
+#adform .gravitydemo{
+  background-position:0px -5759px;
+}
+
+.box .download {
+  background:url("/images/sprite11.gif") no-repeat -971px -1870px;
+  padding-left: 30px;
+}
+
+.box .more {
+  background:url("/images/sprite11.gif") no-repeat -971px -1986px;
+  padding-left: 30px;
+  line-height: 30px;
+}
+
+/*以上是广告形式的样式*/
+
+
+
+
+
+/*以上是page部分的样式*/

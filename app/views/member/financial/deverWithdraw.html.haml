@@ -1,0 +1,84 @@
+= javascript_include_tag "member/deverWithdraw"
+#page.finance
+	#main.layout-2grid.clearfix
+
+		#content.finance_ctrpage
+			.msg-success.has-icbc
+				%ul
+					%li
+						您好，为了更快更顺利的完成付款、给您提供更好的服务，多盟建议您使用
+						%span 中国工商银行账户
+						，如需修改，请联系客服。
+			%h1#pagetitle 提现
+			#fi_action
+				%table
+					%tbody
+						%tr
+							%th 可提现金额：
+							%td
+								%span
+								=number_with_precision("#{@develMoney.cancash}")
+								元
+						%tr
+							%th 提现方式：
+							%td 银行转账
+						%tr
+							%th 提款金额：
+							%td
+								%input#amountInput{:name=>'amount',class:'inputstyle input-100px',:value=>"#{flash[:amount] unless flash[:amount].blank?}"}
+								%span 元
+						%tr
+							%td{:colspan=>'2'}
+								%span.space.weak{:style=>'font-weight: normal;'}
+									注：每月1-5日为财务结算期，不可提现；
+									%br
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;每月10日之后可提现
+									%br
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;每个月仅可进行一次提现；
+									%br
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;提现金额最低为100元。
+			%br
+			%div{:style=>'text-align:left;'}
+			- if @develMoney.cancash>100 && @takedMonthLogs.blank?
+				.opbtn.important{:style=>'padding-left: 50px;'}
+					%div
+						%button#submitButton{:type=>'button',:onclick=>"checkNull('#{@develMoney.cancash}');"} 申请提现
+				- unless flash[:takeError].blank?
+					%span{:style=>'color:red;'} &nbsp;&nbsp;&nbsp;&nbsp;#{flash[:takeError]}
+			- else
+				.important{:style=>'padding-left: 50px;color:red;'}
+					%div
+						- @takedMonthLogs.each do |f|
+							%span 您本月#{f.created_at.strftime("%Y-%m-%d %H:%M:%S")}已申请提现#{f.take_money}元，
+							- if f.status==2
+								%span 实际到账#{f.success_money}元，已成功提现！
+							- else
+								%span 提现申请正在处理中请耐心等待！
+			%br
+			%div{:style=>'text-align: left;border-top: 1px solid #ebebeb;'}
+				%div{:style=>'padding-left: 20px;padding-top: 10px;'}
+				-  if @develMoney.automatic==1
+					%input{:type=>'checkbox',:name=>'autoWithdraw',id:'autoWithdraw'}
+					%span.autoWithdraw_span 开启自动提现
+				- else
+					%input{:type=>'checkbox',:name=>'autoWithdraw',id:'autoWithdraw'}
+					%span.autoWithdraw_span 关闭自动提现
+				%span#autoWithdraw_message{:style=>'padding-left:30px;'}
+				%div{:style=>'padding-left: 35px;padding-top:5px;'}
+					%span.space.weak{:style=>'font-weight: normal;'}  开启后，会在每月的20号自动生成提现单，提现金额为全部可提现金额；
+		= render "member/right"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

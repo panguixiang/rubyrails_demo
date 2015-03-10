@@ -1,0 +1,52 @@
+
+%div#usermenu
+  %div#firstlevel
+    %div#firstlevelwrap
+      %ul
+        %li
+          %a.tabitem.active#a1_a11son{:href=>"#"}
+            %span 账户中心
+            %em
+        %li
+          %a.tabitem#a2_a21son{:href=>"#"}
+            %span 我的推广
+            %em
+        %li
+          %a.tabitem#a3_a31son{:href=>"#"}
+            %span 财务管理
+            %em
+      %div.logo_wrap
+        %a{:href=>"#{advertiser_indexs_path}",:class=>"lg_left_spon"}
+      %div#head_people
+        %ul
+          %li.sm_people#sm_user
+            %a#adbcId{:href=>'#'}
+          %li
+            %a{:href=>"/html/help_survey.html"}
+              %span 常见问题
+          %li.y_line 丨
+          %li
+            %a{:href=>""}
+              %span 联系客服
+          %li.y_line 丨
+          %li{:style=>"width:48px;"}
+            %a{:href=>"/"}
+              %span 官网
+      %p#sm_user_list{:style=>"display: none;"}
+        %a{:href=>"#{advertiser_indexs_path}",style:'width:179px;overflow:hidden;zoom:1;font-weight: bold;padding:19px 0 0 8px;margin-right:20px;height:20px;color: #686868;font-size:14px;'} #{current_member.email}
+        %a#msgcount{:style=>"display: block;"}
+        = link_to "退出", destroy_member_session_path,class:"quit",id:"btn_logout"
+  %div.secondlevel
+    %div.secondlevelwrap
+      %a.item.active2#a11son{:href=>"#"}
+        %span 账户信息
+      %a.item#a12son{:href=>"#"}
+        %span 修改密码
+    %div.secondlevelwrap{style:'display:none;'}
+      %a.item#a21son{:href=>"#"}
+        %span 推广管理
+      %a.item#a22son{:href=>"#"}
+        %span 广告统计
+    %div.secondlevelwrap{style:'display:none;'}
+      %a.item#a31son{:href=>"#"}
+        %span 财务管理

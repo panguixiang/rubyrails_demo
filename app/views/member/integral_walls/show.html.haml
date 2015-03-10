@@ -1,0 +1,39 @@
+= stylesheet_link_tag "member/integral_wall"
+#page
+	#main.clearfix
+		#breadcrumbs
+			%ul
+				%li.active
+					积分墙应用 &gt; #{@integral_wall.app_name}
+		- if @onlyShow.blank?
+			%div{style:'font-size:17px;font-weight:bold;padding:10px;margin:15px 30px;background-color: #fff;'}
+				%div{style:'float:left;'}
+					%img{:src=>"#{image_path('member/ok.png')}"}
+				%div{style:'float:left;'}
+					%span{style:'color:#21b15c;margin-left:10px;margin-bottom:20px;'} 成功添加应用并提交审核！
+				%div{style:'clear:both;'}
+		%table.ow-detail-table#yw0
+			%tbody
+				%tr
+					%td.ow-detail-title 应用名称
+					%td.ow-detail-value #{@integral_wall.app_name}
+				%tr
+					%td.ow-detail-title Publisher ID
+					%td.ow-detail-value
+						%span{style:'font-size:1.5em; color:green; font-family: Times new roman, Arial;'} #{@integral_wall.publisherid}
+		%div{style:'font-size:14px;padding:10px;margin:15px 80px;background-color: #ffffe3;border: 1px solid #f3cf92;line-height:40px;'}
+			接下来您需要：
+			%br
+			1.下载Domob iOS积分墙SDK：
+			.opbtn.important
+				%div
+					%button{onclick:"location.href='/offerwall/../developers/SDKdownload.htm';return false;"} 下载积分墙SDK
+			%br
+			2.将SDK嵌入应用中&nbsp;&nbsp;&nbsp;&nbsp;
+			%a{href:'http://s.domob.cn/sdk/iOS_SDK_manual.zip',target:'_blank',style:'color:#88bbc8;font-size:13px;border-bottom:1px dashed #88bbc8;'}  阅读SDK使用说明
+		%div{style:'margin:20px; margin-left: 80px;'}
+			.opbtn.important
+				%div
+					%button{onclick:"location.href='#{member_integral_walls_path}';return false;"} 确认
+			&nbsp;&nbsp;
+			= link_to '编辑', edit_member_integral_wall_path(id:@integral_wall.id), class: "operable"

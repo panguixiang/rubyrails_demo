@@ -1,0 +1,52 @@
+
+= stylesheet_link_tag "member/notification"
+= javascript_include_tag "member/notification"
+#page
+  #main.layout-1grid
+    #breadcrumbs
+      %ul
+        %li.active 通知信
+    #list{:style=>"display: block;"}
+      #operationbar
+        #tips
+        #btns{:style=>"display:none"}
+          .opbtn.important
+            %button#readAll{:onclick=>""} 全部标记为“已读”
+      #msglist
+        %table.datalist
+          %tbody
+            %tr
+              %th{:style=>"width:6px;"}
+                %input#checkAll{:type=>"checkbox",:style=>"visibility:hidden"}
+              %th.left
+                标题
+                %th{:style=>"width: 140px;"} 时间
+            - @notificationList.each_with_index do |notification|
+              %tr.odd
+                %td.selector
+                  %input.idChecker{:type=>"checkbox",:style=>"visibility:hidden",:value=>notification.memberId}
+                %td.left.important
+                  -if notification.status==1
+                    .custerclass.name.flip.unread{:id=>"abc#{notification.id}",:onclick=>"setStatus(#{notification.id})"} #{notification.title}
+                  -else
+                    .custerclass.name.flip #{notification.title}
+                  .panelclass
+                    = (notification.content).html_safe
+                %td.date #{notification.created_at.strftime("%Y-%m-%d")}
+
+
+
+
+
+
+
+-#<div style="margin: 3px 0px; position: static; overflow: hidden; height: 142px;"><div class="detail" id="content265606" style="margin: 0px;">
+-#您的应用程序【com.pan.pan】由于以下原因，未能通过审核。<br>
+-#<br>
+-#请您上传完整的应用<br>
+-#<br>
+-#您可以在<a href="/publisher/app/edit/m/101333">应用编辑</a>中修改相关信息，重新提交并等待审核结果。<br>
+-#如有问题，请及时联系客服专员。<br>
+-#                        </div></div>
+-#                        </td>
+

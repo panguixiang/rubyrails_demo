@@ -1,0 +1,487 @@
+= stylesheet_link_tag "member/app_list/combo"
+= stylesheet_link_tag "member/app_list/combo1"
+= javascript_include_tag "member/app_list"
+#content
+  %div.wrapper.breadCrumb
+    %a{:href=>"/member/app_manager/app_details?approId=#{@appPro.id}"} 应用详情
+    %span &nbsp;&gt;&nbsp;应用设置
+  #main.main.wrapper
+    %div#systemprompt.msg-success
+      %ul
+        %li
+          - if flash[:notice]
+            #{flash[:notice]}
+    .clearfix
+      %h2
+        “#{@appPro.app_name}”应用设置
+        %small.backIcon
+          %span.icon.iconS.icon_back 返回
+          %span &nbsp;
+          %a.fcb{:href=>"/member/app_manager/index"} 返回
+      .keyvalue
+        %p
+          %dfn Publisher ID:
+          %span #{@appPro.publisherid}
+        %p
+          %dfn 自动刷新：
+          %span#refreshWay
+            =appReflushTypeStr @appPro.auto_reflush
+            -unless @appPro.auto_value.blank?
+              %span : #{@appPro.auto_value}
+              %span 秒
+          %button.btnS.btn_default.ac.ac_modifyRefresh{:type=>"button"}
+            %span &nbsp;&nbsp;修改&nbsp;&nbsp;
+        #refreshDiv.refreshDivNone
+          = form_tag("/member/app_add/setAutoReflush", method: "post",id:"appForm") do
+            %input{:type=>"hidden",:name=>"app_id",:value=>"#{@appPro.id}"}
+            %p
+              %label
+                - if @appPro.auto_reflush=='1'
+                  = radio_button_tag 'refreshType','1',checked:'checked',class:'customradio8'
+                - else
+                  = radio_button_tag 'refreshType','1',nil,class:'customradio8'
+                %span 默认2秒刷新一次
+              %span.icon.iconM.icon_cancel 取消
+
+            %p
+              %label
+                - if @appPro.auto_reflush=='2'
+                  = radio_button_tag 'refreshType','2',checked:'checked',class:'customradio24'
+                - else
+                  = radio_button_tag 'refreshType','2',nil,class:'customradio24'
+                %span 自定义刷新频率：
+                = text_field_tag 'refreshInterval',params[:auto_value],class:'text txtL'
+                %span &nbsp;秒
+            %p.refreshSecond (20~120)秒
+            %p
+              %button.btnL.btn_default{:type=>"submit"}
+                %span 提交
+      %h2.filter_setting 过滤设置
+      #filter_wrap
+        %div.tabs.clearfix
+          %div.dd
+            - if @tag.blank?
+              %a.active{:href=>"javascript:;"} URL过滤
+            - else
+              %a{:href=>"javascript:;"} URL过滤
+          %div.dd
+            - if @tag=='2'
+              %a.active{:href=>"javascript:;",:class=>""} 关键字过滤
+            - else
+              %a{:href=>"javascript:;",:class=>""} 关键字过滤
+          %div.dd
+            - if @tag=='3'
+              %a.active{:href=>"javascript:;",:class=>""} 分类过滤
+            - else
+              %a{:href=>"javascript:;",:class=>""} 分类过滤
+          %div.dd
+            - if @tag=='4'
+              %a.active{:href=>"javascript:;",:class=>""} 广告创意过滤
+            - else
+              %a{:href=>"javascript:;",:class=>""} 广告创意过滤
+        .content{:style=>"#{isShow('1',@tag)}"}
+          %div.databox.dataradius
+            %div.keyvalue
+              %h3.value 要过滤的URL：
+              = form_for [:member, @appfilter] , html: {id: 'submitForid' },remote:true do |f|
+                = f.hidden_field :app_produ_id
+                = f.hidden_field :filter_type,value:'1'
+                %p.value
+                  %label
+                    = f.text_field :filter_content,class:'text txtL'
+                  = f.submit '添加过滤', class: "btnS btn_default"
+              %h3.value.example 例如：
+              %ul.value.exa1
+                %li example.com
+                %li news.example.com
+                %li example.com/sports
+                %li example.com/video.html
+              %ul.value.exa2
+                %li 阻止所有来自example.com的广告
+                %li 阻止来自example.com的news子域的广告
+                %li 阻止来自example.com的sports目录的广告
+                %li 阻止来自example.com下video.html的广告
+            %div#urlWrap
+              %div.databox
+                %table.datatable
+                  %colgroup
+                    %col
+                    %col.col_5
+                    %col
+                  %tbody#add123
+                    %tr.trShadow
+                      %th.filterTh
+                        %label
+                          %input#checkMain{:type=>"checkbox"}
+                      %th.filterTh2
+                        URL过滤列表(共
+                        %span#abdcdclass #{@urlFilters.size}
+                        %span 个)
+                      %th
+                        %span.icon.iconM.icon_dustbin#removeId dustbin
+                    - @urlFilters.each  do |obj|
+                      %tr{id:"urlFilters#{obj.id}"}
+                        %td.filterTd
+                          %label
+                            %input.urlChecker{:type=>"checkbox",:title=>"ewadsf",:value=>"#{obj.id}",:name=>"customCheckbox1"}
+                        %td.filterTd2
+                          #{obj.filter_content}
+                        %td
+                          = link_to "删除",member_appfilter_path(id:obj.id), :method => :delete,:remote => true,class: "icon iconM icon_false icon_false_url", :data => { :confirm => '您确定要删除吗?'}
+                %div.databox_options.clearfix
+        .content{:style=>"#{isShow('2',@tag)}"}
+          %div.databox
+            %div.keyvalue
+              %h3.value 要过滤的文本：
+              = form_for [:member, @appfilter] , html: {id: 'submitForid1' },remote:true do |f|
+                = f.hidden_field :app_produ_id
+                = f.hidden_field :filter_type,value:'2'
+                %p.value
+                  %label
+                    = f.text_field :filter_content,class:'text txtL'
+                  = f.submit '添加过滤', class: "btnS btn_default"
+            %div#textWrap
+              %div.databox
+                %table.datatable
+                  %colgroup
+                    %col
+                    %col.col_5
+                    %col
+                  %tbody#add1234
+                    %tr.trShadow
+                      %th.filterTh
+                        %label
+                          %input#checkMain1{:type=>"checkbox"}
+                      %th.filterTh2
+                        文本过滤列表(共
+                        %span#abdcdclass1 #{@keyworldFilters.size}
+                        %span 个)
+                      %th
+                        %span.icon.iconM.icon_dustbin#removeId1 dustbin
+                    - @keyworldFilters.each  do |obj|
+                      %tr{id:"urlFilters#{obj.id}"}
+                        %td.filterTd
+                          %label
+                            %input.urlChecker.urlChecker1{:type=>"checkbox",:title=>"ewadsf",:value=>"#{obj.id}",:name=>"customCheckbox2"}
+                        %td.filterTd2
+                          #{obj.filter_content}
+                        %td
+                          = link_to "删除",member_appfilter_path(id:obj.id), :method => :delete,:remote => true,class: "icon iconM icon_false  icon_false_url1", :data => { :confirm => '您确定要删除吗?'}
+                %div.databox_options.clearfix
+        .content{:style=>"#{isShow('3',@tag)}"}
+          %div.databox
+            = form_for [:member, @appfilter] , html: {id: 'submitForid2' },remote:true do |f|
+              = f.hidden_field :app_produ_id
+              = f.hidden_field :filter_type,value:'3'
+              %div.dataCategory
+                %div.databox_options.clearfix
+                  %span 请选择要过滤的广告分类
+                  %div.opt_right
+                    %span.icon.iconM.icon_submit 提交
+                    = f.submit :value=>'提交',class:'filter_submit',id:"123"
+                %table.datatable
+                  %tbody
+                    %tr
+                      %td#adNotice{:colspan=>"5"} 注意：过滤一个或多个广告类别可能会大幅降低您的收入，请谨慎操作
+                    %tr
+                      %td
+                        %label
+                          = check_box_tag "appfilter[filter_content][]",'11',@assortFilter.include?('11')
+                          %span &nbsp;网站-旅游户外
+                      %td
+                        %label
+                          = check_box_tag "appfilter[filter_content][]",'12',@assortFilter.include?('12')
+                          -#%input.customCheckbox68{:type=>"checkbox",:name=>"adCategoryFilter[]",:value=>"12",:style=>"display: ;"}
+                          %span &nbsp;网站-生活资讯
+                      %td
+                        %label
+                          = check_box_tag "appfilter[filter_content][]",'13',@assortFilter.include?('13')
+                          -#%input.customCheckbox75{:type=>"checkbox",:name=>"adCategoryFilter[]",:value=>"13",:style=>"display: ;"}
+                          %span &nbsp;网站-影音娱乐
+                      %td
+                        %label
+                          = check_box_tag "appfilter[filter_content][]",'14',@assortFilter.include?('14')
+                          -#%input.customCheckbox82{:type=>"checkbox",:name=>"adCategoryFilter[]",:value=>"14",:style=>"display: ;"}
+                          %span &nbsp;网站-教育培训
+                      %td
+                        %label
+                          = check_box_tag "appfilter[filter_content][]",'15',@assortFilter.include?('15')
+                          -#%input.customCheckbox89{:type=>"checkbox",:name=>"adCategoryFilter[]",:value=>"15",:style=>"display: ;"}
+                          %span &nbsp;网站-动漫游戏
+                    %tr
+                      %td
+                        %label
+                          = check_box_tag "appfilter[filter_content][]",'16',@assortFilter.include?('16')
+                          -#%input.customCheckbox96{:type=>"checkbox",:name=>"adCategoryFilter[]",:value=>"16",:style=>"display: ;"}
+                          %span &nbsp;网站-网站博客
+                      %td
+                        %label
+                          = check_box_tag "appfilter[filter_content][]",'17',@assortFilter.include?('17')
+                          -#%input.customCheckbox103{:type=>"checkbox",:name=>"adCategoryFilter[]",:value=>"17",:style=>"display: ;"}
+                          %span &nbsp;网站-网上商城
+                      %td
+                        %label
+                          = check_box_tag "appfilter[filter_content][]",'18',@assortFilter.include?('18')
+                          -#%input.customCheckbox110{:type=>"checkbox",:name=>"adCategoryFilter[]",:value=>"18",:style=>"display: ;"}
+                          %span &nbsp;网站-投资理财
+                      %td
+                        %label
+                          = check_box_tag "appfilter[filter_content][]",'19',@assortFilter.include?('19')
+                          -#%input.customCheckbox117{:type=>"checkbox",:name=>"adCategoryFilter[]",:value=>"19",:style=>"display: ;"}
+                          %span &nbsp;网站-医疗健康
+                      %td
+                        %label
+                          = check_box_tag "appfilter[filter_content][]",'20',@assortFilter.include?('20')
+                          -#%input.customCheckbox124{:type=>"checkbox",:name=>"adCategoryFilter[]",:value=>"20",:style=>"display: ;"}
+                          %span &nbsp;网站-数码产品
+                    %tr
+                      %td
+                        %label
+                          = check_box_tag "appfilter[filter_content][]",'21',@assortFilter.include?('21')
+                          -#%input.customCheckbox131{:type=>"checkbox",:name=>"adCategoryFilter[]",:value=>"21",:style=>"display: ;"}
+                          %span &nbsp;网站-软件产品
+                      %td
+                        %label
+                          = check_box_tag "appfilter[filter_content][]",'22',@assortFilter.include?('22')
+                          -#%input.customCheckbox138{:type=>"checkbox",:name=>"adCategoryFilter[]",:value=>"22",:style=>"display: ;"}
+                          %span &nbsp;网站-两性生活
+                      %td
+                        %label
+                          = check_box_tag "appfilter[filter_content][]",'23',@assortFilter.include?('23')
+                          -#%input.customCheckbox145{:type=>"checkbox",:name=>"adCategoryFilter[]",:value=>"23",:style=>"display: ;"}
+                          %span &nbsp;网站-运动体育
+                      %td
+                        %label
+                          = check_box_tag "appfilter[filter_content][]",'24',@assortFilter.include?('24')
+                          -#%input.customCheckbox152{:type=>"checkbox",:name=>"adCategoryFilter[]",:value=>"24",:style=>"display: ;"}
+                          %span &nbsp;网站-房地产
+                      %td
+                        %label
+                          = check_box_tag "appfilter[filter_content][]",'25',@assortFilter.include?('25')
+                          -#%input.customCheckbox159{:type=>"checkbox",:name=>"adCategoryFilter[]",:value=>"25",:style=>"display: ;"}
+                          %span &nbsp;网站-汽车
+                    %tr
+                      %td
+                        %label
+                          = check_box_tag "appfilter[filter_content][]",'26',@assortFilter.include?('26')
+                          -#%input.customCheckbox166{:type=>"checkbox",:name=>"adCategoryFilter[]",:value=>"26",:style=>"display: ;"}
+                          %span &nbsp;其它网站
+                      %td
+                        %label
+                          = check_box_tag "appfilter[filter_content][]",'27',@assortFilter.include?('27')
+                          -#%input.customCheckbox173{:type=>"checkbox",:name=>"adCategoryFilter[]",:value=>"27",:style=>"display: ;"}
+                          %span &nbsp;应用-安全软件
+                      %td
+                        %label
+                          = check_box_tag "appfilter[filter_content][]",'28',@assortFilter.include?('28')
+                          -#%input.customCheckbox180{:type=>"checkbox",:name=>"adCategoryFilter[]",:value=>"28",:style=>"display: ;"}
+                          %span &nbsp;应用-多媒体软件
+                      %td
+                        %label
+                          = check_box_tag "appfilter[filter_content][]",'29',@assortFilter.include?('29')
+                          -#%input.customCheckbox187{:type=>"checkbox",:name=>"adCategoryFilter[]",:value=>"29",:style=>"display: ;"}
+                          %span &nbsp;应用-实用工具
+                      %td
+                        %label
+                          = check_box_tag "appfilter[filter_content][]",'30',@assortFilter.include?('30')
+                          -#%input.customCheckbox194{:type=>"checkbox",:name=>"adCategoryFilter[]",:value=>"30",:style=>"display: ;"}
+                          %span &nbsp;应用-系统软件
+                    %tr
+                      %td
+                        %label
+                          = check_box_tag "appfilter[filter_content][]",'31',@assortFilter.include?('31')
+                          -#%input.customCheckbox201{:type=>"checkbox",:name=>"adCategoryFilter[]",:value=>"31",:style=>"display: ;"}
+                          %span &nbsp;应用-生活信息
+                      %td
+                        %label
+                          = check_box_tag "appfilter[filter_content][]",'32',@assortFilter.include?('32')
+                          -#%input.customCheckbox208{:type=>"checkbox",:name=>"adCategoryFilter[]",:value=>"32",:style=>"display: ;"}
+                          %span &nbsp;应用-网络通讯
+                      %td
+                        %label
+                          = check_box_tag "appfilter[filter_content][]",'33',@assortFilter.include?('3')
+                          -#%input.customCheckbox215{:type=>"checkbox",:name=>"adCategoryFilter[]",:value=>"33",:style=>"display: ;"}
+                          %span &nbsp;应用-娱乐休闲
+                      %td
+                        %label
+                          = check_box_tag "appfilter[filter_content][]",'34',@assortFilter.include?('34')
+                          -#%input.customCheckbox222{:type=>"checkbox",:name=>"adCategoryFilter[]",:value=>"34",:style=>"display: ;"}
+                          %span &nbsp;应用-电子阅读
+                      %td
+                        %label
+                          = check_box_tag "appfilter[filter_content][]",'35',@assortFilter.include?('35')
+                          -#%input.customCheckbox229{:type=>"checkbox",:name=>"adCategoryFilter[]",:value=>"35",:style=>"display: ;"}
+                          %span &nbsp;应用-主题桌面
+                    %tr
+                      %td
+                        %label
+                          = check_box_tag "appfilter[filter_content][]",'36',@assortFilter.include?('36')
+                          -#%input.customCheckbox236{:type=>"checkbox",:name=>"adCategoryFilter[]",:value=>"36",:style=>"display: ;"}
+                          %span &nbsp;应用-新闻资讯
+                      %td
+                        %label
+                          = check_box_tag "appfilter[filter_content][]",'37',@assortFilter.include?('37')
+                          -#%input.customCheckbox243{:type=>"checkbox",:name=>"adCategoryFilter[]",:value=>"37",:style=>"display: ;"}
+                          %span &nbsp;其它应用
+                      %td
+                        %label
+                          = check_box_tag "appfilter[filter_content][]",'38',@assortFilter.include?('38')
+                          -#%input.customCheckbox250{:type=>"checkbox",:name=>"adCategoryFilter[]",:value=>"38",:style=>"display: ;"}
+                          %span &nbsp;游戏-动作格斗
+                      %td
+                        %label
+                          = check_box_tag "appfilter[filter_content][]",'39',@assortFilter.include?('39')
+                          -#%input.customCheckbox257{:type=>"checkbox",:name=>"adCategoryFilter[]",:value=>"39",:style=>"display: ;"}
+                          %span &nbsp;游戏-休闲益智
+                      %td
+                        %label
+                          = check_box_tag "appfilter[filter_content][]",'40',@assortFilter.include?('40')
+                          -#%input.customCheckbox264{:type=>"checkbox",:name=>"adCategoryFilter[]",:value=>"40",:style=>"display: ;"}
+                          %span &nbsp;游戏-体育竞技
+                    %tr
+                      %td
+                        %label
+                          = check_box_tag "appfilter[filter_content][]",'41',@assortFilter.include?('41')
+                          -#%input.customCheckbox271{:type=>"checkbox",:name=>"adCategoryFilter[]",:value=>"41",:style=>"display: ;"}
+                          %span &nbsp;游戏-角色扮演
+                      %td
+                        %label
+                          = check_box_tag "appfilter[filter_content][]",'42',@assortFilter.include?('42')
+                          -#%input.customCheckbox278{:type=>"checkbox",:name=>"adCategoryFilter[]",:value=>"42",:style=>"display: ;"}
+                          %span &nbsp;游戏-模拟经营
+                      %td
+                        %label
+                          = check_box_tag "appfilter[filter_content][]",'43',@assortFilter.include?('43')
+                          -#%input.customCheckbox285{:type=>"checkbox",:name=>"adCategoryFilter[]",:value=>"43",:style=>"display: ;"}
+                          %span &nbsp;游戏-网络游戏
+                      %td
+                        %label
+                          = check_box_tag "appfilter[filter_content][]",'44',@assortFilter.include?('44')
+                          -#%input.customCheckbox292{:type=>"checkbox",:name=>"adCategoryFilter[]",:value=>"44",:style=>"display: ;"}
+                          %span &nbsp;游戏-飞行射击
+                      %td
+                        %label
+                          = check_box_tag "appfilter[filter_content][]",'45',@assortFilter.include?('45')
+                          -#%input.customCheckbox299{:type=>"checkbox",:name=>"adCategoryFilter[]",:value=>"45",:style=>"display: ;"}
+                          %span &nbsp;游戏-棋牌游戏
+                    %tr
+                      %td
+                        %label
+                          = check_box_tag "appfilter[filter_content][]",'46',@assortFilter.include?('46')
+                          -#%input.customCheckbox306{:type=>"checkbox",:name=>"adCategoryFilter[]",:value=>"46",:style=>"display: ;"}
+                          %span &nbsp;其它游戏
+                      %td
+                        %label
+                          = check_box_tag "appfilter[filter_content][]",'47',@assortFilter.include?('47')
+                          -#%input.customCheckbox313{:type=>"checkbox",:name=>"adCategoryFilter[]",:value=>"47",:style=>"display: ;"}
+                          %span &nbsp;品牌-IT产品
+                      %td
+                        %label
+                          = check_box_tag "appfilter[filter_content][]",'48',@assortFilter.include?('48')
+                          -#%input.customCheckbox320{:type=>"checkbox",:name=>"adCategoryFilter[]",:value=>"48",:style=>"display: ;"}
+                          %span &nbsp;品牌-消费类电子
+                      %td
+                        %label
+                          = check_box_tag "appfilter[filter_content][]",'49',@assortFilter.include?('49')
+                          -#%input.customCheckbox327{:type=>"checkbox",:name=>"adCategoryFilter[]",:value=>"49",:style=>"display: ;"}
+                          %span &nbsp;品牌-网络服务
+                      %td
+                        %label
+                          = check_box_tag "appfilter[filter_content][]",'50',@assortFilter.include?('50')
+                          -#%input.customCheckbox334{:type=>"checkbox",:name=>"adCategoryFilter[]",:value=>"50",:style=>"display: ;"}
+                          %span &nbsp;品牌-运营商
+                    %tr
+                      %td
+                        %label
+                          = check_box_tag "appfilter[filter_content][]",'51',@assortFilter.include?('51')
+                          -#%input.customCheckbox341{:type=>"checkbox",:name=>"adCategoryFilter[]",:value=>"51",:style=>"display: ;"}
+                          %span &nbsp;品牌-汽车
+                      %td
+                        %label
+                          = check_box_tag "appfilter[filter_content][]",'52',@assortFilter.include?('52')
+                          -#%input.customCheckbox348{:type=>"checkbox",:name=>"adCategoryFilter[]",:value=>"52",:style=>"display: ;"}
+                          %span &nbsp;品牌-日化用品
+                      %td
+                        %label
+                          = check_box_tag "appfilter[filter_content][]",'53',@assortFilter.include?('53')
+                          -#%input.customCheckbox355{:type=>"checkbox",:name=>"adCategoryFilter[]",:value=>"53",:style=>"display: ;"}
+                          %span &nbsp;品牌-食品饮料
+                      %td
+                        %label
+                          = check_box_tag "appfilter[filter_content][]",'54',@assortFilter.include?('54')
+                          -#%input.customCheckbox362{:type=>"checkbox",:name=>"adCategoryFilter[]",:value=>"54",:style=>"display: ;"}
+                          %span &nbsp;品牌-服饰
+                      %td
+                        %label
+                          = check_box_tag "appfilter[filter_content][]",'55',@assortFilter.include?('55')
+                          -#%input.customCheckbox369{:type=>"checkbox",:name=>"adCategoryFilter[]",:value=>"55",:style=>"display: ;"}
+                          %span &nbsp;品牌-零售及服务
+                    %tr
+                      %td
+                        %label
+                          = check_box_tag "appfilter[filter_content][]",'56',@assortFilter.include?('56')
+                          -#%input.customCheckbox376{:type=>"checkbox",:name=>"adCategoryFilter[]",:value=>"56",:style=>"display: ;"}
+                          %span &nbsp;品牌-汽车
+                      %td
+                        %label
+                          = check_box_tag "appfilter[filter_content][]",'57',@assortFilter.include?('57')
+                          -#%input.customCheckbox383{:type=>"checkbox",:name=>"adCategoryFilter[]",:value=>"57",:style=>"display: ;"}
+                          %span &nbsp;品牌-日化用品
+                    %tr
+                      %td{:colspan=>"5"}
+                .databox_options.clearfix
+                  %div.opt_right
+                    %span.icon.iconM.icon_submit 提交
+                    = f.submit :value=>'提交',class:'filter_submit'
+        .content{:style=>"#{isShow('4',@tag)}"}
+          %div.databox
+            %div.dataAdCreative
+              = form_for [:member, @appfilter] , html: {id: 'submitForid3' },remote:true do |f|
+                = f.hidden_field :app_produ_id
+                = f.hidden_field :filter_type,value:'4'
+                %div.databox_options.clearfix
+                  %span 请选择想要过滤的广告展示类型
+                  %div.opt_right
+                    %span.icon.iconM.icon_submit 提交
+                    %input.filter_submit{:type=>"submit",:value=>"提交"}
+                %table.datatable
+                  %tbody
+                    %tr
+                      %td
+                        %label
+                          = check_box_tag "appfilter[filter_content][]",'1',@originalFilter.include?('1')
+                          %span &nbsp;文本广告
+                          -#%input.customCheckbox390{:type=>"checkbox",:name=>"adCreativeFilter[]",:value=>"1",:checked=>"",:style=>"display: ;"} &nbsp;文本广告
+                      %tr
+                        %td
+                          %label
+                            = check_box_tag "appfilter[filter_content][]",'2',@originalFilter.include?('2')
+                            %span &nbsp;图片广告
+                            -#%input.customCheckbox397{:type=>"checkbox",:name=>"adCreativeFilter[]",:value=>"2",:checked=>"",:style=>"display: ;"} &nbsp;图片广告
+                      %tr
+                        %td
+                          %label
+                            = check_box_tag "appfilter[filter_content][]",'3',@originalFilter.include?('3')
+                            -#%input.customCheckbox404{:type=>"checkbox",:name=>"adCreativeFilter[]",:value=>"3",:checked=>"",:style=>"display: ;"}
+                            %span &nbsp;gif动画广告
+                      %tr
+                        %td
+                          %label
+                            = check_box_tag "appfilter[filter_content][]",'4',@originalFilter.include?('4')
+                            -#%input.customCheckbox411{:type=>"checkbox",:name=>"adCreativeFilter[]",:value=>"4",:checked=>"",:style=>"display: ;"}
+                            %span &nbsp;长文本广告
+                      %tr
+                        %td
+                          %label
+                            = check_box_tag "appfilter[filter_content][]",'5',@originalFilter.include?('5')
+                            -#%input.customCheckbox418{:type=>"checkbox",:name=>"adCreativeFilter[]",:value=>"5",:checked=>"",:style=>"display: ;"}
+                            %span &nbsp;视频广告
+                      %tr
+                        %td
+                          %label
+                            = check_box_tag "appfilter[filter_content][]",'6',@originalFilter.include?('6')
+                            -#%input.customCheckbox425{:type=>"checkbox",:name=>"adCreativeFilter[]",:value=>"6",:checked=>"",:style=>"display: ;"}
+                            %span &nbsp;HTML5富媒体广告
+                      %input{:type=>"hidden",:name=>"form",:value=>"adCreative"}
+                      %input.commentVal{:type=>"hidden",:name=>"commentOpen",:value=>"0"}
+                %div.databox_options.clearfix#AdCreativeWrap

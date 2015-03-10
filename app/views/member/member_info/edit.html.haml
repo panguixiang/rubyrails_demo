@@ -1,0 +1,178 @@
+= stylesheet_link_tag "member/develoBank"
+#page
+  #main.clearfix.layout-2grid
+    #operationalarea
+      #systemprompt.msg-success{:style=>'visibility: visible; zoom: 1; opacity: 1; display: none;'}
+        %ul
+          %li 您的信息已经保存成功!
+      %h1 完善您的支付信息
+      %h2.fieldErrorCla #{flash[:succesMsg] unless flash[:succesMsg].blank?}
+      .infopanel
+        %table
+          %tbody
+            %tr
+              %td.key
+                我的角色
+              %td.feather
+              %td.value
+                .opbtn.important
+                  %div
+                    %button{:type=>'button'} 开发者
+        %h6{style:"position: relative;"} 个人身份详细信息
+        %table
+          %tbody
+            %tr
+              %td.key
+                账户名
+              %td.feather
+              %td.value
+                #{current_member.email}
+            %tr
+              %td.key
+                账户类型
+              %td.feather
+              - if @info.accountype=='1'
+                %td.value 个人开发者
+              - else
+                %td.value 公司
+            %tr
+              %td.key
+                有效证件
+              %td.feather
+              - if @developer_team.cardtype=='ID'
+                %td.value
+                  %span 身份证
+              - else
+                %td.value
+                  %span 护照
+            %tr
+              %td.key
+                证件姓名
+              %td.feather
+              %td.value
+                #{@developer_team.cardname}
+            %tr
+              %td.key
+                证件号码
+              %td.feather
+              %td.value
+                #{@developer_team.cardnum}
+        - if current_member.status==2
+          = form_for @developer_team,:url =>'/member/member_info/updateBank' ,:html=> {:multipart=> true}, method: :patch do |f|
+            .infopanel
+              %h6{:style=>'position:relative;'} 支付信息
+              %table
+                %tbody
+                  %tr
+                    %td.key
+                      开户人姓名
+                    %td.feather
+                    %td.value
+                      #{@developer_team.cardname}
+                  %tr
+                    %td.key
+                      支付方式
+                    %td.feather
+                    %td.value
+                      银行转账
+                  %tr
+                    %td.key 上传身份证
+                    %td.feather
+                    %td.value
+                      #uploadidcard
+                        %div
+                          %span 正面：
+                          = f.file_field 'sidePic'
+                          - if @developer_team.errors[:sideurl].presence
+                            %span.fieldErrorCla #{@developer_team.errors[:sideurl].join(", ")}
+                        %div
+                          %span 反面：
+                          = f.file_field  'outPic'
+                          - if @developer_team.errors[:outsideurl].presence
+                            %span.fieldErrorCla #{@developer_team.errors[:outsideurl].join(", ")}
+                        %span{:style=>'color:#FF6600;'} 本人承诺，提供的身份证/护照确保真实有效
+                  %tr
+                    %td.key 开户行全称
+                    %td.feather
+                    %td.value
+                      = f.text_field 'bankaddr', :size => "80",:class=>'inputstyle input-300px placeholder'
+                      %span.space 例如：中国工商银行广东省深圳市南山区高薪分行
+                      - if @developer_team.errors[:bankaddr].presence
+                        %span.fieldErrorCla #{@developer_team.errors[:bankaddr].join(", ")}
+                  %tr
+                    %td.key 银行账号
+                    %td.feather
+                    %td.value
+                      = f.text_field 'banknum', :size => "40",:class=>'inputstyle input-300px'
+                      - if @developer_team.errors[:bankaddr].presence
+                        %span.fieldErrorCla #{@developer_team.errors[:banknum].join(", ")}
+            %div.zhifuDiv 注意：为了您账户的安全，身份证一经审核通过后，支付信息将不能再自行修改，如需修改，请联系客服。
+            %div{:style=>'margin-bottom:20px;'} 注意：请填写完整正确的开户行，开户行不完整会造成财物付款不成功
+            .btnbar
+              .opbtn.important
+                %div
+                  = f.hidden_field 'id'
+                  = f.button '确认提交',:type=>'submit'
+        - if current_member.status==3
+          = form_for @info,:url =>'/member/member_info/updateInfo' ,:html=> {:multipart=> true}, method: :post do |f|
+            = f.hidden_field 'id'
+            %input{:type=>'hidden', :name=>'teamId', :value=>"#{@developer_team.id}"}
+            .infopanel
+              %h6 联系方式
+              %table
+                %tbody
+                  - if @info.accountype=='2'
+                    %tr#companyContact
+                      %td.key 联系人
+                      %td.feather.required
+                      %td.value
+                        = f.text_field 'contact', :value=>"#{@info.contact}",:size => "80",:class=>'inputstyle input-300px'
+                        - if @info.errors[:contact].presence
+                          %span.fieldErrorCla #{@info.errors[:contact].join(", ")}
+                  - else
+                    %tr
+                      %td.key QQ账号
+                      %td.feather.required
+                      %td.value
+                        = f.text_field 'qq', :value=>"#{@info.qq}",:size => "80",:class=>'inputstyle input-300px'
+                        - if @info.errors[:qq].presence
+                          %span.fieldErrorCla #{@info.errors[:qq].join(", ")}
+                  %tr
+                    %td.key MSN账号
+                    %td.feather
+                    %td.value
+                      = f.text_field 'msn', :value=>"#{@info.msn}",:size => "80",:class=>'inputstyle input-300px'
+                      - if @info.errors[:msn].presence
+                        %span.fieldErrorCla #{@info.errors[:msn].join(", ")}
+                  %tr
+                    %td.key 手机号码
+                    %td.feather.required
+                    %td.value
+                      = f.telephone_field 'mobile', :value=>"#{@info.mobile}",:size => "80",:class=>'inputstyle input-300px'
+                      - if @info.errors[:mobile].presence
+                        %span.fieldErrorCla #{@info.errors[:mobile].join(", ")}
+                  %tr
+                    %td.key 微信账号
+                    %td.feather
+                    %td.value
+                      = f.text_field 'wechat', :value=>"#{@info.wechat}",:size => "80",:class=>'inputstyle input-300px'
+                      - if @info.errors[:wechat].presence
+                        %span.fieldErrorCla #{@info.errors[:wechat].join(", ")}
+                  %tr
+                    %td.key 联系电话
+                    %td.feather
+                    %td.value
+                      = f.text_field 'telphone', :value=>"#{@info.telphone}",:size => "80",:class=>'inputstyle input-300px'
+                      - if @info.errors[:telphone].presence
+                        %span.fieldErrorCla #{@info.errors[:telphone].join(", ")}
+                  %tr
+                    %td.key 通讯地址
+                    %td.feather
+                    %td.value
+                      = f.text_field 'address', :value=>"#{@info.address}",:size => "80",:class=>'inputstyle input-300px'
+                      - if @info.errors[:address].presence
+                        %span.fieldErrorCla #{@info.errors[:address].join(", ")}
+            .btnbar
+              .opbtn.important
+                %div
+                  = f.button '确认',:type=>'submit'

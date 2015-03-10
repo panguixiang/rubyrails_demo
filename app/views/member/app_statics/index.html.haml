@@ -1,0 +1,86 @@
+= stylesheet_link_tag "member/app_statics"
+= stylesheet_link_tag "member/TimeWidgetStyle"
+#content
+	#main.main.wrapper
+		.clearfix
+			.report
+				%h2 应用统计
+				.report_params.keyvalue
+					%form#searchFormId{method:'get'}
+						.pair
+							%dfn.key 应用
+							.value.report_costType
+								%select.styled-select#oneSelect{name:'app_id'}
+									%option{value:''} 全部
+									- @appList.each do |app|
+										-if @appId.to_i==app.id
+											%option{value:"#{app.id}", selected:true} #{app.app_name}
+										- else
+											%option{value:"#{app.id}"} #{app.app_name}
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								广告位&nbsp;&nbsp;
+								%select.styled-select#twoSelect{name:'adverting_id'}
+									%option{value:''} 全部
+									- @appList.each do |app|
+										- (app.advertisings).each do |adver|
+											%option{value:"#{adver.id}",class:"optionclass optId#{app.id}"} #{adver.adver_name}
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								时段&nbsp;&nbsp;
+								%select.styled-select#dateSeleId{name:'dateSele'}
+									%option{value:"#{(DateTime.now).strftime('%Y-%m-%d')}"} 今天
+									%option{value:"#{(DateTime.now-1).strftime('%Y-%m-%d')}"} 昨天
+									%option{value:"#{(Chronic.parse '1 week ago').strftime('%Y-%m-%d')}",selected:true} 最近一周
+									%option{value:"#{(Chronic.parse '1 month ago').strftime('%Y-%m-%d')}"} 最近一个月
+									%option{value:"#{(Chronic.parse '1 year ago').strftime('%Y-%m-%d')}"} 最近一年
+									%option{value:""} 自定义
+						.pair#dateBetweenId{style:'display:none;'}
+							%dfn.key 时间范围：
+							.value.report_costType
+								%input.text.txtL.endDate#beginTimeId{name:'beginDate',size:16,readonly:'readonly',onfocus:'calShow(this);'}
+								&nbsp;-&nbsp;
+								%input.text.txtL.endDate#endTimeId{name:'endDate',size:16,readonly:'readonly',onfocus:'calShow(this);'}
+								&nbsp;&nbsp;&nbsp;
+								%button.btnS.ac.ac_report_exec_changes{type:'button'}
+									%span 查询
+						.pair
+							%dfn.key 计费类型
+							.value.report_costType
+								%input{type:'radio',name:'bill_type',value:'',checked:'checked'} &nbsp;全部 &nbsp;&nbsp;&nbsp;
+								%input{type:'radio',name:'bill_type',value:'cpc'} &nbsp;CPC &nbsp;&nbsp;&nbsp;
+								%input{type:'radio',name:'bill_type',value:'cpm'} &nbsp;CPM
+						.pair
+							%dfn.key 广告位类型
+							.value.report_costType
+								%input{type:'radio',name:'adverting_type',value:'',checked:'checked'} &nbsp;全部 &nbsp;&nbsp;&nbsp;
+								%input{type:'radio',name:'adverting_type',value:'1'} &nbsp;inline &nbsp;&nbsp;&nbsp;
+								%input{type:'radio',name:'adverting_type',value:'2'} &nbsp;插屏 &nbsp;&nbsp;&nbsp;
+								%input.onlyRadioId{type:'radio',name:'adverting_type',value:'3'}
+									%span.onlyRadioId &nbsp;开屏
+				.chart_holder
+					#chart.ow-highchart
+				.btn_group.btn_group_justified.views
+					%button#adivId0.btn.btnL.btn_gray.ac.ac_report_change_view.current
+						%span 收入
+					%button#adivId1.btn.btnL.btn_gray.ac.ac_report_change_view
+						%span 每千次有效展示收入
+					%button#adivId2.btn.btnL.btn_gray.ac.ac_report_change_view
+						%span 有效请求
+					%button#adivId3.btn.btnL.btn_gray.ac.ac_report_change_view
+						%span 有效填充
+					%button#adivId4.btn.btnL.btn_gray.ac.ac_report_change_view
+						%span 有效展示
+					%button#adivId5.btn.btnL.btn_gray.ac.ac_report_change_view{style:'display:none;'}
+						%span 点击次数
+					%button#adivId6.btn.btnL.btn_gray.ac.ac_report_change_view{style:'display:none;'}
+						%span 点击率
+				%h2.table_title
+					统计报告
+					%small
+						%a.ac.ac_report_export{href:"#"} 下载报告
+				.databox
+					%table.datatable.report_table
+					.databox_options.clearfix
+
+= javascript_include_tag "member/highcharts"
+= javascript_include_tag "member/TimeWidget"
+= javascript_include_tag "member/app_statics"

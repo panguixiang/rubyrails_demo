@@ -1,0 +1,159 @@
+= stylesheet_link_tag "member/profile"
+= javascript_include_tag "member/highcharts"
+= javascript_include_tag "member/deverIndex"
+#page
+	#main.layout-2grid.clearfix
+		#operationalarea
+			#baseinfo
+				%ul.clearfix
+					%li.section 我的帐号：
+					%li.content #{current_member.email}
+					%li.operate
+						%a.operable{:href=>'/member/member_info/edit'} 编辑个人信息
+				%ul.clearfix
+					%li.section 账户类型：
+					- if current_member.m_type==1
+						%li.content 开发者
+					- if current_member.m_type==2
+						%li.content 广告主
+			#finance
+				.categorytitle
+					%span.text 财务状况
+					%span.operate
+						%a.operable{:href=>'/member/financial/deverWithdraw'} 申请提现
+				.info
+					%p
+						%span
+							累计收入：
+							%span.number
+								=number_with_precision("#{@dayMoney.cum_revenue}")
+								元
+						%span.separator |
+						%span.number
+							未确认收入：
+							%span.number
+								=number_with_precision("#{@dayMoney.unincome}")
+								元
+						%span.separator
+						%span
+							确认中收入：
+							%span.number
+								=number_with_precision("#{@dayMoney.confirincome}")
+								元
+						%span.separator
+					%p
+						%span
+							奖励金额：
+							%span.number
+								=number_with_precision("#{@dayMoney.rewardcash}")
+								元
+						%span.separator |
+						%span
+							可提现金额：
+							%span.number
+								=number_with_precision("#{@dayMoney.cancash}")
+								元
+						%span.separator
+						%span
+							等待到账:
+							%span.number
+								=number_with_precision("#{@dayMoney.waitcash}")
+								元
+						%span.separator
+				.list
+					%table
+						%tbody#financialTable
+			#overview
+				.categorytitle
+					%span.text 应用概况
+					%span.operate
+						%a.operable{:href=>'/member/app_add/index1'} 新建应用
+						%span.separator |
+						%a.operable{:href=>'/member/app_manager/index'} 查看应用列表
+				.info
+					- @appStatics.each do |obj|
+						- if obj.status==1 && obj.num>0
+							%span.unupload
+								%a{href:'/member/app_manager/index'} 未上传应用(#{obj.num})
+						- else
+							%span.paused.disabled 未上传应用(0)
+						- if obj.status==2 && obj.num>0
+							%span.running
+								%a{href:'/member/app_manager/index'} 应用审核中(#{obj.num})
+						- else
+							%span.paused.disabled 应用审核中(0)
+						- if obj.status==3 && obj.num>0
+							%span.running
+								%a{href:'/member/app_manager/index'} 审核未通过(#{obj.num})
+						- else
+							%span.pending.disabled 审核未通过(0)
+						- if obj.status==4 && obj.num>0
+							%span.running
+								%a{href:'/member/app_manager/index'} 运行中(#{obj.num})
+						- else
+							%span.paused.disabled 运行中(0)
+						- if obj.status==5 && obj.num>0
+							%span.running
+								%a{href:'/member/app_manager/index'} 暂停中(#{obj.num})
+						- else
+							%span.rejected.disabled 暂停中(0)
+						- if obj.status==6 && obj.num>0
+							%span.unupload
+								%a{href:'/member/app_manager/index'} 已禁用(#{obj.num})
+						- else
+							%span.pending.disabled 已禁用(0)
+				.list
+					%table
+						%tbody
+							%tr
+								%td
+								%td
+								%td.subHeader CPC 类
+								%td
+								%td.subHeader CPM 类
+								%td
+							%tr
+								%th.date 日期
+								%th.number 展示数
+								%th.number 点击数
+								%th.number 点击率
+								%th.number{:style=>'border-left:1px solid #ccc;border-right:1px solid #ccc;'} 展示数
+								%th.income 收入
+						%tbody#dataTable
+						- if @day3VistLog.blank? || @day3VistLog.length==0
+							%tr
+								%td.data #{(DateTime.now).strftime('%Y-%m-%d')}
+								%td.number 0次
+								%td.number 0次
+								%td.number 0
+								%td.number{:style=>'border-left:1px solid #ccc;border-right:1px solid #ccc;'} 0次
+								%td.number 0元
+							%tr
+								%td.data #{(DateTime.now-1).strftime('%Y-%m-%d')}
+								%td.number 0次
+								%td.number 0次
+								%td.number 0
+								%td.number{:style=>'border-left:1px solid #ccc;border-right:1px solid #ccc;'} 0次
+								%td.number 0元
+						- else
+							- @day3VistLog.each_with_index do |obj,index|
+								- if index<3
+									%tr
+										%td.data #{obj.created_at.strftime('%Y-%m-%d')}
+										%td.number #{obj.cpc_display}次
+										%td.number #{obj.cpc_click}次
+										%td.number #{obj.cpc_rate} %
+										%td.number{:style=>'border-left:1px solid #ccc;border-right:1px solid #ccc;'} #{obj.cpm_display}次
+										%td.number
+											=number_with_precision("#{obj.now_cost}")
+			#report
+				.categorytitle
+					%span.text 最近一周收入报告
+					.operate
+						%a.operable{:href=>"#{member_app_statics_path}"} 查看统计报告
+				.info
+					#dataChart.chart
+						.highcharts-container#canvasDiv
+		#sidebar
+			= render "member/right"
+

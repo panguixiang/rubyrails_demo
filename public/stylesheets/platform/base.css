@@ -1,0 +1,583 @@
+@charset "utf-8";
+html,
+body, h1, h2, h3, h4, h5, h6, hr, p, iframe,
+dl, dt, dd, ul, ol, li,
+form, button, input, textarea,
+th, td {
+  margin: 0;
+  padding: 0;
+}
+@font-face{
+  font-family:'Gotham';
+  src:url("/images/Gotham-Book.otf") format('otf');
+}
+body, button, input, select, textarea,p {
+  color: #515151;
+  font: 13px/26px 'Gotham','Microsoft YaHei',Simhei,helvetica, verdana,arial;
+}
+html {
+  overflow-y: scroll;
+}
+img {
+  border: none;
+}
+a {
+  color: #696969;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+iframe {
+  border: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+ol, ul {
+  list-style-type: none;
+}
+
+/*  清除浮动
+----------------------------------------------------------------------------------------------------*/
+
+/* http://sonspring.com/journal/clearing-floats */
+.clear {
+  clear: both;
+  display: block;
+  overflow: hidden;
+  visibility: visible;
+  width: 0;
+  height: 0;
+}
+
+/* http://www.yuiblog.com/blog/2010/09/27/clearfix-reloaded-overflowhidden-demystified */
+.clearfix:before,
+.clearfix:after {
+  content: '\0020';
+  display: block;
+  overflow: hidden;
+  visibility: hidden;
+  width: 0;
+  height: 0;
+}
+
+.clearfix:after {
+  clear: both;
+}
+
+/*
+  The following zoom:1 rule is specifically for IE6 + IE7.
+  Move to separate stylesheet if invalid CSS is a problem.
+*/
+.clearfix {
+  zoom: 1;
+}
+
+/*  文本颜色
+----------------------------------------------------------------------------------------------------*/
+/*topbar和footer中链接的颜色，偏灰白色  */
+.dark{
+  color:#cccccc;
+}
+/* footer链接颜色 */
+.light{
+  color:#c5c5c5;
+}
+/* 浅灰色 */
+.highlight{
+  color:#969696;
+}
+/* 绿色 */
+.threedhighlight{
+  color:#333;
+}
+/*浅黑色*/
+.shallowblack{
+  color:#c1c1c1;
+}
+.blue{
+  color:#88bbc8;
+}
+
+/*  文本规格
+----------------------------------------------------------------------------------------------------*/
+.fhei{
+  font: 14px/1.5 'Microsoft YaHei', Simhei,helvetica, verdana,arial ;
+}
+
+.bold {
+  font-weight: bold;
+}
+.f10px{
+  font-size:10px;
+}
+.f12px {
+  font-size: 12px;
+}
+/* 12像素字体 */
+.f14px{
+  font-size:14px;
+}
+.f17px {
+  font-size: 17px;
+}
+/*17像素字体 */
+.f18px{
+  font-size:18px;
+  font-family:arial,helvetica, verdana;
+}
+/* 18像素字体 */
+.f26px{
+  font-size:26px;
+}
+.f22px{
+  font-size:22px;
+}
+.f24px{
+  font-size:24px;
+}
+/* 26像素字体 */
+.f30px{
+  font-size:30px;
+}
+/* 30像素字体 */
+.f36px{
+  font-size:36px;
+}
+/* 36像素字体 */
+.dotted{
+  border-bottom:1px dotted;
+}
+.shadow{
+  text-shadow:0px 2px rgba(0,0,0,0.3);
+  filter:none\9;
+  -filter:dropshadow(offx=1, offy=1, color=#666666);
+  zoom:1;
+}
+.relief{
+  text-shadow:1px 1px 0px #fff;
+  filter:dropshadow(OffX=1, OffY=1, Color=#ffffff);
+  zoom:1;
+
+}
+.fdate{
+  font-family:Georgia;
+}
+.space {
+  margin: 0 5px;
+}
+.iconspace {
+  padding-left: 30px;
+}
+.mg-16px{
+  margin-top:16px;
+}
+.indent{
+  text-indent:30px;
+}
+.operable{
+  color:#2A81BE;
+}
+.center{
+  text-align:center;
+}
+.bordernone{
+  border:none;
+}
+/* 文本分隔符 */
+/*  文本输入框规格（由于边框影响，实际大小会比预设大小增加2像素）
+----------------------------------------------------------------------------------------------------*/
+
+.inputstyle {
+  border: 1px solid #d3d3d3;
+  line-height: 19px;
+  height: 19px;
+}
+
+/* 文本框大小 */
+.input-50px {
+  width: 50px;
+}
+.input-100px {
+  width: 100px;
+}
+.input-150px {
+  width: 150px;
+}
+.input-200px {
+  width: 200px;
+}
+.input-250px {
+  width: 250px;
+}
+.input-300px {
+  width: 300px;
+}
+.input-350px {
+  width: 350px;
+}
+.input-400px {
+  width: 400px;
+}
+.input-450px {
+  width: 450px;
+}
+
+/*  按钮基础样式  按钮还需修改，暂时空下，制作页面时候再增加
+----------------------------------------------------------------------------------------------------*/
+
+/* 公用样式
+----------------------------------------------------------------------------------------------------*/
+body{
+  background-color:#f5f5f5;
+  width:100%;
+  min-width:1004px;
+  width:expression(document.body.clientWidth <= 1004? "1004px": "auto");
+
+}
+.cont{
+  width:1004px;
+  margin:0 auto;
+}
+#topbar{
+  background:url("/images/grd-x.gif") repeat-x left top;
+  _height:50px;
+  height:55px;
+  _overflow:hidden;
+  position: relative;
+  min-width: 1004px;
+}
+#topbar .right a{
+  text-decoration:none;
+}
+#topbar .right a:hover{
+  border-bottom:1px dotted #ccc;
+}
+#topbar1{
+  background:url("/images/grd-x.gif") repeat-x left top;
+  height:50px;
+  margin-bottom:40px;
+  position:relative;
+  min-width:1004px;
+}
+#topbar .left a{
+  float:left;
+  text-decoration:none;
+  padding:0 40px;
+  background:url("/images/sprite.gif") no-repeat 0 0;
+}
+#topbar .left a:hover{
+  background:url("/images/sprite.gif") no-repeat -424px -160px;
+}
+#topbar1 .left a{
+  float:left;
+  color:#cccccc;
+  padding:0 20px;
+  text-decoration:none;
+}
+#topbar1 .left .home{
+  width:165px;
+  height:50px;
+  padding:0;
+  background:url("/images/about-domob-logo.gif") no-repeat 0 0;
+}
+#topbar1 .left{
+  width:665px;
+  float:left;
+  line-height:50px;
+}
+#topbar1 .topbar1_act{
+  text-shadow:0px 2px rgba(0,0,0,0.3);
+  filter:none\9;
+  -filter:dropshadow(offx=1, offy=1, color=#666666);
+  zoom:1;
+  background:url("/images/sprite.gif") no-repeat -220px -160px;
+  -background:url("/images/sprite.gif") no-repeat -221px -160px;
+}
+#topbar1 .topbar1_nor{
+  background:url("/images/sprite4.gif") no-repeat -320px -160px;
+  text-shadow:0px 2px rgba(0,0,0,0.3);
+  filter:none\9;
+  -filter:dropshadow(offx=1, offy=1, color=#666666);
+  zoom:1;
+}
+#nav_more{
+  width:104px;
+  position:absolute;
+  left:540px;
+  z-index:99;
+  top:50px;
+  display:none;
+}
+#topbar1 #more{
+  width:100px;
+  padding-right:0;
+  text-shadow:0px 2px rgba(0,0,0,0.3);
+  filter:none\9;
+  -filter:dropshadow(offx=1, offy=1, color=#666666);
+  zoom:1;
+}
+#topbar1 .left .nav_more{
+  padding-left:15px;
+  color:#000;
+  height:35px;
+  line-height:32px;
+}
+#topbar1 .nav_more:hover{
+  color:#88bbc8;
+}
+#topbar1 .nav_more_act{
+  background:url("/images/sprite4.gif") no-repeat -333px -416px;
+}
+#topbar1 .more_nor{
+  background:url("/images/sprite4.gif") no-repeat -302px -240px;
+}
+#topbar1 .more_act{
+  background:url("/images/sprite4.gif") no-repeat -345px -360px;
+}
+#topbar .left{
+  width: 530px;
+  float:left;
+  background:url("/images/sprite4.gif") no-repeat 528px 0;
+  line-height:50px;
+}
+#topbar .right{
+  position:relative;
+  float:right;
+  width:80px;
+  height:55px;
+  line-height:50px;
+}
+#user{
+  display:block;
+  width:80px;
+  height:50px;
+  background:url("/images/sprite.gif") no-repeat -592px -160px;
+}
+#userlist{
+  position:absolute;
+  z-index:99;
+  top:54px;
+  right:-60px;
+  width:194px;
+  height:94px;
+  background:url("/images/userlist.png") no-repeat 0px 0px;
+}
+#userlist .username{
+  text-align:center;
+}
+#userlist .tmd{
+  padding-top:10px;
+}
+#userlist .nnd{
+  padding-top:15px;
+  padding-left:37px;
+}
+#userlist .dnw{
+  visibility:hidden;
+  padding-right:3px;
+}
+#userlist a{
+  text-decoration:none;
+}
+#userlist a:hover{
+  color:#88bbc8;
+  border-bottom:1px dotted;
+}
+#topbar1 .right{
+  position:relative;
+  float:right;
+  width:245px;
+}
+#topbar1 .back,#topbar1 .user{
+  float:right;
+}
+#topbar1 .right .back{
+  width:180px;
+  height:31px;
+  margin-top:10px;
+  background:url("/images/sprite2.gif") no-repeat 0 -784px;
+}
+#topbar1 .right .back:hover{
+  background:url("/images/sprite2.gif") no-repeat 0 -815px;
+}
+#topbar1 .right .back:active{
+  background:url("/images/sprite2.gif") no-repeat 0 -846px;
+}
+#topbar1 .right .user{
+  width:30px;
+  height:50px;
+  margin-left:10px;
+  padding-top:10px;
+  background:url("/images/sprite2.gif") no-repeat 0 -902px;
+}
+#page{
+  width:1006px;
+  margin-left:auto;
+  margin-right:auto;
+}
+#header{
+  height:95px;
+  background-color:#fff;
+}
+#domob_logo{
+  float:left;
+  background:url("/images/domob-logo.gif") no-repeat 0 0;
+  width:200px;
+  height:95px;
+}
+#nav{
+  float:right;
+}
+#nav .nav{
+  float:left;
+}
+#nav .menu{
+  line-height:95px;
+  display:block;
+  text-decoration:none;
+}
+#case{
+  width:75px;
+}
+#case.menu_nor{
+  background:none;
+}
+#nav #case:hover{
+  background:url("/images/sprite.gif") no-repeat 1px -368px;
+}
+.case_current{
+  background-position:0px -368px;
+}
+.menu_act{
+  background-position:0px -160px;
+}
+.menu_nor{
+  background-position:0 -61px;
+}
+#developer,#advertiser,#case{
+  background-image:url("/images/sprite.gif");
+  background-repeat:no-repeat;
+}
+#developer,#advertiser{
+  padding-left:20px;
+  padding-right:110px;
+}
+#nav .subnav{
+  width:140px;
+  display:none;
+  position:absolute;
+  z-index:99;
+}
+#nav .subnav li{
+  height:40px;
+  margin:0;
+  padding:0;
+  background-color:#fff;
+}
+#nav .subnav a{
+  display:block;
+  height:40px;
+  line-height:40px;
+  margin-left:20px;
+
+}
+#nav .subnav a span{
+  float:left;
+}
+#nav .subnav .arrows{
+  width:40px;
+  height:27px;
+}
+
+#nav .subnav a:hover .arrows{
+  background:url("/images/sprite.gif") no-repeat 25px -475px;
+}
+.nav_current{
+  background-position:0px -264px;
+}
+#main{
+  background:url("/images/grd-y-20px.gif")  repeat-y 0 0;
+}
+#page .topline{
+  height:4px;
+  background:url("/images/topline.gif") no-repeat 0 0;
+  overflow:hidden;
+}
+#page .bottomline{
+  height:4px;
+  overflow:hidden;
+  background:url("/images/topline.gif") no-repeat 0 0;
+}
+/*以上是头部公共部分的样式*/
+#subnav a{
+  font-size: 17px;
+  line-height: 80px;
+  text-align: center;
+  height: 80px;
+  float: left;
+  width: 150px;
+  background-image: url("/images/sprite.gif");
+  background-repeat: no-repeat;
+  text-decoration: none;
+}
+.subnav_n{
+  background-position:-50px 0;
+}
+.subnav_h{
+  background-position:-357px 1px;
+}
+.subnav_a{
+  color:#fff;
+  text-shadow:0px 2px rgba(0,0,0,0.3);
+  filter:none\9;
+  -filter:dropshadow(offx=1, offy=1, color=#666666);
+  zoom:1;
+  background-position:-205px 0px;
+}
+
+#contact-said{
+  width:100px;
+  height:50px;
+  background:url("/images/contact.png") no-repeat 0 0;
+  -background:url("/images/contact.gif?r=0.2") no-repeat 0 0;
+  text-align:center;
+  line-height:50px;
+  position:absolute;
+  right:0;
+  z-index:99;
+  cursor:pointer;
+}
+#contact-said a{
+  display:block;
+  width:85px;
+  height:50px;
+  text-decoration:none;
+  padding-left:15px;
+  background:url("/images/sprite3.gif?r=0.1") no-repeat -194px -533px;
+}
+
+#footer{
+  line-height:24px;
+  margin-top:56px;
+  height:100px;
+  background:url("/images/grd-x2.gif") repeat-x 0px -55px;
+}
+#footer .ft{
+  width:1004px;
+  margin-left:auto;
+  margin-right:auto;
+}
+#footer .partner_logo{
+  float:right;
+  width:140px;
+  height:100px;
+}
+#footer .MMA{
+  background:url("/images/MMA.gif") no-repeat 0 35px;
+}
+#footer .GWC{
+  background:url("/images/GWC.gif") no-repeat 35px 55px;
+}

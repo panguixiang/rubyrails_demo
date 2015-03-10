@@ -1,0 +1,176 @@
+= stylesheet_link_tag "member/app_list/combo"
+= stylesheet_link_tag "member/app_list/combo1"
+= stylesheet_link_tag "member/app_list/combo2"
+-#= javascript_include_tag "member/app_add"
+= javascript_include_tag "member/app_list"
+
+#content
+  .wrapper.breadCrumb
+    %a{:href=>"/member/app_manager/index"} 应用列表
+    %span > 添加应用
+  #main.main.wrapper
+    .clearfix
+      %span#system_errors.error-message
+      %h2 添加应用
+      %ul.createSteps
+        %li.first.current
+          %div.inner
+            %span.step 第一步 填写应用信息
+            .arrow
+              %em
+        %li.current
+          .inner
+            %span.step 第二步 创建广告位
+            .arrow
+              %em
+        %li.last
+          %div.inner
+            %span.step 第三步 下载并集成SDK
+            .arrow
+              %em
+      .info_box
+        %dl.detail_group.detail_group_expanded
+          %dt.detail_title
+            %a.weak.detail_toggler.detail_close.ac.ac_detail_group_toggle
+              %span.icon.iconS.icon_toggle_down 收起
+              %span 收起
+            %a.weak.detail_toggler.detail_expand.ac.ac_detail_group_toggle
+              %span.icon.iconS.icon_toggle_up 展开
+              %span 展开
+            %span
+              应用信息摘要;
+              %a.fcb{:href=>"/member/app_add/edit?app_id=#{@app_prod.id}"} 编辑
+            %dd.detail_body
+              %p
+                %dfn 应用平台：#{@app_prod['platform']}程序
+              %p
+                %dfn 应用程序名称：#{@app_prod['app_name']}
+
+              %p
+                %dfn 关键字：#{@app_prod['keyword']}
+              %p
+                %dfn
+                  应用类型：
+                  = appTypeStr(@app_prod['app_type'])
+      %h2
+        广告位列表
+        .keyvalue
+          .databox
+            %table.datatable
+              %tbody#sdfadsf23
+                %tr.trShadow
+                  %th 名称
+                  %th.typeThTd 类型
+                  %th 状态
+                  %th 广告位ID
+                  %th 创建时间
+                  %th 操作
+                - @adverList.each do |adver|
+                  %tr.trShadow{id:"dervertisTr#{adver.id}"}
+                    %td.left #{adver.adver_name}
+                    %td.typeThTd
+                      = adver_TypeStr adver.adver_type
+                    %td
+                      = adverStatusStr adver.status
+                      %span &nbsp;
+                      -if adver.status==1
+                        %a.display_toggle{:href=>"javascript:;",onclick:"pausd(#{adver['id']})"}
+                          = adverStatusStr(2)
+                      -if adver.status==2
+                        %a.display_toggle{:href=>"javascript:;",onclick:"pausd(#{adver['id']})"}
+                          = adverStatusStr(1)
+                    %td.appSetting #{adver.innlinepid}
+                    %td #{adver.created_at.strftime("%Y-%m-%d")<< adver.created_at.strftime(" %H:%M")}
+                    %td.appSetting
+                      -if adver.status==2
+                        %a{:href=>"javascript:;",onclick:"deleteDever(#{adver['id']})"} 删除
+            %table.datatable
+              %tbody
+                %tr
+                  %td.addPlaceTd{:colspan=>"6"}
+                    %div#placementtoolbar
+                      %button.btnM.btn_gray.ac.ac_addPlace{:type=>"button"}
+                        %span &nbsp;&nbsp;添加广告位&nbsp;&nbsp;
+                %tr.dis_h.videoSetClass{:style=>"display: none;"}
+                  %td.adPlaceBg{:colspan=>"6"}
+                    = form_for @advertis,:url =>{controller:'/member/app_add',action:'newAderTis'} ,remote:true do |f|
+                      = f.hidden_field 'app_produ_id',value:"#{@advertis.app_produ_id}"
+                      %div.placementpanel_hide#adPlace_detail
+                        %p
+                          %label{:for=>"name"}
+                            %dfn 广告位名称：
+                            = f.text_field :adver_name,:class=>'text txtL',:type=>"text",:value=>"",:maxlength=>"32",:class=>'text txtL'
+                            %span.adPlaceErr#idadver_name
+                          %a.icon.iconM.icon_cancel.ac.ac_cancelA.closeA 取消
+                        %p.placeType
+                          %label
+                            %dfn 广告位类型：
+                            = f.select :adver_type,[["请选择",''],["inline广告位","1"],["普通插屏广告位",'2'],["开屏广告位",'3'],["信息流顶部广告位",'4'],["多宝屋广告位",'5'],["Native广告位",'6']]
+                            %span.adPlaceErr#idadver_type
+                        %div#videoSettings.videoSetClass{:style=>"display: none;"}
+                          %p
+                            %label
+                              %dfn 接受插屏广告类型：
+                              = f.radio_button :iscreen,"1",:class=>"customradio8"
+                              %span 仅接受标准插屏广告
+                              = f.radio_button :iscreen, "2",:class=>"customradio16",:checked=>"checked"
+                              %span 接受标准插屏和全屏插屏广告
+                          %p
+                            %label
+                              %dfn 接受视频广告程度：
+                              = f.radio_button :isvideo,"1",:class=>"customradio24"
+                              %span 不接受
+                              = f.radio_button :isvideo,"2",:class=>"customradio32",:checked=>"checked"
+                              %span 仅wifi下接受
+                              = f.radio_button :isvideo,"3",:class=>"customradio40"
+                              %span 都接受
+                          %p
+                            %label
+                              %dfn 视频广告静音设置：
+                              = f.radio_button :ismute, "1",:class=>"customradio48"
+                              %span 默认静音
+                              = f.radio_button :ismute, "2",:class=>"customradio56",:checked=>"checked"
+                              %span 默认与用户设备系统设置一致
+                        #nativeSettings.nativeSetClass{:style=>"display: none;"}
+                          %h3 请选择需要的素材类型及规格:
+                          %h5{:style=>"color:red;"} PS: ICON、标题等至少选择一类素材,一旦创建就改不了了
+                          %p
+                            %label
+                              %dfn ICON：
+                              = f.select :icon,[["不需要", ''],["175*175", '175*175'],["125*125",'125*125' ],["75*75",'75*75' ]],:name=>"nativeIcon",:class=>"customselect107",:id=>"nativeSettingIcon"
+                              %span.adPlaceErr#idicon
+                          %p
+                            %label
+                              %dfn 标题：
+                              = f.select :title,[["不需要", ''],["2-14字", '2-14']],:name=>"nativeTitle",:class=>"customselect112",:id=>"nativeSettingTitle"
+                              %span.adPlaceErr#idtitle
+                          %p
+                            %label
+                              %dfn 简介：
+                              = f.select :content,[["不需要", ''],["8-16字", '8-16'],["17-32字", '17-32']],:name=>"nativeBrief",:class=>"customselect117",:id=>"nativeSettingBrief"
+                          %p
+                            %label
+                              %dfn 详情：
+                              = f.select :descrip,[["不需要", ''],["33-48字", '33-48'],["49-80字", '49-80']],:name=>"nativeDetail",:class=>"customselect122",:id=>"nativeSettingDetail"
+                          %p
+                            %label>
+                              %dfn Media：
+                          %div#media_image{:style=>"margn-left:20px;"}
+                            %label
+                              %dfn{:style=>"text-align: right;"} 图片：
+                              = f.select :media,[["不需要", ''],["150*150", '150*150'],["160*284", '160*284']],:name=>"nativeImage",:class=>"customselect127",:id=>"nativeSettingImage"
+                            %p
+                        %p.save_ad_place
+                          = f.button '保存广告位',:type=>'submit',:class=>'.btnL.btn_default.ac.ac_saveAdPlace'
+                          %span &nbsp;或
+                          %a.closeDivA{:href=>"/member/app_manager/index2"} 取消
+            %div.databox_options.clearfix
+        %p.addAdTip 请添加适合您应用的广告位，只有添加了广告位后才能接收多盟的广告，您也可以稍后在“应用详情”页面添加广告位
+        %div.keyvalue
+          %p.actions
+            %input#step{:type=>"hidden",:name=>"step",:value=>"2"}
+            %input#mid{:type=>"hidden",:name=>"mid",:value=>"101666"}
+            %button.btnL.btn_default{:name=>"saveAction",:type=>"submit"}
+              %a{:href=>"/member/app_add/index3?approId=#{@app_prod['id']}"} 下一步
+            %span &nbsp;或
+            %a.ac.ac_cancel{:href=>"/publisher/app/list"} 取消

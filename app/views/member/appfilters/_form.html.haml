@@ -1,0 +1,9 @@
+= form_for [:member, @appfilter], html: { class: 'form-horizontal' } do |f|
+  - if @appfilter.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@appfilter.errors.count, "error")} prohibited this appfilter from being saved:"
+      %ul
+        - @appfilter.errors.full_messages.each do |msg|
+          %li= msg
+  .actions
+    = f.submit 'Save'

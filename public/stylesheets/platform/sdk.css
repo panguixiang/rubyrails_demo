@@ -1,0 +1,51 @@
+#page{
+  margin-top:120px;
+}
+
+#head{
+  height:33px;
+  border-bottom:1px solid #515151;
+  background:url("/images/sdk-sprite.gif") no-repeat 0px 0px;
+}
+#head .back{
+  float:right;
+  padding-top:5px;
+}
+#item .SDK{
+  width:450px;
+  float:left;
+  margin-top:50px;
+  margin-bottom:20px;
+  border-top:1px dotted #cfcfcf;
+}
+.SDK p{
+  height:49px;
+  color:#969696;
+  padding-left:8px;
+  line-height:49px;
+  border-bottom:1px dotted #cfcfcf;
+}
+.ios{
+  background:url("/images/sdk-sprite.gif") no-repeat 373px -48px;
+}
+.android{
+  background:url("/images/sdk-sprite.gif") no-repeat 310px -112px;
+}
+.windows_phone{
+  background:url("/images/sdk-sprite.gif") no-repeat 355px -168px;
+}
+.SDK .title{
+  padding-left:60px;
+  -padding-left:65px;
+}
+.SDK .update{
+  float:right;
+}
+#foot{
+  border-top:1px solid #515151;
+  margin-top:100px;
+  height:60px;
+}
+#foot p{
+  line-height:50px;
+}

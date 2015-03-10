@@ -1,0 +1,321 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+/*以下是“联系我们”的样式*/
+#contact{
+  overflow:hidden;
+  position:relative;
+  width:1010px;
+  margin:0px auto 0 auto;
+  height:820px;
+}
+#contact #left{
+  height:650px;
+  width:615px;
+  position:absolute;
+  margin-top:100px;
+  z-index:1;
+  -webkit-transition-duration:0.5s;
+  -moz-transition-duration:0.5s;
+  transition-duration:0.5s;
+}
+#left.out{
+  left:0px;
+}
+#left.in{
+  left:620px;
+}
+#contact #mac{
+  width:615px;
+  height:635px;
+  background-image:url("/images/left.jpg");
+  background-repeat:no-repeat;
+}
+#mac.mac1{
+  background-position:-5px 0;
+}
+#mac.mac2{
+  background-position:-5px -680px;
+}
+#mac.mac3{
+  background-position:-5px -1365px;
+}
+#contact #right{
+  width:428px;
+  height:710px;
+  padding-top:100px;
+  float:right;
+  position:relative;
+  background:url("/images/edge.png") no-repeat 0 0;
+  z-index:2;
+}
+
+#right .right_c{
+  width:400px;
+  height:710px;
+  margin-left:28px;
+  padding-left:50px;
+  background-color:#f5f5f5;
+}
+#right h1{
+  font-weight:normal;
+}
+#right1{
+  margin-top:60px;
+  z-index:3;
+  position:absolute;
+  width:400px;
+}
+#right1 div{
+  -moz-transition-duration:1s;
+  -moz-transition-timing-function:ease-out;
+  -webkit-transition-duration:1s;
+  -webkit-transition-timing-function:ease-out;
+  transition-duration:1s;
+  transition-timing-function:ease-out;
+  margin-bottom:25px;
+  width:400px;
+}
+#right1 h1{
+  margin:8px 0;
+}
+#beijing.down{
+  margin-top:30px;
+  opacity:0;
+}
+#beijing.up{
+  opacity:1;
+  margin-top:0;
+}
+#guangzhou.down{
+  margin-top:55px;
+  opacity:0;
+}
+#guangzhou.up{
+  margin-top:0;
+  oacity:1;
+}
+#shanghai.down{
+  margin-top:55px;
+  opacity:0;
+}
+#shanghai.up{
+  margin-top:0;
+  opacity:1;
+}
+#right2{
+  margin-top:200px;
+  z-index:4;
+  position:absolute;
+}
+#right2 .detail{
+  text-decoration:none;
+}
+#right2 a:hover{
+  border-bottom:1px dotted #88bbc8;
+}
+#partnership{
+  -moz-transition-duration:1s;
+  -moz-transition-timing-function:ease-out;
+  -webkit-transition-duration:1s;
+  -webkit-transition-timing-function:ease-out;
+  transition-duration:1s;
+  transition-timing-function:ease-out;
+}
+#partnership.down{
+  margin-top:30px;
+  opacity:0;
+}
+#partnership.up{
+  margin-top:0;
+  opacity:1;
+}
+#right3{
+  margin-top:20px;
+  z-index:5;
+  position:absolute;
+}
+#right3 div{
+  -moz-transition-duration:1s;
+  -moz-transition-timing-function:ease-out;
+  -webkit-transition-duration:1s;
+  -webkit-transition-timing-function:ease-out;
+  transition-duration:1s;
+  transition-timing-function:ease-out;
+}
+#right3 h1{
+  padding:12px 0px 12px 45px;
+  background-image:url("/images/sprite.gif");
+  background-repeat:no-repeat;
+}
+#business h1{
+  background-position:0 -971px;
+}
+#service h1{
+  background-position:0 -1027px;
+}
+#advertise h1{
+  background-position:0 -1087px;
+}
+#weibo h1{
+  background-position:0 -1150px;
+}
+#market h1{
+  background-position:0 -1208px;
+}
+#media h1{
+  background-position:0 -1270px;
+}
+#business.down{
+  margin-top:30px;
+  opacity:0;
+}
+#business.up{
+  margin-top:0;
+  opacity:1;
+}
+#service.down{
+  margin-top:30px;
+  opacity:0;
+}
+#service.up{
+  margin-top:0;
+  opacity:1;
+}
+#advertise.down{
+  margin-top:30px;
+  opacity:0;
+}
+#advertise.up{
+  margin-top:0;
+  opacity:1;
+}
+#weibo.down{
+  margin-top:30px;
+  opacity:0;
+}
+#weibo.up{
+  margin-top:0;
+  opacity:1;
+}
+#market.down{
+  margin-top:30px;
+  opacity:0;
+}
+#market.up{
+  margin-top:0;
+  opacity:1;
+}
+#media.down{
+  margin-top:30px;
+  opacity:0;
+}
+#media.up{
+  margin-top:0;
+  opacity:1;
+}
+/*以上是“联系我们”的样式*/
+/*以下是渠道合作的样式*/
+.item .ps{
+  width:360px;
+  background-image:url("/images/sprite2.gif");
+  background-repeat:no-repeat;
+  margin:30px 0 10px 0;
+  font-weight:normal;
+  padding:10px 0;
+}
+.item .superiority{
+  background-position:0 -315px;
+  padding-left:35px;
+}
+.item .surport{
+  padding-left:45px;
+  background-position:0 -376px;
+}
+.item .flow{
+  padding-left:35px;
+  background-position:0 -440px;
+}
+.item .fl span{
+  float:left;
+  margin:10px 10px;
+  background-image:url("/images/sprite2.gif");
+  background-repeat:no-repeat;
+}
+.item .fl .sq{
+  width:150px;
+  height:85px;
+  background-position:0 -576px;
+  text-align:center;
+  font-size:18px;
+  padding-top:65px;
+}
+.item .fl .sw{
+  margin-top:70px;
+  width:60px;
+  height:32px;
+  background-position:0 -728px;
+}
+.item .ct{
+  padding-left:35px;
+  background-position:0 -504px;
+}
+.item .dt{
+  padding-left:15px;
+}
+/*以上是渠道合作的样式*/
+/*以上是page部分的样式*/
+.backtop{
+  position:relative;
+}
+
+.backtop .wp{
+  position:absolute;top:24px;left:200px;
+}
+
+.backtop .dashed{
+  border-bottom: 1px dotted #ccc;float:left;width:600px;
+}
+.backtop .txt{
+  float:left;
+  margin-top:-14px;
+  *margin-top:10px;
+  font-size:13px;
+  text-decoration:underline;
+  color:#88bbc8;
+}
+.employ{
+  margin-top:50px;
+}
+#hr,#hr2{
+  float:left;
+  padding-left: 10px;
+  border:none;
+  width: 102px;
+  height: 28px;
+  background-color:#f6f6f6;
+}
+
+#hr2{
+  padding-left: 42px;
+}
+#button1,#button2{
+  margin-left:100px;
+  float:left;
+  width: 83px;
+  height: 27px;
+  background: url("/images/sprite2.gif") no-repeat 0 -224px;
+}
+#button1:hover{
+  background-position:0 -251px;
+}
+#button1:active{
+  background-position:0 -278px;
+}
+#button2:hover{
+  background-position:0 -251px;
+}
+#button2:active{
+  background-position:0 -278px;
+}

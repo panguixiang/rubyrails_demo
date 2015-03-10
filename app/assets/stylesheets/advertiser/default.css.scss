@@ -1,0 +1,110 @@
+#listfilter .datespan {
+  color: #4b4b4b;
+  width: 168px;
+  height: 20px;
+  float: right;
+  background: image-url("advertiser/theme-sprite.gif") no-repeat -115px -103px;
+  text-indent: 21px;
+  line-height: 20px;
+  margin-top: 5px;
+  white-space: nowrap;
+}
+/*------------- 列表 -------------*/
+#list {
+  padding: 0px 9px;
+  min-height: 300px;
+}
+.datalist {
+  width: 100%;
+  color: #4b4b4b;
+}
+.datalist th {
+  color: #404040;
+  height: 27px;
+  background: #fff image-url("advertiser/grd-x-12px.gif") repeat-x 0px -416px;
+  text-align: right;
+}
+.datalist th.left {
+  padding-left: 10px;
+  text-align: left;
+}
+.datalist td {
+  height: 39px;
+  border-bottom: 1px solid #cecece;
+  text-align: right;
+}
+.datalist .check {
+  width: 24px;
+  text-align: center;
+}
+.datalist td.left {
+  text-align: left;
+}
+.datalist td.right {
+  text-align: right;
+}
+.datalist td.important {
+  font-weight: bold;
+}
+.datalist .name {
+  color: #4b4b4b;
+}
+.datalist .odd {
+  background-color: #FFF;
+}
+.datalist .even {
+  background-color: #f7f7f7;
+}
+.datalist a.iconty {
+  /*width: 13px;*/
+  color: #6092b5;
+  height: 14px;
+  display: inline-block;
+  /*text-indent: -9999px;*/
+  overflow: hidden;
+  text-align: left;
+  margin-right: 6px;
+  padding-left: 14px;
+  text-decoration: none;
+  line-height: 14px;
+  padding-bottom: 1px;
+  padding-top: 1px;
+}
+.datalist a.iconty:hover {
+  color: #fff;
+}
+.datalist a.remove,
+.datalist a.edit,
+.datalist a.filter,
+.datalist a.copy {
+  background-image: image-url("advertiser/theme-sprite.gif");
+  background-repeat: no-repeat;
+}
+.datalist a.edit {
+  background-position: -261px -24px;
+}
+.datalist a.edit:hover {
+  background-position: -261px -36px;
+  background-color: #6092b5;
+}
+.datalist a.remove {
+  background-position: -313px -24px;
+}
+.datalist a.remove:hover {
+  background-position: -313px -36px;
+  background-color: #6092b5;
+}
+.datalist a.filter {
+  background-position: -365px -24px;
+}
+.datalist a.filter:hover {
+  background-position: -365px -36px;
+  background-color: #6092b5;
+}
+.datalist a.copy {
+  background-position: -261px -65px;
+}
+.datalist a.copy:hover {
+  background-position: -261px -83px;
+  background-color: #6092b5;
+}

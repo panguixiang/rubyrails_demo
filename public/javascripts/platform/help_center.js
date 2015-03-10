@@ -1,0 +1,16 @@
+$(document).ready(function(){
+    $(".liacla").click(function(){
+        $(".liacla").removeClass("normal");
+        $(".liacla").removeClass("current");
+        $(this).addClass("current");
+        $(".rightside").css("display","none");
+        $("#"+$(this).attr("id")+"_c").css("display","block");
+    });
+   $(".liacla").mouseover(function(){
+         $(".liacla").removeClass("hover");
+         $(this).addClass("hover");
+    });
+   $(".liacla").mouseout(function(){
+        $(this).removeClass("hover");
+   });
+});

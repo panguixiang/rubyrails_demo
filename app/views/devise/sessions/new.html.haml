@@ -1,0 +1,12 @@
+
+!!! 5
+%html{ lang: "en"}
+  %head
+    %meta{charset: "utf-8"}
+    %title
+      = "TalkingSDK 接入平台管理中心"
+    = stylesheet_link_tag    "platform/base"
+    = stylesheet_link_tag    "member/passport"
+    = javascript_include_tag "member/login"
+  %body.w1440
+    = render 'devise/sessions/new'

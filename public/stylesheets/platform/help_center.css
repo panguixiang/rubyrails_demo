@@ -1,0 +1,186 @@
+@charset "utf-8";
+/* CSS Document */
+#subnav {
+  width:600px;
+  padding-top:2px;
+  margin-left:201px;
+  height: 81px;
+}
+#subnav_outer{
+  background:url('/images/sprite6.gif') no-repeat 0px -623px;
+  height:85px;
+}
+#main{
+  width:1006px;
+  overflow:hidden;
+}
+.item{
+  min-height: 500px;
+  -height: 500px;
+}
+/*以下是概述的样式*/
+.item #outline{
+  padding-top:35px;
+  margin-left:40px;
+  width:680px;
+  overflow:hidden;
+}
+.item #outline h1{
+  font-size:30px;
+  line-height:32px;
+  font-weight:normal;
+  margin-bottom:20px;
+  margin-top:50px;
+  background-image:url(i/sprite.gif);
+  background-repeat:no-repeat;
+}
+#outline .ad h1{
+  padding-left:40px;
+  background-position:0 4px;
+}
+#outline .de h1{
+  padding-left:35px;
+  background-position:0 -76px;
+}
+#outline .tips div{
+  width:310px;
+  margin-bottom:35px;
+}
+#outline .tips .left{
+  float:left;
+}
+#outline .tips .right{
+  float:right;
+}
+#outline .tips h2{
+  font-weight:normal;
+  margin:10px 0px;
+}
+#outline .tips a{
+  text-decoration:none;
+  border-bottom:1px dotted #fff;
+  font-size:18px;
+  margin:10px 0;
+  color:#333333;
+}
+#outline .tips a:hover{
+  border-bottom:1px dotted #333333;
+}
+#outline .ad,#outline .de{
+  margin-bottom:35px;
+}
+/*以上是概述的样式*/
+/*以下是常见问题的样式*/
+.leftside{
+  width:199px;
+  margin-left:40px;
+  padding-top:30px;
+  float:left;
+}
+.leftside ul li{
+  border-bottom:1px dotted #cfcfcf;
+  cursor:pointer;
+}
+.leftside ul a{
+  text-decoration:none;
+  display:block;
+  height:49px;
+  line-height:48px;
+  padding-left:20px;
+}
+#rule .leftside ul a,#techdocument .leftside ul a{
+  padding-left:5px;
+}
+.leftside ul{
+  border-top:1px dotted #cfcfcf;
+}
+.normal{
+  background:none;
+}
+.leftside .hover{
+  color:#88bbc8;
+}
+.current{
+  background:url('/images/sprite_helper.gif') no-repeat 0px -496px;
+}
+.rightside{
+  padding-left:295px;
+  padding-right:40px;
+  padding-bottom:40px;
+  display:none;
+}
+.rightside .title{
+  padding-top:30px;
+}
+#techdocument img{
+  width:680px;
+  margin:15px 10px 15px 0px;
+}
+#techdocument ._button{
+  border: none;
+  color: #218C21;
+  width: 76px;
+  height: 34px;
+  background: url('/images/sprite.gif?v=1.3') no-repeat 2px -556px;
+  float:right;
+}
+#techdocument pre{
+  width:660px;
+  overflow:auto;
+  -overflow:scroll;
+}
+
+/*以上是常见问题的样式*/
+.item #bottomnav .left{
+  margin-left:30px;
+  float:left;
+}
+.item #bottomnav .right{
+  margin-right:30px;
+  float:right;
+}
+.item #bottomnav{
+  margin:0px 3px;
+  height:84px;
+  border-top:1px dotted #cfcfcf;
+}
+.item #bottomnav a{
+  margin-top:30px;
+  text-decoration:none;
+}
+.item #bottomnav a:hover{
+  border-bottom:1px dotted #88bbc8;
+}
+.item .pagelist{
+  padding-left:350px;
+  margin-top:30px;
+  width:200px;
+  float:left;
+}
+.item .pagelist a{
+  line-height:30px;
+  color:#218c21;
+  background-color:#f9f9f9;
+  text-decoration:none;
+  border:1px solid #e4e4e4;
+  padding:5px 10px;
+}
+.item .pagelist a:hover{
+  color:#696969;
+  background-color:#f9f9f9;
+  border:1px solid #fff;
+}
+.item .pagelist a:active{
+  background-color:#f9f9f9;
+  color:#696969;
+  border:1px solid #fff;
+}
+
+#main .bottom{
+  height:4px;
+  background:url('/images/bottom_edge_long.gif') no-repeat;
+}
+.loading{
+  margin-left:15px;
+  padding-top:5px;
+}

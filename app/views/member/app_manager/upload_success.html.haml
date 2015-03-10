@@ -1,0 +1,29 @@
+= stylesheet_link_tag "member/app_list/combo"
+= stylesheet_link_tag "member/app_list/combo1"
+#content
+	.wrapper.breadCrumb
+		%a{href:''} 应用列表
+		&nbsp;&gt;&nbsp; 上传应用完成
+		#main.main.wrapper
+			.clearfix
+				#system_errors.error-message
+				%h2
+					%span.icon.iconM.icon_success success
+					&nbsp;&nbsp;应用上传成功!
+				.keyvalue
+					%p
+						多盟工作人员会在
+						%span 2
+						天内审核提交的应用，请耐心等待。
+					%p
+						审核结果会以
+						%a.notice{href:'/member/notification/note'} 通知信
+						形式反馈，请注意提示。
+					%p
+						您也可以到
+						%a.appview{href:"/member/app_manager/app_details?approId=#{@app_id}"} 应用详情
+						页面查看审核状态或进行其他设置。
+				%p
+					%a{href:'/member/app_manager/index'}
+						%button.btnL.btn_default.ac.ac_app_list
+							%span 返回应用列表

@@ -1,0 +1,143 @@
+
+= stylesheet_link_tag "member/app_list/combo"
+= stylesheet_link_tag "member/app_list/combo1"
+
+
+%div#content
+  .wrapper.breadCrumb
+    %a{:href=>"/member/app_manager/index"} 应用列表
+    %span > 添加应用
+
+  #main.main.wrapper
+    .clearfix
+      %span#system_errors.error-message
+      %h2.upApp
+        上传应用
+        %small.backIcon
+          %span.icon.iconS.icon_back
+          %a.fcb{:href=>"/member/app_manager/index"} 返回
+      .keyvalue.upAppWraper
+        .keyvalue
+          %p
+            %dfn 应用名称：
+            %span #{@app.app_name}
+          %p
+            %dfn 应用平台：
+            %span #{@app.platform}
+          %p
+            %dfn 应用类型：
+            %span
+              = appTypeStr(@app['app_type'])
+          %p
+            %dfn
+              %b Publisher ID：
+            %span  #{@app.publisherid}
+
+        #uploadWrap
+          %div#upload_container
+            %p.icon.iconXM.icon_warnning 警告
+            %div.rules_wrap
+              %div.rules 使用多盟广告时只能通过官方提供的 SDK 进行开发；一个 Publisher ID 只能应用在一个应用上。
+              %div.rules2 您现在嵌入SDK之后，填入Publisher ID，就能正常接收测试广告。
+              %div.rules3 测试完成后，请上传App，App通过审核后，才能正常接收商业广告的投放。只有商业广告才能给您带来收益。
+              %div.rules2
+                请同时确保您的应用内容遵守多盟应用审核规则。
+                %span.icon.iconS.icon_slide_up 合上
+                %a#slideRules.slide_up_rules.fcb{href:'javascript:;'} 展开规则
+                %a#Rulesslide.slide_up_rules.fcb{href:'javascript:;',:style=>"display: none;"} 收起规则
+              %div.rulesContainer.rulesSlide
+                %h3
+                  若您上传的应用出现以下一种或多种情况，将无法通过审核：
+                  %span#iconCancel.icon.iconM.icon_cancel 取消
+                %ul.list1
+                  %li
+                    %span.icon.iconS.icon_list_icon
+                      列表点
+                    %span 含有恶意代码的程序
+                  %li
+                    %span.icon.iconS.icon_list_icon
+                      列表点
+                    %span 程序功能跟开发者宣传不符
+                  %li
+                    %span.icon.iconS.icon_list_icon
+                      列表点
+                    %span 存在版权纠纷，第三方提出版权质疑
+                  %li
+                    %span.icon.iconS.icon_list_icon
+                      列表点
+                    %span 出现诱导、引导用户对广告进行点击字样
+                %ul.list2
+                  %li
+                    %span.icon.iconS.icon_list_icon
+                      列表点
+                    %span 程序无法正常安装、启动、关闭、卸载，运行中崩溃、有错误
+                  %li
+                    %span.icon.iconS.icon_list_icon
+                      列表点
+                    %span 出现散布谣言，扰乱社会秩序，破坏社会稳定等内容
+                  %li
+                    %span.icon.iconS.icon_list_icon
+                      列表点
+                    %span 广告条在应用界面无法显示或显示不完整
+                  %li
+                    %span.icon.iconS.icon_list_icon
+                      列表点
+                    %span 出现散布淫秽、色情、赌博、暴力、凶杀、恐怖或者教唆犯罪等内容
+              .bottomBg
+        %div#formWrap
+          = form_for @app,:url =>{controller:'/member/app_manager',action:'packageupload'} do |f|
+            = f.hidden_field :id
+            %p
+              %label
+                %div.customFileInputWrapper.inputWrapper{:style=>"position: relative; overflow: hidden;"}
+                  %div.customFileInputFakeWrapper.fakeWrapper
+                    %input.inputstyle#appnamesd{size:60,disabled:'disabled',style:'height:23px;width:386px;margin-right:10px;vertical-align:top;'}
+                    = f.hidden_field 'package_name',id:'package_name_id'
+                    = f.hidden_field 'version_code',id:'version_code_id'
+                    #fsUploadProgress.btnM
+                    #spanButtonPlaceHolder
+                    %input#btnCancel{type:'hidden',value:'取消上传'}
+                %span.tip
+                  请选择不超过30MB的.apk文件进行上传，如果文件大于30M请
+                #apkinfo{style:'margin: 0px;'}
+                  .pagetitle
+                    文件信息
+                    %span * 如信息不符，请重新上传  应用文件
+                  %table#infotable
+                    %tbody
+                      %tr#packageName
+                      %tr#version
+                      %tr#filesize
+                      %tr#errormsg
+                %a.file_notice{:href=>"http://crm2.qq.com/page/portalpage/wpa.php?uin=4006368168&amp;cref&amp;ref=&amp;f=1&amp;ty=1&amp;ap=&amp;as=&amp;v=",:target=>"_blank"} 联系客服
+                %div.detail_group
+                  %span.upload_progress
+                    %span.upload_status{:style=>"display: none;"}
+                %div#app_package_info.packageInfo
+                  %h2
+                    APK文件信息
+                    %small 如信息不符，请重新上传APK应用
+                  %p
+                    %dfn 应用包名：
+                    %span#app_package_info_packageName
+                  %p
+                    %dfn 应用版本：
+                    %span#app_package_info_version
+                  %p
+                    %dfn 应用大小：
+                    %span#app_package_info_filesize
+                %p.determin_up
+                  - if @app.errors[:package_name].presence
+                    %span.fieldErrorCla #{@app.errors[:package_name].join(", ")}
+                    %br
+                  - if @app.errors[:version_code].presence
+                    %span.fieldErrorCla #{@app.errors[:version_code].join(", ")}
+                  %br
+                  %br
+                  %button.btnL.btn_default{:type=>"submit"}
+                    %span 确定上传
+= javascript_include_tag "member/swf/swfupload"
+= javascript_include_tag "member/swf/swfupload.queue"
+= javascript_include_tag "member/swf/hander"
+= javascript_include_tag "member/app_list"
+= javascript_include_tag "member/app_add"

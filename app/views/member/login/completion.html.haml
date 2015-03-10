@@ -1,0 +1,176 @@
+= javascript_include_tag "member/perfect"
+#page
+  #main.clearfix.layout-2grid
+    #operationalarea
+      %h1#pagetitle 完善您的个人信息
+      %div{:style=>"background-color: #edf2f7; margin: 10px 0; line-height: 36px; padding-left: 30px; border: 1px solid #99ccff;"}
+        您的账户已激活,欢迎使用
+        %div
+          - if flash[:errMsg]
+            %h3 #{flash[:errMsg]}
+      %div.infopanel
+        %table
+          %tbody>
+            %tr
+              %td.key{:style=>"height: 46px;"}我的角色
+              %td.feather
+              %td.value
+                %div.opbtn.important
+                  %div#developerbtn
+                    %button.buttonClas{:type=>"button"}开发者
+                %div.opbtn
+                  %div#advertiserbtn
+                    %button.buttonClas{:type=>"button"}广告主
+      %div#advertiserinfo.info_table{:style=>" display:none"}
+        %p.superstrong{:style=>"margin-left:20px;"}
+          %span 为保证您的广告投放更高质更有效，多盟平台暂执行广告投放专属服务制度。
+          %br
+          %span请您直接与多盟客服联系，电话 4006368168；
+          %br
+          %span或者留下您的联系方式，我们会尽快与您联系。
+        %br
+      = form_for @develInfo,:url =>{controller:'/member/member_info',action:'create'} ,:html=> {:class=>'info_table'} do |f|
+        %input#mTypeId{type:'hidden',name:'m_type',value:'1'}
+        %div.infopanel
+          #developerform
+            %h6{:style=>"position: relative;"}个人身份详细信息
+            %table
+              %tbody
+                %tr
+                  %td.key 账户名
+                  %td.feather
+                  %td.value
+                    %span#username #{current_member.email}
+                %tr
+                  %td.key 帐户类型
+                  %td.feather
+                  %td.value
+                    %label
+                      = f.radio_button :accountype,"1", class: 'typeCorp',:checked=>'checked'
+                      &nbsp;
+                      %span 个人
+                    %label
+                      &nbsp;&nbsp;&nbsp;
+                      = f.radio_button :accountype,"2", class: 'typeCorp'
+                      &nbsp;
+                      %span 公司
+                %tr#identityType
+                  %td.key 有效证件
+                  %td.feather.required
+                  %td.value
+                    %label
+                      %input.cardTypeClass{:type=>'radio',:checked=>'checked',:name=>'cardtype',:id=>'cardtypeId',:value=>'ID'}
+                      &nbsp;
+                      %span 身份证
+                %tr#identityName
+                  %td.key 证件姓名
+                  %td.feather.required
+                  %td.value
+                    %input.inputstyle.input-300px{:type=>'text',:name=>'cardname',:id=>'cardnameId',:value=>"#{@cardname unless @cardname.blank?}"}
+                    %br
+                    %span#person_nameerr.errmsg 证件名称不能为空
+                    %span.space 请如实填写，同时也是您支付帐号的开户人
+                %tr#identityNO
+                  %td.key 证件号码
+                  %td.feather.required
+                  %td.value
+                    %input.inputstyle.input-300px{:type=>'text',:name=>'cardnum',:id=>'cardnumId',:value=>"#{@cardnum unless @cardnum.blank?}"}
+                    %br
+                    %span#person_identityerr.errmsg 证件号码不能为空
+                    %span.space 字母为大写
+                %tr#taxing
+                  %td.key
+                  %td.feather
+                  %td.value.aclass4
+                    %span.bold 注：个人开发者税收政策怎样？
+                    %br
+                    %span 多盟会按照中国个人所得税关于劳务报酬的相关法案、根据团队各个成员的收入来代扣代缴个税，具体规则如下：
+                    %br
+                    %span•	月收入低于800，应缴税额为：0；
+                    %br
+                    %span•	月收入800-4000，应缴税额为：（收入-800）*20%；
+                    %br
+                    %span•	月收入4000-25000，应缴税额为：（收入-收入*20%）*20%；
+                    %br
+                    %span•	月收入25000-62500，应缴税额为：（收入-收入*20%）*30%-2000；
+                    %br
+                    %span•	月收入高于62500，应缴税额为：（收入-收入*20%）*40%-7000；
+                    %br
+                    %span 附：
+                    %a{:href=>"http://www.chinatax.gov.cn/n8136506/n8136593/n8137681/n8225749/8450257.html",:style=>"text-decoration:underline;"}国税总局关于劳务报酬个税的说明
+
+                %div#corp
+                  %tr#companyName{:style=>"display: none;"}
+                    %td.key 公司名称
+                    %td.feather.required
+                    %td.value
+                      = f.text_field :company,class:"inputstyle input-300px"
+                      %br
+                      %span#corp_nameerr.errmsg 公司名称不能为空
+                  %tr#companyNotice{:style=>"display: none;"}
+                    %td.key
+                    %td.feather.required
+                    %td.value.superstrong
+                      注：结算时需提供贵公司开具的相应金额的发票，待审核通过后打款
+                      &nbsp;&nbsp;&nbsp;&nbsp;请务必填写公司全称，将作为发票审核的结算依据
+        %div.infopanel
+          %h6 联系方式
+          %table
+            %tbody
+              %tr#companyContact{:style=>"display: none;"}
+                %td.key 联系人
+                %td.feather.required
+                %td.value
+                  = f.text_field :contact,class:"inputstyle input-300px"
+                  %br
+                  - if @develInfo.errors[:contact].presence
+                    %span#corp_cpersonerr.errmsg{:color=>"red"}  #{@develInfo.errors[:contact].join(", ")}
+                  - else
+                    %span#corp_cpersonerr.errmsg 公司联系人不能为空
+              %tr
+                %td.key QQ帐号
+                %td.feather.required
+                %td.value
+                  = f.text_field :qq,class:"inputstyle input-300px"
+                  %br
+                  - if @develInfo.errors[:qq].presence
+                    %span#qqerr.errmsg{:color=>"red"}  #{@develInfo.errors[:qq].join(", ")}
+                  - else
+                    %span#qqerr.errmsg QQ 不能为空
+              %tr
+                %td.key MSN帐号
+                %td.feather
+                %td.value
+                  = f.text_field :msn,class:"inputstyle input-300px"
+              %tr
+                %td.key 微信帐号
+                %td.feather
+                %td.value
+                  = f.text_field :wechat,class:"inputstyle input-300px"
+              %tr
+                %td.key  手机号
+                %td.feather.required
+                %td.value
+                  = f.text_field :mobile,class:"inputstyle input-300px"
+                  %br
+                  - if @develInfo.errors[:mobile].presence
+                    %span#mobileerr.errmsg{:style=>"color:red;"}  #{@develInfo.errors[:mobile].join(", ")}
+                  - else
+                    %span#mobileerr.errmsg 手机号不能为空
+              %tr
+                %td.key 联系电话
+                %td.feather
+                %td.value
+                  = f.text_field :telphone,class:"inputstyle input-300px"
+              %tr
+                %td.key 通讯地址
+                %td.feather
+                %td.value
+                  = f.text_field :address,class:"inputstyle input-300px"
+
+        %div.btnbar
+          %div.opbtn.important
+            %div
+              = f.button "下一步",class:"subButtClass"
+    #sidebar
+      = render "member/right"

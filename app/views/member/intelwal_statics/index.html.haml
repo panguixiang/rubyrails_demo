@@ -1,0 +1,89 @@
+= stylesheet_link_tag "member/integral_wall"
+= javascript_include_tag "member/highcharts"
+#page
+  #main.clearfix
+    #breadcrumbs
+      %ul
+        %li.active
+          积分墙应用统计信息
+    .ow-stats-query.clearfix
+      %div
+        %label 应用
+        %select#selectPlateform.ajaxSelect
+          %option{value:''} 全部
+          -@grouplist.each do |platform,intews|
+            -if platform=='ios'
+              %optgroup{label:"iOS"}
+                -intews.each do |obj|
+                  -if @intelId.to_i==obj.id
+                    %option{value:"#{obj.id}",selected:true} #{obj.app_name}
+                  - else
+                    %option{value:"#{obj.id}"} #{obj.app_name}
+            -else
+              %optgroup{label:"Android"}
+                -intews.each do |obj|
+                  -if @intelId.to_i==obj.id
+                    %option{value:"#{obj.id}",selected:true} #{obj.app_name}
+                  - else
+                    %option{value:"#{obj.id}"} #{obj.app_name}
+      %div
+        %label 广告形式
+        %select#selectadverType.ajaxSelect
+          %option{value:''} 所有
+          %option{value:'1'} 列表积分墙
+          %option{value:'2'} 插屏积分墙
+          %option{value:'3'} 视频积分墙
+      %div
+        %label 时间段
+        %select#selectDate.ajaxSelect
+          %option{value:"#{(DateTime.now).strftime('%Y-%m-%d')}"} 今天
+          %option{value:"#{(DateTime.now-1).strftime('%Y-%m-%d')}"} 昨天
+          %option{value:"#{(Chronic.parse '1 week ago').strftime('%Y-%m-%d')}",selected:true} 最近一周
+          %option{value:"#{(Chronic.parse '1 month ago').strftime('%Y-%m-%d')}"} 最近一个月
+          %option{value:"#{(Chronic.parse '1 year ago').strftime('%Y-%m-%d')}"} 最近一年
+    .ow-stats-section.clearfix
+      %a#adivId1.adivclass{rel:'clk_entry',style:'display:none;',class:'ajaxClass'} 入口点击量
+      %a#adivId2.adivclass{rel:'imp',style:'display:none;',class:'ajaxClass'} 关联展现量
+      %a#adivId3.adivclass{rel:'clk',style:'display:none;',class:'ajaxClass'} 关联点击量
+      %a#adivId4.adivclass{rel:'self_act',style:'display:none;',class:'ajaxClass'} 自推荐激活数量
+      %a#adivId5.adivclass{rel:'ad_act',style:'display:none;',class:'ajaxClass'} 广告激活数量
+      %a#adivId6.adivclass{rel:'video_start',style:'display:none;',class:'ajaxClass'} 播放开始数
+      %a#adivId7.adivclass{rel:'video_finish',style:'display:none;',class:'ajaxClass'} 播放完成数
+      %a#adivId0.adivclass{rel:'profit',class:'ajaxClass'} 广告激活收入(元)
+    .ow-stats-section-prompt.clearfix
+      %p.pclass#pId1{rel:'clk_entry'} 入口点击量：积分墙入口的点击量，等价于用户进入积分墙的次数
+      %p.pclass#pId2{rel:'imp'} 关联展现量：积分墙上的应用展示量
+      %p.pclass#pId3{rel:'clk'} 关联点击量：积分墙上的应用点击量，包括广告和自推荐应用
+      %p.pclass#pId4{rel:'self_act'} 自推荐激活数量：积分墙上自推荐应用的激活数
+      %p.pclass#pId5{rel:'ad_act'} 广告激活数量：积分墙上广告的激活数
+      %p.pclass#pId7{rel:'video_finish'} 播放完成数：视频播放完成的次数
+      %p.pclass#pId6{rel:'video_start'} 播放开始数：视频播放开始的次数
+      %p.pclass#pId0{rel:'profit'} 广告激活收入(元)：积分墙上广告激活带来的收入
+    .ow-highchart
+    %table.ow-stats-table
+      %thead
+        %tr.trlist#listTable
+          %th 日期/时间
+          %th 广告激活收入(元)
+        %tr.trlist#listTable1{style:'display:none;'}
+          %th 日期/时间
+          %th 入口点击量
+          %th 关联展现量
+          %th 关联点击量
+          %th 自推荐激活数量
+          %th 广告激活数量
+          %th 广告激活收入(元)
+        %tr.trlist#listTable2{style:'display:none;'}
+          %th 日期/时间
+          %th 关联展现量
+          %th 关联点击量
+          %th 自推荐激活数量
+          %th 广告激活数量
+          %th 广告激活收入(元)
+        %tr.trlist#listTable3{style:'display:none;'}
+          %th 日期/时间
+          %th 播放开始数
+          %th 播放完成数
+          %th 广告激活收入(元)
+      %tbody#tbodyList
+= javascript_include_tag "member/intelwal_statics"

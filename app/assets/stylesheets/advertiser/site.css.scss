@@ -1,0 +1,149 @@
+@charset "utf-8";
+#systemprompt,
+#userinfo {
+  margin-left: 4px;
+  margin-right: 3px;
+}
+#systemprompt {
+  background-color: #ffffe3;
+  border: 1px solid #f3cf92;
+  margin-top: 2px;
+  line-height: 24px;
+}
+#systemprompt .type {
+  color: #ff6600;
+  padding-left: 20px;
+}
+#systemprompt span {
+  color: #404040;
+}
+#systemprompt a {
+  color: #6092b5;
+  font-weight: bold;
+}
+#systemprompt a:hover {
+  text-decoration: underline;
+}
+#userinfo {
+  color: #404040;
+  height: 114px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #eaeaea #f3f3f3;
+  background: image-url("advertiser/grd-x-1-1px.gif") repeat-x 0px 0px;
+  margin-top: 3px;
+  padding-right: 16px;
+  padding-top: 8px;
+  position: relative;
+}
+#userinfo ul {
+  overflow: hidden;
+  zoom: 1;
+}
+#userinfo li {
+  float: left;
+  height: 23px;
+  line-height: 23px;
+}
+#userinfo .title {
+  font-weight: bold;
+  padding-left: 17px;
+  width: 70px;
+}
+#userinfo .text {
+  font-family: Tahoma, Geneva, sans-serif;
+  text-align: right;
+  padding-right: 2px;
+}
+#userinfo .number {
+  font-size: 18px;
+  line-height: 18px;
+}
+#userinfo .unit {
+  font-size: 12px;
+  padding-left: 3px;
+  display: inline-block;
+  -display: inline;
+  -zoom: 1;
+}
+#userinfo a {
+  color: #6092b5;
+}
+#userinfo .operate .new {
+  color: #ff6600;
+  font-weight: bold;
+}
+#userinfo .operate div {
+  float: left;
+  width: 96px;
+  color: #aeaeae;
+}
+#userinfo .operate span {
+  font-weight: bold;
+}
+#userinfo .role {
+  float: right;
+}
+#userinfo .role span {
+  font-weight: bold;
+}
+#userinfo .other {
+  margin-left: 87px;
+  display: inline;
+}
+#userinfo .label {
+  line-height: 23px;
+}
+#loginconfirm {
+  color: #aeaeae;
+  position: absolute;
+  bottom: 10px;
+  right: 16px;
+}
+.sideblock {
+  border-top: 2px solid #c4c4c4;
+  padding-bottom: 10px;
+}
+.sideblock h1 {
+  color: #404040;
+  font-size: 12px;
+  height: 27px;
+  line-height: 27px;
+  margin: 0px 3px 6px 2px;
+  padding-left: 18px;
+  border-bottom: 1px dotted #c4c4c4;
+}
+.sideblock li {
+  height: 17px;
+  line-height: 17px;
+  padding-left: 14px;
+}
+.sideblock a {
+  color: #565656;
+}
+.quickentry {
+  color: #404040;
+  margin-left: 22px;
+  min-height: 200px;
+  -height: 200px;
+  margin-top: 7px;
+}
+.quickentry h3 {
+  font-size: 12px;
+  margin-bottom: 8px;
+}
+.quickentry a {
+  color: #6092b5;
+  font-weight: normal;
+}
+.quickentry table {
+  width: 100%;
+}
+.quickentry th {
+  border-bottom: 1px solid #e6e6e6;
+  height: 25px;
+}
+.quickentry td {
+  text-align: center;
+  height: 22px;
+}

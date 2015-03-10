@@ -1,0 +1,77 @@
+* {
+	margin: 0px; padding: 0px;
+}
+body {
+	font: 12px/1.5em Tahoma, Helvetica, Arial, sans-serif; font-size-adjust: none; font-stretch: normal;
+}
+a {
+	color: rgb(0, 0, 0); text-decoration: none;
+}
+.inputWrap {
+	margin: 20px auto; padding: 20px 30px; border: 1px solid rgb(221, 221, 221); width: 500px;
+}
+h1 {
+	margin: 10px 0px; padding: 5px 10px; font-size: 24px; border-left-color: rgb(255, 213, 64);
+  border-left-width: 30px; border-left-style: solid;
+}
+input.txt {
+	padding: 1px; border: 1px solid rgb(153, 153, 153); width: 200px; height: 16px;
+}
+#calWrap {
+	background: rgb(255, 255, 255); border: 1px solid rgb(153, 153, 153); width: 148px; display: none;
+  position: absolute; z-index: 9999;
+}
+#dateIframe {
+	border: currentColor; left: 0px; top: 0px; width: 148px; height: 169px; position: absolute; z-index: -1;
+}
+#calWrap .tool {
+	clear: both;
+}
+#calWrap .week {
+	clear: both;
+}
+#calWrap span {
+	background: #EAEAEA; margin: 1px 0px 0px 1px; padding: 2px 3px;
+  width: 14px; height: 14px;
+  text-align: center; line-height: 14px; float: left; display: block; cursor: pointer;
+}
+#calWrap #cal a {
+	background: #F0F0F0; margin: 1px 0px 0px 1px; padding: 2px 3px; width: 14px; height: 14px;
+  text-align: center; line-height: 14px; float: left; display: block; cursor: pointer;
+}
+#calWrap .tool {
+	background: rgb(255, 188, 55);
+}
+#calWrap .tool span {
+	margin: 0px;
+}
+#calWrap .tool #selYear {
+	width: 34px;
+}
+#calWrap .tool #preYear {
+	width: 18px;
+}
+#calWrap .tool #nextYear {
+	width: 18px;
+}
+#calWrap .close {
+	background: #EAEAEA; text-align: right; padding-right: 3px; clear: both; margin-top: 1px;
+}
+#calWrap .remove {
+	background: rgb(255, 188, 55); text-align: left; padding-right: 3px; clear: both; margin-top: 1px;
+}
+#calWrap #cal a {
+	background: rgb(208, 218, 253); font-size: 11px; text-decoration: none;
+}
+#calWrap #cal a.curDate {
+	background: rgb(255, 188, 55);
+}
+#calWrap #cal a:hover {
+	background: rgb(132, 164, 249);
+}
+#calWrap #cal a.null {
+	background: rgb(237, 241, 254);
+}
+#calWrap #cal a.null:hover {
+	background: rgb(237, 241, 254);
+}

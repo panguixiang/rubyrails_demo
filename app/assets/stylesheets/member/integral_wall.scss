@@ -1,0 +1,794 @@
+/**
+ * @author eongoo <liuxunqiu-noreply@domob.cn>
+ * @date 2012/09/23 22:32
+ *
+ * domob.offerwall的总体样式设置。
+ */
+
+/********************
+ * .ow-detail-table
+ ********************/
+.ow-detail-table {
+  table-layout: fixed;
+}
+.ow-detail-table .ow-detail-title {
+  font-weight: bold;
+  text-align: right;
+  width: 150px;
+}
+.ow-detail-table .ow-detail-title:after {
+  content: "：";
+}
+.ow-detail-table .ow-detail-value {
+  text-align: left;
+  padding: 5px;
+}
+
+/********************
+ * .ow-form
+ ********************/
+.ow-form {
+  margin-top: 36px;
+  margin-left:6px;
+}
+
+.ow-form-item{
+  margin-bottom:10px;
+}
+
+.ow-form-item label, .ow-form-item input[type=text], .ow-form-item select {
+  font-size: 13px;
+}
+.ow-form-item label:first-child {
+  vertical-align: top;
+  display: inline-block;
+  width: 110px;
+  line-height:26px;
+  color:#515151;
+  font-size:13px;
+}
+.ow-form-item label:first-child:after {
+  content: "：";
+}
+.ow-form-item input[type=text] {
+  border: solid 1px #ccc;
+}
+.ow-form-item span {
+  font-weight: bold;
+  font-size: 14px;
+  padding: 3px;
+}
+.ow-form-item textarea {
+  font-size: 14px;
+  margin-left: 130px;
+}
+
+.ow-form-hint {
+  display: inline;
+  color: #AAA;
+  padding-left:6px;
+}
+
+.ow-form-notice {
+  display: inline;
+  color: #0000CD;
+}
+
+.ow-form-title {
+  weight:900px;
+  background:#f0f0f0;
+  height:30px;
+  line-height:30px;
+  font-size:16px;
+  color:#515151;
+  padding-left:8px;
+  border-left:2px solid #f26535;
+}
+
+.ow-form-button {
+  height:26px;
+  padding:0px 12px;
+  margin:0px 5px;
+}
+
+#empty:first-child:after {
+  content: "";
+}
+
+/********************
+ * .ow-upload-flash
+ ********************/
+.ow-upload-flash {
+  display: inline-block;
+  vertical-align: bottom;
+  width: 200px;
+  position: relative;
+}
+.ow-upload-flash .ow-upload-prompt {
+  padding: 2px;
+  font-weight: bold;
+  background-color: white;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/********************
+ * .ow-fake-radio
+ ********************/
+.ow-fake-radio {
+  display: inline-block;
+}
+.ow-fake-radio .ow-fake-radio-item {
+  float: left;
+  padding: 3px 5px;
+  margin: 3px;
+  color: grey;
+  border: 2px solid grey;
+  font-size: 14px;
+  text-decoration: none;
+}
+.ow-fake-radio .ow-fake-radio-item:hover,
+.ow-fake-radio .ow-fake-radio-active {
+  text-decoration: none;
+  background-color: lightGrey;
+  color: black;
+  font-weight: bold;
+}
+
+/********************
+ * .ow-error-summary
+ ********************/
+.ow-error-summary {
+  font-size: 14px;
+  margin: 5px;
+  padding: 5px;
+  border: 2px dashed red;
+}
+.ow-error-summary li {
+  list-style-type: circle;
+  margin-left: 20px;
+}
+
+/********************
+ * .ow-logo
+ ********************/
+.ow-logo {
+  width: 75px;
+  height: 75px;
+  border: 1px solid #ccc;
+  display: inline-block;
+  vertical-align: top;
+  margin: 2px 0;
+}
+
+/********************
+ * .ow-prompt
+ ********************/
+.ow-prompt-waiting {
+  color: blue;
+}
+.ow-prompt-success {
+  color: green;
+}
+.ow-prompt-failure {
+  color: red;
+}
+
+/********************
+ * .ow-selfish-list(自推荐应用列表)
+ ********************/
+.ow-selfish-list {
+  display: inline-block;
+}
+.ow-selfish-list li,
+.ow-selfish-list .ow-selfish-holder {
+  width: 250px;
+  min-height: 60px;
+}
+.ow-selfish-list li {
+  position: relative;
+  border: 2px solid grey;
+  padding: 5px;
+  padding-left: 75px;
+  margin-top: 3px;
+  width: 330px;
+  background-color: white;
+}
+.ow-selfish-list .ow-selfish-holder {
+  border-color: white;
+}
+.ow-selfish-list img {
+  position: absolute;
+  width: 65px;
+  height: 65px;
+  top: 8px;
+  left: 5px;
+}
+.ow-selfish-list .ow-selfish-prompt {
+  position: absolute;
+  bottom: 5px;
+  right: 10px;
+  color: lightGrey;
+  font-weight: bold;
+  font-size: 16px;
+}
+.ow-selfish-list li:hover {
+  cursor: pointer;
+}
+.ow-selfish-list li:hover .ow-selfish-prompt {
+  color: grey;
+}
+
+/********************
+ * .ow-selfish-delete-confirm (自推荐应用的删除确认框)
+ ********************/
+.ow-selfish-delete-confirm {
+  display: none;
+  position: absolute;
+  bottom: 3px;
+  right: 3px;
+  width: 85%;
+  padding: 3px 10px;
+  background-color: white;
+  border: 2px solid grey;
+  font-size: 18px;
+  font-weight: bold;
+}
+.ow-selfish-delete-confirm a {
+  margin-left: 6px;
+}
+
+/********************
+ * other stuff
+ ********************/
+/* empty text when there is no data in a list */
+span.empty {
+  display: block;
+  background-color: white;
+  text-align: center;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+/*********************************
+ *
+ * stats页面的东东
+ *
+ *********************************/
+/* 统计查询条件选择栏 */
+.ow-stats-query div {
+  float: left;
+  margin: 5px 10px;
+  font-weight: bold;
+}
+.ow-stats-query div label:after {
+  content: '：';
+}
+.ow-stats-query div select {
+  min-width: 150px;
+}
+/* 统计类型选择栏 */
+.ow-stats-section a {
+  float: left;
+  margin: 3px;
+  width: 150px;
+  height: 40px;
+  text-align: center;
+  line-height: 40px;
+  font-weight: bold;
+  border: 1px solid #DFDFDF;
+}
+.ow-stats-section a.selected {
+  background: #444;
+  color: white;
+}
+.ow-stats-section-prompt p {
+  display: none;
+  font-size: 12px;
+  margin: 0 15px 10px 5px;
+  padding: 2px 4px;
+  border: 1px dashed lightGrey;
+  color: grey;
+}
+.ow-stats-section-prompt p.selected {
+  display: block;
+}
+/* 统计数据表格 */
+.ow-stats-table {
+  width: 100%;
+  margin: 5px;
+}
+.ow-stats-table thead th {
+  background:image-url('member/grd-x-1px2.gif') repeat-x 0px -416px;
+  height: 27px;
+  color: #404040;
+}
+.ow-stats-table td {
+  height: 35px;
+  border-bottom: 1px solid #EBEBEB;
+}
+.ow-stats-table th:first-child, .ow-stats-table td:first-child {
+  text-align: left;
+  padding-left: 15px;
+}
+.ow-stats-table th:nth-child(n+2), .ow-stats-table td:nth-child(n+2) {
+  text-align: right;
+  padding-right: 15px;
+}
+.ow-stats-loading {
+  text-align: center;
+  font-weight: bold;
+}
+/* highchart */
+#ow-highchart {
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  width: 900px;
+  height: 400px;
+  text-align: left;
+  font-family: 'Lucida Grande', 'Lucida Sans Unicode', Verdana, Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  left: -30px;
+}
+
+
+/*footer*/
+
+#footer{
+  text-align: center;
+  font-size:14px;
+  font-weight: bold;
+  height: 54px;
+  line-height: 54px;
+  position: relative;
+  /*margin-top: -54px;*/
+}
+#footer a{
+  padding:0px 10px;
+  color:#696969;
+}
+
+/*2013开发者新UI*/
+#main{
+  /*min-height: 100%;*/
+}
+#page{
+  min-height: 100%;
+}
+
+.datalist th{
+  background: #f7f7f7;
+  font-weight: normal;
+  border-bottom: 1px dotted #A4A4A4;
+}
+.datalist td.left:first-of-type,th.left:first-of-type {
+  padding-left: 3px;
+}
+
+.grid-view{
+  border: 1px solid #A4A4A4;
+  border-radius: 5px;
+  -webkit-border-radius:5px;
+  -moz-border-radius:5px;
+  padding-bottom: 6px;
+
+}
+
+.operable {
+  color: #000;
+  margin-left:10px;
+}
+
+
+/********************
+ * status colors
+ ********************/
+.ow-status-good,.ow-status-normal,.ow-status-bad {
+  color: #fff;
+  -moz-border-radius: 2px;
+  -khtml-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  padding: 1px 3px 2px;
+}
+.ow-status-good {
+  background-color: #51B97E;
+}
+.ow-status-normal {
+  background-color: orange;
+}
+.ow-status-bad {
+  background-color: #F01616;
+}
+
+/*2014更新版本css
+code is poetry
+by panda
+*/
+
+.swfupload {
+  vertical-align: top;
+}
+
+#divStatus{
+  font-size:12px;
+  padding-top:5px;
+}
+
+/* Message */
+.message {
+  margin: 1em 0;
+  padding: 10px 20px;
+  border: solid 1px #FFDD99;
+  background-color: #FFFFCC;
+  overflow: hidden;
+}
+/* Error */
+.red {
+  color:red;
+  /*border: solid 1px #B50000;
+  background-color: #FFEBEB;*/
+}
+
+/* Current */
+.green {
+  /*border: solid 1px #DDF0DD;
+  background-color: #EBFFEB;*/
+}
+
+/* Complete */
+.blue {
+  /*border: solid 1px #CEE2F2;
+  background-color: #F0F5FF;*/
+}
+#select_content{
+  display:none;
+}
+
+#type2_content {
+  padding-left:114px;
+}
+
+.progressName {
+  font-size: 8pt;
+  font-weight: 700;
+  color: #555;
+  width: 323px;
+  height: 14px;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  display:none;
+}
+
+.progressBarInProgress,
+.progressBarComplete,
+.progressBarError {
+  font-size: 0;
+  width: 0%;
+  height: 12px;
+  background-color: #f26535/*#79db48*/;
+  margin-top:14px
+  /*margin-top: 2px;*/
+}
+
+.progressBarComplete {
+  width: 100%;
+  background-color: #f26535;
+  margin-top:14px
+  /*visibility: hidden;*/
+}
+
+.progressBarError {
+  width: 100%;
+  background-color: #979797;
+  /*visibility: hidden;*/
+}
+
+.progressBarStatus {
+  position:absolute;
+  left:350px;
+  width: 60px;
+  font-size: 12px;
+  font-family: Arial;
+  text-align: left;
+  white-space: nowrap;
+  padding-bottom:2px;
+  line-height:14px;
+  /*display:none;*/
+}
+
+a.progressCancel {
+  position: absolute;
+  left: 410px;
+  width: 40px;
+  line-height: 14px;
+}
+
+a.progressCancel:hover {
+  background-position: 0px 0px;
+}
+
+#fsUploadProgress{
+  width:350px;
+}
+
+#load_img{
+  padding-bottom:15px;
+  margin-left:40%;
+  margin-top:25px;
+  align:middle;
+  float:left;
+}
+#load_font{
+	float:left;
+	margin-top:25px;
+	font-size:16px;
+	color:#515151;
+	font-weight:bold;
+}
+
+.filter{
+	margin-left:130px;
+	font-size:13px;
+	color:#515151;
+}
+
+#search_iframe{
+	width:540px;
+	height:270px;
+	border:1px solid #ddd;
+	padding:0 20px;
+	margin-top:10px;
+	display:none;
+}
+
+#no_content{
+	width:100%;
+	height:70px;
+	line-height:70px;
+	font-size:16px;
+	text-align:center;
+	display:none;
+}
+
+#search_error{
+	width:100%;
+	height:70px;
+	line-height:70px;
+	font-size:16px;
+	text-align:center;
+	display:none;
+}
+
+#search_error a{
+	color:#61a8ba;
+	border-bottom:1px dashed #61a8ba;
+	line-height:22px;
+	cursor: pointer;
+}
+
+.search_title{
+	width:100%;
+	height:50px;
+	border-bottom:1px solid #ddd;
+	line-height:50px;
+	display:none;
+}
+
+.search_title span{
+	padding-left:16px;
+}
+
+.all_select{
+	padding-top:10px;
+}
+
+#search_content{
+	overflow:auto;
+	height:210px;
+	display:none;
+}
+
+.search_item{
+	width:100%;
+	height:44px;
+	font-size:13px;
+	color:#515151;
+	border-bottom:1px dashed #aaa;
+	padding:12px 0 14px 0;
+}
+
+.search_item a{
+	color:#61a8ba;
+	border-bottom:1px dashed #61a8ba;
+	line-height:22px;
+}
+
+.search_app_name{
+	line-height:22px;
+}
+
+.search_button{
+	width:80px;
+	height:27px;
+	float:right;
+	margin-top:11px;
+}
+
+.search_button div{
+	width:80px;
+}
+
+.search_button button{
+	width:80px;
+	cursor: pointer;
+	background-color:transparent;
+	margin:0;
+	padding:0;
+}
+
+#filter_font{
+	margin-top:20px;
+	margin-bottom:10px;
+	display:none;
+}
+
+#filter_iframe{
+	width:540px;
+	height:240px;
+	border:1px solid #ddd;
+	padding:0 20px;
+	display:none;
+}
+
+#filter_content{
+	overflow:auto;
+	height:180px;
+}
+
+.filter_item{
+	width:100%;
+	height:44px;
+	line-height:44px;
+	font-size:13px;
+	color:#515151;
+	border-bottom:1px dashed #aaa;
+}
+
+.filter_item a{
+	color:#61a8ba;
+	border-bottom:1px dashed #61a8ba;
+	line-height:22px;
+	margin-left:15px;
+}
+
+.filter_item span{
+	padding-left:15px;
+}
+
+#score1{
+	border:0;
+	width:64px;
+	height:24px;
+    background-image: image-url('member/open.png');
+	background-repeat: no-repeat;
+	cursor: pointer;
+	display:none;
+}
+
+#score0{
+	border:0;
+	width:64px;
+	height:24px;
+    background-image: image-url('member/close.png');
+	background-repeat: no-repeat;
+	cursor: pointer;
+}
+
+#_blank{
+	width:100%;
+	height:25px;
+	clear:both;
+}
+
+#finish_point{
+	display:none;
+}
+
+#android-url{
+	position:relative;
+	top:-51px;
+	left:0;
+	width:110px;
+}
+
+.shieid{
+	background:none;
+	border:0;
+	height:27px;
+	width:80px;
+	color:#fff;
+	font-weight:bold;
+}
+
+.error_text{
+	color:red;
+	font-size:13px;
+	display:none;
+}
+
+.error_text img{
+	margin-left:10px;
+	margin-right:5px;
+}
+
+.unit{
+	color:#000;
+	padding:0 10px;
+}
+
+#exchange_rate{
+	width:70px;
+}
+
+#video_finish_point{
+	width:70px;
+}
+
+.h20{
+	height:20px;
+	width:100%;
+}
+
+input[type=radio]{
+	margin-right:6px;
+	height:29xp;
+}
+
+input[type=text]{
+	height:27px;
+	padding-left:5px;
+}
+
+.required{
+	color: #f26535;
+	display: inline-block;
+	float: left;
+	font-size: 18px;
+	line-height: 14px;
+	margin-left:-4px;
+	margin-top: 10px;
+	margin-right:12px;
+}
+
+#ow-form-submit{
+	margin-left:114px;
+	margin-top:50px;
+}
+
+#ow-form-submit button{
+	width:80px;
+	height:27px;
+}
+
+#select_c{
+	height:26px;
+}
+
+#submit-button button{
+	background-repeat: no-repeat;
+	width:83px;
+	height:26px;
+}
+
+#submit-button button:active{
+	background-repeat: no-repeat;
+	width:82px;
+	height:36px;
+}
+#yw0_c0{
+	padding-left:10px;
+}

@@ -1,0 +1,2 @@
+#!/bin/sh
+RAILS_ENV=development bundle exec unicorn -p 9100

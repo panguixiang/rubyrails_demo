@@ -1,0 +1,120 @@
+= stylesheet_link_tag "member/app_statics"
+= stylesheet_link_tag "member/TimeWidgetStyle"
+= stylesheet_link_tag "advertiser/adv_statics"
+
+%div#page
+  %div#main
+    %div#wrapper
+      %form#searchFormId{method:'get'}
+        %div#breadcrumbs
+          %ul
+            %li.active 广告统计
+        %div{:style=>"margin:0 9px;"}
+          %div{:style=>"padding: 5px 0px 0px 5px; color: #404040;"}
+            %b 计费类型:
+            %select#costType{:name=>"bill_type",:style=>"width: 200px; font-family: '宋体';"}
+              %option{:label=>"全部",:value=>" ",:selected=>"selected"}全部
+              %option{:label=>"CPM 类",:value=>"cpm"} CPM 类
+              %option{:label=>"CPC 类",:value=>"cpc"} CPC 类
+              %option{:label=>"OCPC 类",:value=>"ocpc"} OCPC 类
+              %option{:label=>"CPD 类",:value=>"cpd"} CPD 类
+              %option{:label=>"CPI 类",:value=>"cpi"} CPI 类
+          %div{:style=>"padding: 5px 0px 0px 5px; color: #404040;border-top:1px solid whiteSmoke;"}
+            %b 时&nbsp;&nbsp;间&nbsp;&nbsp;段:
+            %select.styled-select#dateSeleId{name:'dateSele',:value=>''}
+              %option{value:"#{(DateTime.now).strftime('%Y-%m-%d')}"} 今天
+              %option{value:"#{(DateTime.now-1).strftime('%Y-%m-%d')}"} 昨天
+              %option{value:"#{(Chronic.parse '1 week ago').strftime('%Y-%m-%d')}",selected:true} 最近一周
+              %option{value:"#{(Chronic.parse '1 month ago').strftime('%Y-%m-%d')}"} 最近一个月
+              %option{value:"#{(Chronic.parse '1 year ago').strftime('%Y-%m-%d')}"} 最近一年
+            %a{:href=>"javascript:void(0);",:id=>"customConditionSwitcher",:class=>"link"}自定义统计条件（按日期、广告级别等条件统计）
+        %div#customCondition{:style=>"display:none"}
+          %p{:style=>"margin: 1em; margin-bottom: 0.5em;"}
+            %b 广告级别：
+            %label.radio
+              %input{:type=>"radio",:name=>"adver",:class=>"adverIdclass",:value=>"1",:checked=>"checked"} 推广计划
+              %input{:type=>"radio",:name=>"adver",:class=>"adverIdclass",:value=>"2"} 推广组
+              %input{:type=>"radio",:name=>"adver",:class=>"adverIdclass",:value=>"3"} 广告创意
+          %div{:style=>"width: 48%; float: left;"}
+            %div#customBody
+              %div.mif-tree-wrapper
+                %div.mif-tree-children-root#abc1{style:'display:block;'}
+                  -unless @adprodsList.blank?
+                    -@adprodsList.each do |adp|
+                      -unless adp.status==2
+                        %input.choose.choose1{:type=>"checkbox",:value=>"#{adp.id}",:name=>"adverId"}  #{adp.adver_plan_name}
+                      -else
+                        %input.choose.choose1.undisplay.undisplay1{:type=>"checkbox",:style=>'display:none;',:value=>"#{adp.id}",:name=>"adverId"}
+                          %span.undisplay.undisplay1{style:'display:none;'} #{adp.adver_plan_name}
+                %div.mif-tree-children-root#abc2{style:'display:none;'}
+                  -unless @adver_plan_groupList.blank?
+                    -@adver_plan_groupList.each do |plan|
+                      -unless plan.status==2
+                        %input.choose.choose2{:type=>"checkbox",:value=>"#{plan.id}",:name=>"adver_gro_id"}  #{plan.group_name}
+                      -else
+                        %input.choose.undisplay.undisplay2{:type=>"checkbox",:style=>'display:none;',:value=>"#{plan.id}",:name=>"adver_gro_id"}
+                          %span.undisplay.undisplay2{style:'display:none;'} #{plan.group_name}
+                %div.mif-tree-children-root#abc3{style:'display:none;'}
+                  -unless @adver_group_originalityList.blank?
+                    -@adver_group_originalityList.each do |group|
+                      -if group.status==1 || group.status==3
+                        %input.choose.choose3{:type=>"checkbox",:value=>"#{group.id}",:name=>"adver_orig_id"}  #{group.title}
+                      -elsif group.status==4
+                        %input.choose.choose3.undisplay.undisplay3{:type=>"checkbox",:style=>'display:none;',:value=>"#{group.id}",:name=>"adver_orig_id"}
+                          %span.undisplay.undisplay3{style:'display:none;'} #{group.title}
+            %div{:style=>"margin: 1em; margin-bottom: 0px;"}
+              %label
+                %input#selectAllAd{:type=>"checkbox",:value=>"1",:name=>"selectAllAd"}  全选
+            %div{:style=>"margin: 1em; margin-bottom: 0px;"}
+              %label
+                %input#showDeletedAd{:type=>"checkbox",:value=>"1",:name=>"showDeletedAd"}  显示已经删除的广告
+          %div{:style=>"width: 48%; float: left;"}
+            %span 日期范围：
+            .value.report_costType
+              %input.text.txtL.endDate{name:'beginDate',size:16,readonly:'readonly',onfocus:'calShow(this);'}
+              &nbsp;-&nbsp;
+              %input.text.txtL.endDate{name:'endDate',size:16,readonly:'readonly',onfocus:'calShow(this);'}
+              &nbsp;&nbsp;&nbsp;
+          %div{:style=>"text-align: center; margin-bottom: 12px; clear: both;"}
+            %button.btnS.ac.ac_report_exec_changes#submit{type:'button'} 查询
+            %button.btnS.ac.ac_report_exec_changes#cancle{type:'button'} 取消
+      %div{:style=>"margin-top:10px;"}
+        .btn_group.btn_group_justified.views
+          %button#adivId0.btn.btnL.btn_gray.ac.ac_report_change_view.current
+            %span 有效展示
+          %button#adivId1.btn.btnL.btn_gray.ac.ac_report_change_view{style:'display:none;'}
+            %span 点击次数
+          %button#adivId2.btn.btnL.btn_gray.ac.ac_report_change_view{style:'display:none;'}
+            %span 下载次数
+          %button#adivId3.btn.btnL.btn_gray.ac.ac_report_change_view{style:'display:none;'}
+            %span 安装次数
+          %button#adivId4.btn.btnL.btn_gray.ac.ac_report_change_view{style:'display:none;'}
+            %span 点击率
+          %button#adivId5.btn.btnL.btn_gray.ac.ac_report_change_view{style:'display:none;'}
+            %span 下载率
+          %button#adivId6.btn.btnL.btn_gray.ac.ac_report_change_view{style:'display:none;'}
+            %span 安装率
+          %button#adivId7.btn.btnL.btn_gray.ac.ac_report_change_view
+            %span 成本
+          %button#adivId8.btn.btnL.btn_gray.ac.ac_report_change_view{style:'display:none;'}
+            %span 平均每次点击成本
+          %button#adivId9.btn.btnL.btn_gray.ac.ac_report_change_view
+            %span 每千次展示成本
+          %button#adivId10.btn.btnL.btn_gray.ac.ac_report_change_view{style:'display:none;'}
+            %span 平均每次下载成本
+          %button#adivId11.btn.btnL.btn_gray.ac.ac_report_change_view{style:'display:none;'}
+            %span 平均每次安装成本
+      %div#flashChart.chart
+        .chart_holder
+          #chart.ow-highchart
+      %div#statDataTable
+        %h2.table_title
+          广告统计报告
+          %small
+            %a.ac.ac_report_export{href:"#"} 下载报告
+        .databox
+          %table.datatable.report_table
+          .databox_options.clearfix
+= javascript_include_tag "member/highcharts"
+= javascript_include_tag "member/TimeWidget"
+= javascript_include_tag "advertiser/adv_statics"

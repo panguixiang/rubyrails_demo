@@ -1,0 +1,12 @@
+!!! 5
+%html{ lang: "en"}
+  %head
+    %meta{charset: "utf-8"}
+    %title
+      = "TalkingSDK 接入平台用户注册"
+    = stylesheet_link_tag    "member/passport"
+    = javascript_include_tag "member/register"
+  %body.w1440
+    #page.panel_register{:style=>'padding-top:0px;'}
+      .inputarea
+        %span 您的账号已创建，请先登录您的#{flash[:email]}邮箱,激活您的账号！

@@ -1,0 +1,31 @@
+= javascript_include_tag "member/deverWithdraw"
+#page.finance
+	#main.layout-2grid.clearfix
+		#content.finance_ctrpage
+			%h1#pagetitle 当前时间段不可提现
+			#fi_action.success_page
+				%p 您好，每月1-5号为XX财务结算期，不可进行提现，您如果需要提现请在每月10号之后再进行操作，给您带来的不便敬请谅解。
+				.link
+					%ul
+						%li 您可能需要：
+						%li
+							%a.operable{:href=>'/member/takemoney/index'} 查看提现明细
+							%span |
+						%li
+							%a.operable{:href=>'/member/login/developerIndex'} 返回个人中心
+		= render "member/right"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

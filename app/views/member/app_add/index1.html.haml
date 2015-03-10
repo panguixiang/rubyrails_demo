@@ -1,0 +1,102 @@
+= stylesheet_link_tag "member/app_list/combo"
+= stylesheet_link_tag "member/app_list/combo1"
+= stylesheet_link_tag "member/app_list/combo2"
+= javascript_include_tag "member/app_list"
+
+%div#content
+  .wrapper.breadCrumb
+    %a{:href=>"/member/app_manager/index"} 应用列表
+    %span > 添加应用
+  #main.main.wrapper
+    .clearfix
+      %span#system_errors.error-message
+      %h2 添加应用
+      %ul.createSteps
+        %li.first.current
+          %div.inner
+            %span.step 第一步 填写应用信息
+            .arrow
+              %em
+        %li{:class=>""}
+          .inner
+            %span.step 第二步 创建广告位
+            .arrow
+              %em
+        %li.last
+          %div.inner
+            %span.step 第三步 下载并集成SDK
+            .arrow
+              %em
+      %h2 应用信息：
+      .keyvalue
+        = form_for @app_prod,:url =>{controller:'/member/app_add',action:'new'} do |f|
+          %p#appType
+            %dfn
+              %em.required *
+              %span应用平台：
+            %label
+              = f.radio_button :platform, "android",:style=>"display: none;",:class=>"customradio8"
+              %span.customradio.cr_itemname_form_6_type.ac.ac_customradio_change
+                %dfn
+                  %em
+              %span Android
+            %label
+              = f.radio_button :platform, "ios",:style=>"display: none;",:class=>"customradio16"
+              %span.customradio.cr_itemname_form_6_type.ac.ac_customradio_change
+                %dfn
+                  %em
+              %span IOS
+            %span.tip{:style=>"color:#333"}
+              积分墙和激励类视频广告请去
+              %a{:href=>"#{new_member_integral_wall_path}",:style=>"color:blue"}
+                积分墙
+              %span 创建应用
+            - if @app_prod.errors[:platform].presence
+              %span.fieldErrorCla #{@app_prod.errors[:platform].join(", ")}
+          %p
+            %label
+              %dfn
+                %em.required *
+                %span 应用程序名称：
+              = f.text_field :app_name,:class=>'text txtL'
+              - if @app_prod.errors[:app_name].presence
+                %span.fieldErrorCla #{@app_prod.errors[:app_name].join(", ")}
+          %p
+            %label
+              %dfn
+                %em.required *
+                %span 关键字：
+              = f.text_field :keyword,:class=>'text txtL'
+              %span.tip 请用逗号（圆角/半角均可）分隔多个关键词。
+              - if @app_prod.errors[:keyword].presence
+                %span.fieldErrorCla #{@app_prod.errors[:keyword].join(", ")}
+          %p
+            %label
+              %dfn
+                %em.required *
+                %span 应用类型：
+              = f.select :app_type, [["动作格斗",'100'],["休闲益智",'101'],["体育竞技",'102'],["角色扮演",'103'],["模拟经营",'104'],["其它游戏",'105'],
+                                    ["影音播放",'106'],["安全软件",'107'],["网络通讯",'108'],["实用工具",'109'],["系统软件",'110'],["生活天气",'111'],
+                                    ["娱乐休闲",'112'],["电子阅读",'113'],["主题桌面",'114'],["新闻杂志",'115'],["交通导航",'116'],["医疗健康",'117'],
+                                    ["学习办公",'118'],["摄影录像",'119'],["金融理财",'120'],["其它应用",'121']]
+              - if @app_prod.errors[:app_type].presence
+                %span.fieldErrorCla #{@app_prod.errors[:app_type].join(", ")}
+              %p#locationInfo
+                %label
+                  %dfn 位置信息：
+                  = f.check_box :isposition,:class=>'customCheckbox25',:value=>'1',:style=>'display: none;'
+                  %span.customCheckbox.cr_itemname_useLocationInfo.ac.ac_customCheckbox_change
+                    %dfn
+                      %em
+                  %span 我的应用使用位置信息
+              %p
+                %label
+                  %dfn.app_pro 应用简介：
+                  = f.text_area :app_content,:cols=>"80",:rows=>"9"
+                  %span#testTextbox_maxLength_left
+              %p.actions
+                %input#step{:type=>"hidden",:value=>"1"}
+                = f.button '下一步',:type=>'submit',:class=>'.btnL.btn_default.ac.ac_nextBtn'
+                %span
+                  &nbsp 或
+                  %a.ac.ac_cancel{:href=>"/member/app_manager/index"} 取消

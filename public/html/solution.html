@@ -1,0 +1,231 @@
+<html >
+    <head>
+        <meta charset="UTF-8">
+        <link href="/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon">
+        <link href="/stylesheets/platform/base.css?body=1" media="screen" rel="stylesheet">
+        <link href="/stylesheets/platform/solution.css?body=1" media="screen" rel="stylesheet">
+        <script src="/javascripts/jqueryLibary.js?body=1"></script>
+        <script src="/javascripts/platform/base.js?body=1"></script>
+        <script src="/javascripts/platform/login.js?body=1"></script>
+        <script src="/javascripts/platform/develor_tools.js?body=1"></script>
+    </head>
+    <body>
+        <div id="floatingfloor" style="position:absolute;height:1898px;width:100%;  top:0;left:0;z-index:50;  background-color:#000;filter:alpha(opacity=30);  -moz-opacity:0.3;  -khtml-opacity: 0.3; opacity: 0.3; display:none;"></div>
+        <div id="topbar">
+            <div class="cont clearfix">
+                <div class="right clearfix" id="topBarUserHead">
+                    <div id="loigspan">
+                        <a class="dark shadow" href="/members/sign_in">登录</a>
+                        <span > </span>
+                        <a class="dark shadow" href="/members/sign_up">注册</a>
+                    </div>
+                    <div id="userspan" >
+                        <span id="user"> </span>
+                        <div id="userlist" >
+                            <p align="center" class="tmd">
+                                <a class="username" href="/member/login/login" id="userNameIda"></a>
+                            </p>
+                            <p class="nnd">
+                                <a class="stagedoor" href="/member/login/login">进入后台</a>
+                                <span class="dnw">kanbu</span>
+                                <a class="quit" id="loginOut" href="/members/sign_out">退出</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="left">
+                    <a class="dark shadow" href="/html/media_sound.html">多盟新闻</a>
+                    <a class="dark shadow" href="/html/help_survey.html">帮助中心</a>
+                    <a class="dark shadow" href="/html/comp_introd.html">多盟公司</a>
+                    <a class="dark shadow" href="/html/industr_report.html">行业报告</a>
+                </div>
+            </div>
+        </div>
+        <div id="header">
+            <div class="cont">
+                <a id="domob_logo" href="/"></a>
+                <ul id="nav">
+                    <li id="devNav" class="nav">
+                        <a id="developer" class="menu f17px bold menu_nor" href="/html/develor_tools.html">开发者</a>
+                            <ul class="subnav" id="dev_subnav">
+                                <li class="clearfix">
+                                    <a href="/html/develor_tools.html">
+                                        <span>开发者工具</span>
+                                        <span class="arrows"></span>
+                                    </a>
+                                </li>
+                                <li class="clearfix">
+                                    <a href="/html/goodness.html">
+                                        <span>多盟优势</span>
+                                        <span class="arrows"></span>
+                                    </a>
+                                </li>
+                                <li class="clearfix">
+                                    <a href="/html/develor_comment.html">
+                                        <span>开发者评论</span>
+                                        <span class="arrows"></span>
+                                    </a>
+                                </li>
+                            </ul>
+                    </li>
+                    <li id="advNav" class="nav">
+                        <a id="advertiser" class="nav_current menu bold f17px" href="/html/solution.html">广告主</a>
+                        <ul id="adv_subnav" class="subnav" style="vertical-align:bottom;">
+                            <li class="clearfix">
+                                <a href="/html/solution.html">
+                                    <span>解决方案</span>
+                                    <span class="arrows"></span>
+                                </a>
+                            </li>
+                            <li class="clearfix">
+                                <a href="/html/interaction_forms.html">
+                                    <span>互动形式</span>
+                                    <span class="arrows"></span>
+                                </a>
+                            </li>
+                            <li class="clearfix">
+                                <a href="/html/market_advantage.html">
+                                    <span>营销优势</span>
+                                    <span class="arrows"></span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav">
+                        <a id="case" class="menu f17px bold menu_nor" href="coopera_case.html">合作案例</a>
+                    </li>
+                </ul>
+            </div>
+            <script type="text/javascript">
+                $('#adv_subnav').on('mouseout',function(){
+                    this.style.display = 'none';
+                });
+                $('#dev_subnav').on('mouseout',function(){
+                    this.style.display = 'none';
+                });
+                $('#devNav').on('mouseover',function(){
+                    $('#dev_subnav').css('display','block');
+                    $('#developer').attr('class','menu f17px bold menu_act');
+                }).on('mouseout',function(){
+                    $('#dev_subnav').css('display','none');
+                    $('#developer').attr('class','menu f17px bold menu_nor');
+                });
+                $('#advNav').on('mouseover',function(){
+                    $('#adv_subnav').css('display','block');
+                    $('#advertiser').attr('class','menu f17px bold menu_act');
+                }).on('mouseout',function(){
+                    $('#adv_subnav').css('display','none');
+                    $('#advertiser').attr('class','menu f17px bold menu_nor');
+                });
+            </script>
+        </div>
+        <div id="pose">
+        </div>
+        <div id="page">
+            <div id="main">
+                <div id="subnav_outer">
+                    <div id="subnav">
+                        <a id="tab0" class="subnav_a" href="/html/solution.html">解决方案</a>
+                        <a id="tab1" class="subnav_n" href="/html/interaction_forms.html">互动形式</a>
+                        <a id="tab2" class="subnav_n" href="/html/market_advantage.html">营销优势</a>
+                    </div>
+                </div>
+                <div id="item" class="clearfix">
+                    <div id="item0" class="item" style="display: block;">
+                        <div id="solution">
+                            <div class="box">
+                                <div class="content list1">
+                                    <h2 class="f17px high">Interstitial 插屏广告</h2>
+                                    <p>插屏广告是多盟开创的最适合游戏媒体、用户体验最好的智能手机广告形式。一般在游戏回合结束、暂停时弹出。2011年9月，多盟针对游戏应用定制的插屏广告伴随水果忍者中文版正式上线，在历经了多个版本的改进，成功接入上千款游戏后，至今已稳定运营一年。插屏广告有效点击率是其他广告的2-3倍，ios媒体CPM收入高于5元。</p>
+                                </div>
+                                <div class="others">
+                                </div>
+                            </div>
+                            <div class="box">
+                                <div class="content list2">
+                                    <h2 class="f17px high">Splash-Interstitial 开屏广告</h2>
+                                    <p>开屏广告是主要针对品牌广告主打造的展现广告解决方案，一般在应用开机画面后加载，展示固定时间，不可点击，展示完毕后自动关闭并进入应用主页面。开屏广告按CPM售卖和结算，对广告主来说，开屏广告展现篇幅大展现品质好；对媒体来说，开屏广告单次展现收益远大于其他广告形式。</p>
+                                </div>
+                                <div class="others">
+                                </div>
+                            </div>
+                            <div class="box">
+                                <div class="content list3">
+                                    <h2 class="f17px high">Offer-Wall 积分墙</h2>
+                                    <p>“积分墙”是在应用内展示各种与广告相关的任务，用户通过在应用内完成任务以获得虚拟货币奖励的推荐广告 决方案。积分墙将广告与应用融为一体，避免生硬的广告推送，对用户体验影响最小。未来，多盟的积分墙广告将不限于app下载类广告，多盟将发挥品牌广告的优势，陆续提供品牌广告合作方式。</p>
+                                </div>
+                                <div class="others">
+                                    <a class="blue f17px download" href="/html/sdkdownload.html">下载积分墙SDK</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a class="blue f17px more" href="#">了解更多</a>
+                                </div>
+                            </div>
+                            <div class="box">
+                                <div class="content list5">
+                                    <h2 class="f17px high">Domob Tracking 多盟营销数据监测平台</h2>
+                                    <p>Domob Tracking是专为行业广告主搭建的营销数据监测平台。广告主通过在目标App中加入DomobTracking，即能通过有效监测，从展现、点击、激活、人群属性等多个维度真实反映App推广效率，客观比对推广成本及收益。<br>同时，DomobTracking通过智能机器学习方式，实现广告投放重定向，引导营销策略的实时优化。
+                                    </p>
+                                </div>
+                                <div class="others">
+                                </div>
+                            </div>
+                            <div class="box">
+                                <div class="content list6">
+                                    <h2 class="f17px low">耀车宝</h2>
+                                    <p>专为汽车行业广告主打造的品牌立体塑造方案。通过最新的HTML5技术及富媒体形式全方位展示车型，介绍详细参数，传递
+                                        品牌价值。适用于新车上市阶段营销造势。</p>
+                                </div>
+                                <div class="others">
+                                </div>
+                            </div>
+                            <div class="box">
+                                <div class="content list7">
+                                    <h2 class="f17px low">人气宝</h2>
+                                    <p>专为汽车行业广告主打造的活动人气聚焦方案。通过配合广告主现有的市场活动，帮助广告主收集消费leads、导流人群至
+                                        4S店、促成活动社会化分享等。适用于销售冲量阶段的试乘试驾、车展邀请等定制化活动。</p>
+                                </div>
+                                <div class="others">
+                                </div>
+                            </div>
+                        </div>
+                        <div id="bottomnav" class="f17px">
+                            <a href="/html/market_advantage.html" class="blue left">&lt;&lt;&nbsp;营销优势</a>
+                            <a href="/html/interaction_forms.html" class="blue right">互动形式&nbsp;&gt;&gt;</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="bottomline"></div>
+            </div>
+        </div>
+        <div id="contact-said" style="top: 806px;">
+            <a href="http://crm2.qq.com/page/portalpage/wpa.php?uin=4006368168&amp;cref&amp;ref=&amp;f=1&amp;ty=1&amp;ap=&amp;as=&amp;v=" target="_blank">在线联系</a>
+        </div>
+        <div id="footer" class="f12px">
+            <div class="ft">
+                <div class="clearfix">
+                    <span class="partner_logo GWC"></span>
+                    <span class="partner_logo MMA"></span>
+                    <p class="f14px" style="padding-top:45px;"><a class="light" href="/help/index.htm?q=2-0&amp;t=tab3" goto="null">隐私政策</a>&nbsp;&nbsp;&nbsp;&nbsp;<a class="light" href="/help/index.htm?t=tab3" goto="null">服务条款</a>&nbsp;&nbsp;&nbsp;&nbsp;<a class="light" href="/aboutus/index.htm?t=tab3" goto="null">加入我们</a>&nbsp;&nbsp;&nbsp;&nbsp;<a class="light" href="/others/links.htm" goto="null">友情链接</a>&nbsp;&nbsp;&nbsp;&nbsp;<a class="light" href="/aboutus/contact/contact.htm" goto="null">联系我们</a></p>
+                    <p class="light f12px"><a class="light" href="http://www.miibeian.gov.cn/" target="_blank" goto="null">京ICP证110535号</a>&nbsp;&nbsp;&nbsp;<a class="light" href="http://www.miibeian.gov.cn/" target="_blank" goto="null">京ICP备10219500号</a>&nbsp;&nbsp;&nbsp;<a class="light" href="http://www.pinganhd.com/wzbab/Verify.aspx" target="_blank" goto="null">京公网安备110108400045号</a><span class="light" style="padding-left:95px;">COPYRIGHT©DOMOB.CN</span></p>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            var _footer = document.getElementById("footer");
+            var links = _footer.getElementsByTagName("A");
+
+            for (var i = 0; i < links.length; i++) {
+                var href = links[i].href;
+                var result = href.match(/#[a-zA-Z0-9]{1,}$/);
+                links[i].setAttribute("goto", result);
+                if (result) {
+                    links[i].onclick = function() {
+                        //var id = this.href.match(/#[a-zA-Z0-9]{1,}$/).toString().replace(/#/, "");
+                        var id = this.getAttribute("goto").replace(/#/, "");
+                        var el = document.getElementById(id);
+                        changetab(el);
+                    };
+                }
+            }
+        </script>
+    </body>
+</html>

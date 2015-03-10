@@ -1,0 +1,356 @@
+@charset "utf-8";
+/* CSS Document */
+#subnav {
+  width:600px;
+  padding-top:2px;
+  margin-left:201px;
+  height: 81px;
+}
+#subnav_outer{
+  background:url("/images/sprite.gif") no-repeat 0px -623px;
+  height:85px;
+}
+#item{
+  min-height: 500px;
+  -height: 500px;
+  margin:0px 3px;
+}
+.BreadcrumbNavigation{
+  height:37px;
+  border-bottom:1px dotted #cfcfcf;
+  padding-left:50px;
+  padding-top:13px;
+}
+.BreadcrumbNavigation a{
+  text-decoration:none;
+}
+.BreadcrumbNavigation a:hover{
+  border-bottom:1px dotted #696969;
+}
+#item .leftbar{
+  width:680px;
+  margin-left:40px;
+  padding-top:30px;
+}
+#item .leftbar div{
+  padding-bottom:25px;
+  border-bottom:1px dotted #cfcfcf;
+}
+
+#item .leftbar p{
+  line-height:26px;
+}
+#item .leftbar h1{
+  font-size:30px;
+  line-height:36px;
+  padding-top:25px;
+}
+#item .leftbar h1 a{
+  text-decoration:none;
+}
+#item .leftbar h1 a:hover{
+  border-bottom:1px dotted;
+}
+#item .leftbar .origin{
+  font-size:12px;
+  line-height:24px;
+  color:#ccc;
+  margin-bottom:10px;
+}
+#item .leftbar .origin span{
+  font-weight:bold;
+}
+
+#item .leftbar .share{
+  border:none;
+  float:right;
+  width:87px;
+  height:33px;
+  background:url("/images/sprite5.gif") no-repeat -657px 0px;
+}
+#item .leftbar .share a{
+  cursor:pointer;
+}
+#item .leftbar .share a:hover{
+  border:none;
+}
+.visible{
+  visibility:visible;
+}
+.hidden{
+  visibility:hidden;
+}
+#item ul{
+  width:118px;
+  height:132px;
+  position:absolute;
+  margin-top: -3px;
+}
+#item li{
+  height:32px;
+  border-bottom:1px dotted #cfcfcf;
+}
+#item .share a{
+  text-decoration:none;
+  display:block;
+  height:32px;
+  font-size: 14px;
+  line-height: 32px;
+  font-weight: normal;
+}
+
+#item li a{
+  width:78px;
+  background-color:#f1f1f1;
+  padding-left:40px;
+  line-height:32px;
+  background-image:url("/images/sprite5.gif");
+  background-repeat:no-repeat;
+}
+#item li a:hover{
+  background-color:#fff;
+}
+
+#item li .l1{
+  background-position:15px -760px;
+}
+#item li .l2{
+  background-position:-105px -760px;
+}
+#item li .l3{
+  background-position:-225px -760px;
+}
+#item li .l4{
+  background-position:-345px -760px;
+}
+#item .leftbar .bordernone{
+  border:none;
+}
+.showmore{
+  float:left;
+  width:654px;
+  margin-left:40px;
+  height:54px;
+  background:url("/images/sprite5.gif") no-repeat 0px -536px;
+}
+.showmore:hover{
+  background:url("/images/sprite5.gif") no-repeat 0px -590px;
+}
+.showmore:active{
+  background:url("/images/sprite5.gif") no-repeat 0px -644px;
+}
+.up{
+  float:left;
+  width:50px;
+  height:50px;
+  margin-left:50px;
+  background:url("/images/sprite5.gif") no-repeat -416px -392px;
+}
+.up:hover{
+  background:url("/images/sprite5.gif") no-repeat -472px -392px;
+}
+#item .rightbar{
+  float:right;
+  width:206px;
+  padding-right:40px;
+  margin-top:45px;
+}
+#item .rightbar a{
+  display:block;
+}
+#item .rightbar .contact_media{
+  width:200px;
+  height:100px;
+  margin-bottom:5px;
+  background-image:url("/images/sprite5.gif");
+  background-repeat:no-repeat;
+  background-position:0px 0px;
+}
+#item .rightbar .contact_media:hover{
+  background-position:-200px 0px;
+}
+#item .rightbar .contact_media:active{
+  background-position:-400px 0px;
+}
+
+#item .rightbar .contact_investors{
+  width:200px;
+  height:100px;
+  background:url("/images/sprite5.gif") no-repeat 0px -100px;
+}
+#item .rightbar .contact_investors:hover{
+  background-position:-200px -100px;
+}
+#item .rightbar .contact_investors:active{
+  background-position:-400px -100px;
+}
+
+#item .rightbar .showimg{
+  margin:18px auto;
+}
+.loading{
+  margin-left:15px;
+  padding-top:5px;
+}
+
+#item #bottomnav{
+  margin:0px 3px;
+  height:84px;
+  border-top:1px dotted #cfcfcf;
+
+}
+#item #bottomnav a{
+  text-decoration:none;
+  margin-top:30px;
+}
+
+#item #bottomnav a:hover{
+  border-bottom:1px dotted #88bbc8;
+}
+#item #bottomnav .left{
+  margin-left:30px;
+  float:left;
+}
+#item #bottomnav .right{
+  margin-right:30px;
+  float:right;
+}
+#item .pagelist{
+  padding-left:365px;
+  margin-top:30px;
+  width:200px;
+  float:left;
+}
+#item .pagelist a{
+  line-height:30px;
+  color:#218c21;
+  background-color:#f9f9f9;
+  text-decoration:none;
+  border:1px solid #e4e4e4;
+  padding:5px 10px;
+}
+#item .pagelist a:hover{
+  color:#696969;
+  background-color:#f9f9f9;
+  border:1px solid #fff;
+}
+#item .pagelist a:active{
+  background-color:#f9f9f9;
+  color:#696969;
+  border:1px solid #fff;
+}
+#bottombar{
+  border-top:1px dotted #cfcfcf;
+  background-color:#f9f9f9;
+  margin-top:15px;
+}
+#bottombar h2{
+  float:left;
+  font-weight:normal;
+  padding-left:80px;
+  padding-top:160px;
+  width:155px;
+  height:45px;
+  background:url("/images/sprite5.gif") no-repeat -634px -80px;
+}
+#bottombar a{
+  text-decoration:none;
+}
+#bottombar a:hover{
+  border-bottom:1px dotted;
+}
+#bottombar div{
+  float:left;
+  width:300px;
+  margin-top:30px;
+  line-height:30px;
+}
+#bottombar .left{
+  margin-right:100px;
+}
+#item .content{
+  margin:40px 50px;
+}
+#item .content h3{
+  margin:15px auto;
+}
+#item .where{
+  padding-left:680px;
+  padding-right:20px;
+}
+#item .content img{
+  margin:20px auto;
+}
+#item .content .title{
+  margin-bottom:30px;
+  font-weight:normal;
+}
+#item .content .helloword{
+  margin-bottom:15px;
+}
+/*以下是隐私条款的样式*/
+#item .c{
+  padding:40px;
+}
+#item .c h1{
+  font-size:18px;
+  margin-bottom:10px;
+}
+#item .c p{
+  margin-bottom:30px;
+}
+
+/*以上是隐私条款的样式*/
+
+/*以下是开发者会刊的样式*/
+#periodicals .l{
+  float:left;
+  width:405px;
+  height:320px;
+  background:url("/images/sprite5.gif") no-repeat 30px -200px;
+}
+#periodicals .l p{
+  padding-top:130px;
+  padding-left:125px;
+  margin-bottom:30px;
+}
+#periodicals .l h1{
+  font-size:48px;
+  padding-left:110px;
+  font-weight:normal;
+  padding-top:40px;
+}
+
+#periodicals .l a{
+  display:block;
+  width:103px;
+  height:37px;
+  margin-top:20px;
+  margin-left:150px;
+  background-image:url('/images/sprite5.gif');
+  background-repeat:no-repeat;
+  background-position:-416px -248px;
+}
+#periodicals .l a:hover{
+  background-position:-416px -288px;
+}
+#periodicals .l a:active{
+  background-position:-416px -328px;
+}
+#periodicals .r{
+  float:left;
+  width:580px;
+  margin-top:40px;
+  margin-bottom:50px;
+  *padding-bottom:50px;
+}
+#periodicals .r a{
+  float:left;
+  margin-top:15px;
+  margin-right:70px;
+  text-decoration:none;
+  border-bottom:1px dotted #fff;
+}
+#periodicals .r a:hover{
+  border-bottom:1px dotted #88bbc8;
+}

@@ -1,0 +1,2 @@
+module Member::IntelwalStaticsHelper
+end

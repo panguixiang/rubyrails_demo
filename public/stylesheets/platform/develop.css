@@ -1,0 +1,336 @@
+#pose{
+    height:300px;
+    width:100%;
+    margin-bottom:60px;
+}
+#pose0,#pose1,#pose2{
+    height:300px;
+    width:100%;
+    position:absolute;
+    -moz-transition:opacity 1s ease-out,visibility 1s ease-out;
+    -webkit-transition:opacity 1s ease-out,visibility 1s ease-out;
+    transition:opacity 1s ease-out,visibility 1s ease-out;
+}
+#pose0{
+    z-index:5;
+    background:url("/images/develop_pose0.jpg") no-repeat center;
+}
+#pose1{
+    z-index:4;
+    background:url("/images/develop_pose1.jpg") no-repeat center;
+}
+.topic1,.topic2{
+    padding-top:20px;
+}
+#topic0,#topic1,#topic2{
+    -moz-transition:opacity 1s ease-out,padding 1s ease-out;
+    -webkit-transition:opacity 1s ease-out,padding 1s ease-out;
+    transition:opacity 1s ease-out,padding 1s ease-out;
+}
+#pose2{
+    z-index:3;
+    background:url("/images/develop_pose2.jpg") no-repeat center;
+}
+.picture_in{
+    opacity:1;
+}
+.picture_out{
+    opacity:0;
+}
+.topic_down{
+    width:1004px;
+    margin:0 auto;
+    padding-top:60px;
+    opacity:0;
+}
+.topic_up{
+    width:1004px;
+    margin:0 auto;
+    padding-top:40px;
+    opacity:1;
+}
+/*以下是兼容ie的pose属性*/
+#p0,#p1,#p2,#p3{
+    height:300px;
+    width:100%;
+    position:absolute;
+    left:0;
+}
+#p0{
+    z-index:4;
+    background:url("/images/develop_p0.jpg") no-repeat center;
+}
+#p1{
+    z-index:3;
+    background:url("/images/develop_p1.jpg") no-repeat center;
+}
+#p2{
+    z-index:2;
+    background:url("/images/develop_p2.jpg") no-repeat center;
+}
+#p3{
+    z-index:1;
+    background:url("/images/develop_p0.jpg") no-repeat center;
+}
+/*以上是pose的样式*/
+#subnav {
+    width:450px;
+    margin-left:277px;
+    padding-top:2px;
+    height: 81px;
+}
+#subnav_outer{
+    background:url("/images/sprite.gif") no-repeat 0px -528px;
+    height:85px;
+}
+#subnav a{
+    font-size:17px;
+    line-height:80px;
+    text-align:center;
+    height:80px;
+    float:left;
+    width:150px;
+    background-image:url("/images/sprite.gif");
+    background-repeat:no-repeat;
+    text-decoration:none;
+}
+.subnav_n{
+    background-position:-50px 0;
+}
+.subnav_h{
+    background-position:-357px 1px;
+}
+.subnav_a{
+    color:#fff;
+    text-shadow:0px 2px rgba(0,0,0,0.3);
+    filter:none\9;
+    *filter:dropshadow(offx=1, offy=1, color=#666666);
+    -filter:dropshadow(offx=1, offy=1, color=#666666);
+    zoom:1;
+    background-position:-205px 0px;
+}
+.item{
+    min-height: 500px;
+    -height: 500px;
+}
+#tools,#superiority,#wordsofdev{
+    padding:0 50px;
+}
+#superiority div,#wordsofdev div{
+    padding:40px 0px 30px 0px;
+}
+.border{
+    border-bottom:1px dotted #cfcfcf;
+}
+.item p{
+    line-height:28px;
+}
+.item h1{
+    width:238px;
+    height:50px;
+    font-weight:normal;
+    padding-left:40px;
+    background-image:url("/images/develop_sprite.gif");
+    background-repeat:no-repeat;
+}
+#tools .box {
+    width:900px;
+    height:200px;
+    padding:0;
+    margin-bottom:30px;
+    border:1px solid #d7d7d7;
+}
+#tools{
+    padding-bottom:0;
+    padding-top:50px;
+    border:none;
+    margin-bottom:60px;
+}
+#tools .box h2{
+    font-weight:normal;
+}
+#tools .box .content{
+    height:150px;
+    padding-left:150px;
+}
+#tools .box p{
+    width:700px;
+}
+#tools .high{
+    padding-top:23px;
+    margin-bottom:3px;
+}
+#tools .low{
+    padding-top:35px;
+    margin-bottom:3px;
+}
+#tools .list0{
+    background:url("/images/develop_sprite.gif") no-repeat 20px -1288px;
+}
+#tools .list1{
+    background:url("/images/develop_sprite.gif") no-repeat 20px -680px;
+}
+#tools .list2{
+    background:url("/images/develop_sprite.gif") no-repeat 20px -785px;
+}
+#tools .list3{
+    background:url("/images/develop_sprite.gif") no-repeat 20px -870px;
+}
+#tools .list4{
+    background:url("/images/develop_sprite.gif") no-repeat 20px -970px;
+}
+#tools .list5{
+    background:url("/images/develop_sprite.gif") no-repeat 20px -1080px;
+}
+#tools .list6{
+    background:url("/images/develop_sprite.gif") no-repeat 20px -1190px;
+}
+.item .box .others{
+    height:50px;
+    background-color:#f5f5f5;
+    padding-left:182px;
+}
+.box .download{
+    background:url("/images/develop_sprite.gif") no-repeat 150px -550px;
+}
+.box .check{
+    background:url("/images/develop_sprite.gif") no-repeat 150px -628px;
+}
+.box .use{
+    width:55px;
+    background:url("/images/develop_sprite.gif") no-repeat 160px -62px;
+}
+.use .dnw{
+    padding:0px 9px;
+    visibility:hidden;
+}
+.box a{
+    text-decoration:none;
+    line-height:50px;
+}
+.item #bottomnav{
+    border-top:1px dotted #cfcfcf;
+    height:80px;
+    padding:0px;
+    margin:0px 3px;
+}
+.item #bottomnav a{
+    text-decoration:none;
+    margin-top:25px;
+}
+.item #bottomnav a:hover{
+    border-bottom:1px dotted;
+}
+.item #bottomnav .left{
+    float:left;
+    margin-left:45px;
+}
+.item #bottomnav .right{
+    float:right;
+    margin-right:45px;
+}
+/*以上是公共部分和开发者工具的样式*/
+#superiority{
+    border:none;
+}
+.item #superiority .superouter{
+    border:none;
+    padding:0;
+}
+
+#superiority .goodness{
+    padding:0px;
+}
+#superiority .goodness div{
+    float:left;
+    width:410px;
+    padding-right:0px;
+    padding-bottom:35px;
+    border-bottom:none;
+}
+
+#superiority h2{
+    height:50px;
+    color:#88bbc8;
+    font-size:30px;
+    padding-left:38px;
+    font-weight:normal;
+}
+#superiority p{
+    width:400px;
+}
+#superiority .return,#superiority .technology,#superiority .data{
+    margin-right:80px;
+}
+#superiority .return h2{
+    background:url("/images/develop_sprite.gif") no-repeat 0px -136px;
+}
+#superiority .resource h2{
+    background:url("/images/develop_sprite.gif") no-repeat 0px -344px;
+}
+#superiority .technology h2{
+    background:url("/images/develop_sprite.gif") no-repeat 0px -204px;
+}
+#superiority .show h2{
+    background:url("/images/develop_sprite.gif") no-repeat 0px -412px;
+}
+#superiority .data h2{
+    background:url("/images/develop_sprite.gif") no-repeat 0px -272px;
+}
+#superiority .service h2{
+    background:url("/images/develop_sprite.gif") no-repeat 0px -486px;
+}
+.loading{
+    margin-left:15px;
+    padding-top:5px;
+}
+/*以下是开发者评论的样式*/
+#wordsofdev{
+    border:none;
+}
+.item #wordsofdev img{
+    margin-top:30px;
+    float:left;
+}
+.item #wordsofdev .r{
+    padding-top:60px;
+    padding-bottom:35px;
+    padding-left:45px;
+    border:none;
+    width:690px;
+    margin:0px;
+    float:left;
+}
+.item #wordsofdev p{
+    width:690px;
+}
+#wordsofdev .dev{
+    text-align:right;
+}
+#wordsofdev .otherdev{
+    padding:0px;
+}
+
+#wordsofdev .otherdev div{
+    width:405px;
+    float:left;
+    display:inline;
+    border-bottom:none;
+}
+#wordsofdev .otherdev .left{
+    margin-right:90px;
+}
+
+#wordsofdev .otherdev h4{
+    font-weight:normal;
+}
+.more {
+    background: url("/images/develop_sprite.gif") no-repeat 3px -1493px;
+    padding-left: 30px;
+}
+/*以上是开发者评论的样式*/
+
+
+
+
+/*以上是page部分的样式*/

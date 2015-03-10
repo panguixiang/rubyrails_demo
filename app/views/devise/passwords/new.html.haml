@@ -1,0 +1,25 @@
+!!! 5
+%html{ lang: "en"}
+  %head
+    %meta{charset: "utf-8"}
+    %title
+      = "TalkingSDK 接入平台用户注册"
+    = stylesheet_link_tag   "platform/base"
+    = stylesheet_link_tag   "member/passport"
+    = javascript_include_tag "member/register"
+  %body.w1440
+    #page.panel_forget
+      .inputarea
+        = form_for(resource,:as=>resource_name,:url=>password_path(resource_name),html:{:method => :post,class:'auto'}) do |f|
+          .title
+            %p
+              %a.home{:href=>'/'}
+            %h1.f30px 忘记密码
+          .inputlist
+            #email_warn_box.warn_box
+              %p#email_warn.warn 邮箱不能为空
+              %p.angle
+            .email_box.field_with_errors
+              = f.email_field :email,:autofocus => true,class:"input_email_n",:style=>"outline: 0;"
+          %p.tip
+            = f.submit "确 定",class:"shadow btn"

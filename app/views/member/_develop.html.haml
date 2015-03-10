@@ -1,0 +1,58 @@
+%div#usermenu
+  %div#firstlevel
+    %div#firstlevelwrap
+      %ul
+        %li
+          %a.tabitem.active#a1_a11son{href:"#"}
+            %span 个人中心
+            %em
+        %li
+          %a.tabitem#a2_a21son{href:"#"}
+            %span 我的应用
+            %em
+        %li
+          %a.tabitem#a3_a31son{href:"#"}
+            %span 财务管理
+            %em
+        %li
+          %a.tabitem#a4_a41son{href:"#"}
+            %span 积分墙
+            %em
+      %div.logo_wrap
+        %a{:href=>"/passport/profile/dever",:class=>"lg_left"}
+      %div#head_people
+        %ul
+          %li.sm_people#sm_user
+            %a#adbcId{:href=>'#'}
+          %li
+            %a{:href=>"/help/index.htm?t=tab0"}
+              %span 常见问题
+          %li.y_line 丨
+          %li
+            %a{:href=>"http://crm2.qq.com/page/portalpage/wpa.php?uin=4006368168&amp;cref&amp;ref=&amp;f=1&amp;ty=1&amp;ap=&amp;as=&amp;v="}
+              %span 联系客服
+          %li.y_line 丨
+          %li{:style=>"width:48px;"}
+            %a{:href=>"/"}
+              %span 官网
+      %p#sm_user_list{:style=>"display: none;"}
+        %a{:href=>"/passport/profile/dever",style:'width:179px;overflow:hidden;zoom:1;font-weight: bold;padding:19px 0 0 8px;margin-right:20px;height:20px;color: #686868;font-size:14px;'} #{current_member.email}
+        %a#msgcount{:href=>"/member/notification/note",:style=>"display: block;"} 消息#{session[:unreadCount]}
+        = link_to "退出", destroy_member_session_path,class:"quit",id:"btn_logout"
+  %div.secondlevel
+    %div.secondlevelwrap
+      %a.item.active2#a11son{href:"#"}  个人中心
+      %a.item#a12son{href:"#"}  通知信
+      %a.item#a13son{href:"#"}  个人信息
+      %a.item#a14son{href:"#"}  修改密码
+    %div.secondlevelwrap{:style=>"display:none;"}
+      %a.item#a21son{href:"#"}  应用列表
+      %a.item#a22son{href:"#"}  应用统计
+      -#%a.item#a23son{href:"#"}  推广墙应用统计
+    %div.secondlevelwrap{:style=>"display:none;"}
+      %a.item#a31son{href:"#"}  账户信息
+      %a.item#a32son{href:"#"}  提现
+      %a.item#a33son{href:"#"}  财务账本
+    %div.secondlevelwrap{:style=>"display:none;"}
+      %a.item#a41son{href:"#"}  积分墙应用列表
+      %a.item#a42son{href:"#"}  积分墙应用统计信息

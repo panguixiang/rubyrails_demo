@@ -1,0 +1,284 @@
+@charset "utf-8";
+.notice {
+  background-color: #ffffe3;
+  border: 1px solid #f3cf92;
+  height: 25px;
+  line-height: 25px;
+  padding-left: 11px;
+  margin-right: 5px;
+}
+.notice a {
+  float: left;
+  -webkit-transition-duration:0.5s;
+  -o-transition-duration:0.5s;
+  -moz-transition-duration:0.5s;
+}
+.notice a:hover {
+  -moz-transform: translate(7px, 0);
+  -webkit-transform: translate(7px, 0);
+  -o-transform: translate(7px, 0);
+}
+.notice .title {
+  float: left;
+  color: #ff6600;
+}
+.notice .time {
+  float: right;
+  color: #a4a4a4;
+  margin-right: 11px;
+}
+#noticeList {
+  float: left;
+}
+.message {
+  background-color: #ffffe3;
+  border: 1px solid #f3cf92;
+  height: 25px;
+  line-height: 25px;
+  margin: 3px 4px 4px 0px;
+  padding-right: 80px;
+}
+.message .content {
+  float: left;
+}
+.message .title {
+  color: #ff6600;
+  margin-left: 11px;
+}
+.message .date {
+  color: #a4a4a4;
+  float: right;
+  display: inline;
+  margin-right: -70px;
+}
+/* 帐号基本信息 */
+#baseinfo {
+  margin-bottom: 9px;
+}
+#baseinfo li {
+  height: 24px;
+  line-height: 24px;
+  float: left;
+}
+#baseinfo ul {
+  padding-right: 120px;
+}
+#baseinfo .section {
+  font-weight: bold;
+  padding-left: 12px;
+  width: 70px;
+}
+#baseinfo .content {
+  min-width: 300px;
+  _width: 300px;
+}
+#baseinfo .operate {
+  float: right;
+  display: inline;
+  margin-right: -100px;
+}
+.categorytitle {
+  height: 25px;
+  overflow: hidden;
+  background: image-url('member/grd-x-1-1px.gif') repeat-x;
+}
+.categorytitle .text,
+.categorytitle .operate {
+  background-image: image-url('member/profile-sprite.gif');
+  background-repeat: no-repeat;
+  line-height: 25px;
+  line-height: 28px\9;
+  _line-height: 23px;
+}
+.categorytitle .text {
+  font-weight: bold;
+  display: block;
+  float: left;
+  background-position:left top;
+  padding-left: 12px;
+}
+.categorytitle .operate {
+  float: right;
+  display: inline;
+  background-position: right -25px;
+  padding-right: 19px;
+}
+#finance,
+#overview,
+#report {
+  margin-right: 4px;
+  margin-bottom: 10px;
+}
+#finance .info {
+  line-height: 34px;
+  padding-left: 12px;
+  border-bottom: 1px solid #e0e0e0;
+}
+#finance .number {
+  font-weight: bold;
+}
+#finance .list {
+  margin-left: 12px;
+  margin-top: 5px;
+}
+#finance table {
+  width: 100%;
+}
+#finance td {
+  height: 24px;
+}
+#finance .even {
+  background-color: #f3f3f3;
+}
+#finance .date {
+  color: #797979;
+  width: 148px;
+  padding-left: 10px;
+}
+#finance .type {
+  width: 44px;
+  font-weight: bold;
+}
+#finance .separator {
+  width: 10px;
+}
+#finance .sum {
+  color: #797979;
+  width: 60px;
+  text-align: right;
+}
+#finance .sum span {
+  font-weight: bold;
+  margin-right: 2px;
+}
+#finance .status {
+  color: #797979;
+  width: 60px;
+}
+#overview .list {
+  margin-bottom:10px;
+  margin-right:18px;
+  border-top: 1px solid #e0e0e0;
+}
+#overview .followme{
+  text-align: center;
+  padding: 10px;
+}
+#overview table {
+  table-layout:fixed;
+  width: 100%;
+}
+#overview th {
+  height: 24px;
+}
+#overview td {
+  border-top: 1px solid #eeeeee;
+  height: 24px;
+}
+#overview .appname {
+  width: 15.5%;
+  padding-left: 10px;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+}
+#overview .channel {
+  width: 12.33333335%;
+  text-align: right;
+}
+#overview .aptdate {
+  text-align: right;
+}
+#overview .date {
+  width: 138px;
+  padding-left: 10px;
+  text-align: left;
+}
+#overview #selfPromoteList .date{
+  width: 324px;
+}
+#overview .number {
+  width: 75px;
+  text-align: right;
+  padding-right: 18px;
+}
+#overview .subHeader {
+  width: 115px;
+  text-align: right;
+  padding-right: 18px;
+}
+#overview .income {
+  text-align: right;
+  /*	padding-right: 18px;*/
+}
+#overview .info {
+  height: 30px;
+  line-height: 30px;
+}
+#overview .info span {
+  display: block;
+  float: left;
+  padding-left: 24px;
+  line-height: 25px;
+  background-image: image-url('member/status-sprite.gif');
+  background-repeat: no-repeat;
+  margin-right: 20px;
+  margin-top: 2px;
+}
+#overview .disabled {
+  opacity: 0.3;
+  -moz-opacity: 0.3;
+  -webkit-opacity: 0.3;
+  filter: alpha(opacity=30);
+}
+#overview .running {
+  background-position: -10px 1px;
+}
+#overview .paused, #overview .pause{
+  background-position: -10px -38px;
+}
+#overview .pending, #overview .waiting {
+  background-position: -10px -74px;
+}
+#overview .info span.waiting{
+  background-color: transparent;
+}
+#overview .rejected, #overview .done {
+  background-position: -10px -111px;
+}
+#overview .info span.done{
+  background-color: transparent;
+}
+#overview .unupload, #overview .oops {
+  background-position: -10px -146px;
+}
+#overview .applist {
+  background-position: -40px 1px;
+}
+#overview .aptamount{
+  padding-left:300px;
+}
+#overview .aptinfo{
+  height: 30px;
+  line-height: 30px;
+  padding-left:10px;
+}
+.applist a{
+  color: red;
+}
+#report {}
+#promo {
+  margin-right: 4px;
+}
+#promo .info {
+  padding: 10px 12px;
+}
+
+
+#noticeList div {
+  display:none;
+}
+
+#noticeList div.current {
+  display:block;
+}

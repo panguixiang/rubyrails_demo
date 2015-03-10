@@ -1,0 +1,96 @@
+#header{
+  height:99px;
+  background:url("/images/grd-x.gif") repeat-x 0 -155px;
+
+}
+#item .caseshow{
+  padding:18px 16px;
+  margin:0px 3px;
+}
+#item .caseshow img{
+  width:204px;
+  height:304px;
+  margin:19px 10px 19px 19px;
+}
+
+
+#item{
+  margin-top:60px;
+}
+#item #bottomnav{
+  height:50px;
+  padding:0px;
+  padding-top:25px;
+  margin:0px 3px;
+  border-top:1px dotted #cfcfcf;
+}
+#item #bottomnav .left{
+  margin-left:30px;
+  float:left;
+}
+#item #bottomnav .right{
+  margin-right:30px;
+  float:right;
+}
+#item #bottomnav a{
+  text-decoration:none;
+}
+#item #bottomnav a:hover{
+  border-bottom:1px dotted #88bbc8;
+}
+/*以上是page部分的样式*/
+.casedetail{
+  margin-left:52px;
+  width:675px;
+  margin-bottom:45px;
+}
+.title{
+  height:50px;
+  background-image:url("/images/icons-showcase.gif");
+  background-repeat:no-repeat;
+  margin-top:40px;
+  padding-left:40px;
+}
+
+.showimg{
+  margin:15px auto;
+}
+
+.effectiveness{
+  background-position: 0 -18px;
+}
+
+.background{
+  background-position: 0 -90px;
+}
+
+.marketDes{
+  background-position: 0 -157px;
+}
+
+.strategy{
+  background-position: 0 -232px;
+}
+
+.projectShine{
+  background-position: 0 -301px;
+}
+.casename{
+  padding-top:60px;
+  margin-bottom:50px;
+}
+.back{
+  float:right;
+  margin-right:100px;
+  padding-top:60px;
+}
+.back a{
+  text-decoration:none;
+  padding-left:20px;
+  background:url("/images/icons-showcase.gif") no-repeat -9px -373px;
+}
+.back a:hover{
+  border-bottom:1px dotted #88bbc8;
+}
+/*以上是具体case实例的样式*/
+

@@ -1,0 +1,249 @@
+= stylesheet_link_tag "member/app_list/combo"
+= stylesheet_link_tag "member/app_list/combo1"
+= javascript_include_tag "member/app_list"
+
+
+#content{:class=>""}
+  #main.main.wrapper
+    .clearfix
+      %span#system_errors.error-message
+      %form#searchList{:action=>"#",:method=>"get"}
+        %h2.appList
+          应用列表
+          %span.weak &nbsp;(共 #{@page.getTotalCount} 个应用)
+          %small.searchForm
+            %span.icon.iconM.icon_search 搜索
+            %input#mediaName.text.searchInput{:type=>"text",:name=>"mediaName",:placeholder=>"通过应用名搜索...",:value=>"#{params[:appName]}"}
+            -unless params[:appName].blank?
+              %a.icon.iconM.icon_cancel2{:href=>"/member/app_manager/index",:style=>"display: block"} 取消
+      -unless params[:appName].blank?
+        %div.keyvalue.searchInfo{:style=>"display: block"}
+          %p.important
+            找到 #{@page.getTotalCount} 个与&nbsp;"#{params[:appName]}"&nbsp;相关的结果
+            %a.fcb.backList{:href=>"/member/app_manager/index"} 返回全部列表
+      .databox
+        .databox_options.clearfix
+          %button.btnM.pause.btn_disabled{:type=>"button"} 暂停
+          %button.btnM.run.btn_disabled{:type=>"button"} 运行
+          %label.display_status
+            %select.displayAppStatus{:name=>"status"}
+              %option{:value=>"",:selected=>"selected"} 显示全部状态
+              - if params[:status]=='1'
+                %option{:value=>1,:selected=>"selected"} 未上传应用
+              - else
+                %option{:value=>1} 未上传应用
+              - if params[:status]=='2'
+                %option{:value=>2,:selected=>"selected"} 应用审核中
+              - else
+                %option{:value=>2} 应用审核中
+              - if params[:status]=='3'
+                %option{:value=>3,:selected=>"selected"} 审核未通过
+              - else
+                %option{:value=>3} 审核未通过
+              - if params[:status]=='4'
+                %option{:value=>4,:selected=>"selected"} 运行中
+              - else
+                %option{:value=>4} 运行中
+              - if params[:status]=='5'
+                %option{:value=>5,:selected=>"selected"} 暂停中
+              - else
+                %option{:value=>5} 暂停中
+              - if params[:status]=='6'
+                %option{:value=>6,:selected=>"selected"} 已禁用
+              - else
+                %option{:value=>6} 已禁用
+          %label.display_system
+            %select.displayAppSystem{:name=>"platform",:style=>"display: ;"}
+              %option{:value=>"",:selected=>"selected"} 显示全部系统
+              - if params[:platform]=='ios'
+                %option{:value=>'ios',:selected=>"selected"} iOS
+              - else
+                %option{:value=>'ios'} iOS
+              - if params[:platform]=='android'
+                %option{:value=>'android',:selected=>"selected"} Android
+              - else
+                %option{:value=>'android'} Android
+              - if params[:platform]=='web'
+                %option{:value=>'web',:selected=>"selected"} Web应用
+              - else
+                %option{:value=>'web'} Web应用
+          .opt_right
+            %div#html_pager_1.pager.pagerL
+              %span.pager_position
+                - if @page.getPageNum-@page.getPageCount < 0 || @page.getPageNum-@page.getPageCount == 0
+                  #{@page.getPageNum}/#{@page.getPageCount}
+              .btn_group
+                %button.button.btnS.btn_gray.pager_prev.ac.ac_goto.btn_disabled{:disabled=>""}
+                  %span
+                    - if @page.getPageNum-1==0
+                      %em.icon.iconS.icon_left &lt;
+                    - else
+                      %em.icon.iconS.icon_left{:onclick=>"toPage(#{@page.getPageNum-1})"} &lt;
+                %button.button.btnS.btn_gray.pager_next.ac.ac_goto.btn_disabled{:disabled=>""}
+                  %span
+                    - if @appList.nil? || @appList.size==0 || @page.getPageCount<= @page.getPageNum
+                      %em.icon.iconS.icon_right &gt;
+                    - else
+                      %em.icon.iconS.icon_right{:onclick=>"toPage(#{@page.getPageNum+1})"} &lt;
+                %a.pagerFirst{:href=>"/publisher/app_list"} 首页
+            %button.btnM.btn_default.ac.ac_addApp{:type=>"submit",:href=>"/member/app_add/index1"}
+              %span 添加应用
+        %table.datatable
+          %colgroup
+            %col
+            %col.col_9
+            %col.col_240
+            %col.col_3
+            %col.col_4
+            %col.col_4
+            %col.col_3
+          %tbody
+            %tr
+              %th.chec
+                %label
+                  %input#checkAll.customCheckbox7{:type=>"checkbox",:name=>"planselector",:style=>"display: none;"}
+                  %span.customCheckbox.cr_itemname_planselector.ac.ac_customCheckbox_change
+                    %dfn
+                      %em
+                        %th.appName 应用名称
+                        %th 状态&nbsp;
+                        %th.right.tdIncome 收入(元)
+                        %th.right.tdShow 展现(次)
+                        %th.right.tdEcpm eCPM(元)
+          -if @page.getTotalCount>0
+            - @appList.each_with_index do |app|
+              %tr.odd#mid{id:"#{app.id}"}
+                %td.selector.chec
+                  %p
+                    %label
+                      %input.idChecker.customCheckbox14{:type=>"checkbox",:disabled=>"disabled",:value=>"#{app.id}",:name=>"customCheckbox",:style=>"display: none;"}
+                      %span.customCheckbox.cr_itemname_customCheckbox.ac.ac_customCheckbox_change.idChecker
+                        %dfn
+                          %em
+                  %ul.advtypes
+                %td.left.appName
+                  %p
+                    %span.icon.iconS.icon_android android
+                    %a.operable{:href=>"/member/app_manager/app_details?approId=#{app['id']}"} #{app.app_name}
+                  %ul.advtypes
+                    - app.advertisings.each do |adver|
+                      %li
+                        = adverTypeStr adver.adver_type
+                        #{adver.adver_name}
+                %td.left.appStatus
+                  %p
+                    %span#lamp_101475.normal.unapproved
+                      %em.statusA
+                        = appStatusStr(app.status)
+                    %span &nbsp;
+                    %a.upload_a.display_toggle{:href=>"/member/app_manager/app_push?approId=#{app['id']}",:style=>"display: none;"} 上传
+                  %ul.advtypes
+                    - app.advertisings.each do |adver|
+                      %li{class:'232323'}
+                        = adPositionStatus adver.status
+                        %span &nbsp;
+                        -if adver.status==1
+                          %a.run_a.display_toggle{:href=>"/member/app_manager/setStatus?id=#{adver['id']}",:style=>"display: none;"}
+                            = adPositionStatus(2)
+                        -if adver.status==2
+                          %a.run_a.display_toggle{:href=>"/member/app_manager/setStatus?id=#{adver['id']}",:style=>"display: none;"}
+                            = adPositionStatus(1)
+                %td.right.tdIncome
+                  %p#stat_revenue_101475
+                    - unless app.incoming.blank?
+                      =number_with_precision("#{app.incoming}")
+                  %ul.advtypes
+                %td.right.tdShow
+                  %p#stat_impression_101475 #{app.display_count}
+                  %ul.advtypes
+                %td.right.tdEcpm
+                  %p#stat_ecpm_101475
+                    - unless app.display_count.blank?
+                      =number_with_precision("#{(app.incoming/app.display_count)*1000}")
+                  %ul.advtypes
+                %td
+                  %a.icon.iconS.icon_report{:href=>"#{member_app_static_path(id:app.id)}",:title=>"报表"} 报表
+                  = link_to "设置", member_appfilters_path(app_id:app.id),class:'icon iconS icon_setting'
+                  %ul.advtypes
+            %tr
+              %th
+              %th.pageTotal 本页总计
+              %th
+                = (calculateTotal(@appList)).html_safe
+              %th
+          -else
+            %tr
+              %td{:style=>"text-align:center",:colspan=>"8"}
+                您还没有创建应用
+                %a.operable{:href=>"/member/app_add/index1",:style=>"color:#2A81BE;"} 现在创建
+            %tr
+              %th
+              %th.pageTotal 本页总计
+              %th
+              %th
+        .databox_options.clearfix
+          %button.btnM.pause.btn_disabled{:type=>"button"} 暂停
+          %button.btnM.run.btn_disabled{:type=>"button"} 运行
+          %label.display_status
+            %select.displayAppStatus{:name=>"status"}
+              %option{:value=>"",:selected=>"selected"} 显示全部状态
+              - if params[:status]=='1'
+                %option{:value=>1,:selected=>"selected"} 未上传应用
+              - else
+                %option{:value=>1} 未上传应用
+              - if params[:status]=='2'
+                %option{:value=>2,:selected=>"selected"} 应用审核中
+              - else
+                %option{:value=>2} 应用审核中
+              - if params[:status]=='3'
+                %option{:value=>3,:selected=>"selected"} 审核未通过
+              - else
+                %option{:value=>3} 审核未通过
+              - if params[:status]=='4'
+                %option{:value=>4,:selected=>"selected"} 运行中
+              - else
+                %option{:value=>4} 运行中
+              - if params[:status]=='5'
+                %option{:value=>5,:selected=>"selected"} 暂停中
+              - else
+                %option{:value=>5} 暂停中
+              - if params[:status]=='6'
+                %option{:value=>6,:selected=>"selected"} 已禁用
+              - else
+                %option{:value=>6} 已禁用
+          %label.display_system
+            %select.displayAppSystem{:name=>"platform",:style=>"display: ;"}
+              %option{:value=>"",:selected=>"selected"} 显示全部系统
+              - if params[:platform]=='ios'
+                %option{:value=>'ios',:selected=>"selected"} iOS
+              - else
+                %option{:value=>'ios'} iOS
+              - if params[:platform]=='android'
+                %option{:value=>'android',:selected=>"selected"} Android
+              - else
+                %option{:value=>'android'} Android
+              - if params[:platform]=='web'
+                %option{:value=>'web',:selected=>"selected"} Web应用
+              - else
+                %option{:value=>'web'} Web应用
+          .opt_right
+            %div#html_pager_1.pager.pagerL
+              %span.pager_position
+                - if @page.getPageNum-@page.getPageCount < 0 || @page.getPageNum-@page.getPageCount == 0
+                  #{@page.getPageNum}/#{@page.getPageCount}
+              .btn_group
+                %button.button.btnS.btn_gray.pager_prev.ac.ac_goto.btn_disabled{:disabled=>""}
+                  %span
+                    - if @page.getPageNum-1==0
+                      %em.icon.iconS.icon_left &lt;
+                    - else
+                      %em.icon.iconS.icon_left{:onclick=>"toPage(#{@page.getPageNum-1})"} &lt;
+                %button.button.btnS.btn_gray.pager_next.ac.ac_goto.btn_disabled{:disabled=>""}
+                  %span
+                    - if @appList.nil? || @appList.size==0 || @page.getPageCount<= @page.getPageNum
+                      %em.icon.iconS.icon_right &gt;
+                    - else
+                      %em.icon.iconS.icon_right{:onclick=>"toPage(#{@page.getPageNum+1})"} &lt;
+                %a.pagerFirst{:href=>"/publisher/app_list"} 首页
+            %button.btnM.btn_default.ac.ac_addApp{:type=>"button"}
+              %span 添加应用
